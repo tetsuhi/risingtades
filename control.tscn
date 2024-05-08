@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dejaruvj4arte"]
+
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://7f89c1ae58a1fb6a01e026367807a87b.jpg" id="1_uopvq"]
+[ext_resource type="Script" path="res://clickMe.gd" id="2_y0080"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.129
+anchor_bottom = 0.324
+offset_right = 0.391998
+offset_bottom = 0.0480042
+texture = ExtResource("1_uopvq")
+expand_mode = 1
+script = ExtResource("2_y0080")
