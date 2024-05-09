@@ -11,17 +11,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="cartaTextura" type="TextureRect" parent="." node_paths=PackedStringArray("manoNodo")]
+[node name="cartaTextura" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.115
-anchor_bottom = 0.285
-offset_right = -0.479996
-offset_bottom = 0.319977
+anchor_right = 0.129
+anchor_bottom = 0.324
+offset_right = 0.391998
+offset_bottom = 0.0480042
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_uopvq")
 expand_mode = 1
 script = ExtResource("2_y0080")
-manoNodo = NodePath("../manoPosicion")
 
 [node name="manoPosicion" type="Control" parent="."]
 anchors_preset = 0
