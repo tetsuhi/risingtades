@@ -19,6 +19,6 @@ func _process(delta):
 		global_position = global_position.lerp(Vector2(manoNodo.position.x, manoNodo.position.y - size.y/2), delta * CARD_DELAY_SPEED)
 
 	if not isClicked and mousePos.x <= position.x + size.x and mousePos.y <= position.y + size.y and mousePos.x >= position.x and mousePos.y >= position.y:
-		scale = scale.lerp(Vector2(2, 2), delta*30)
+		scale = scale.lerp(Vector2(1.2, 1.2), delta*30)
 	else:
 		scale = scale.lerp(Vector2(1, 1), delta*30)
