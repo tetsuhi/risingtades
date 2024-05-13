@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs615om7u3vog"]
+
+[ext_resource type="PackedScene" uid="uid://dejaruvj4arte" path="res://Assets/Scenes/CartaUI.tscn" id="1_804rd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
+size = Vector2(1152, 400)
+
+[node name="MesaJuego" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(576, 200)
+shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="JuegoUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="manoJugador" type="HBoxContainer" parent="JuegoUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -202.0
+offset_top = -114.0
+offset_right = 202.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="CartaUI" parent="JuegoUI/manoJugador" instance=ExtResource("1_804rd")]
+layout_mode = 2
+
+[node name="CartaUI2" parent="JuegoUI/manoJugador" instance=ExtResource("1_804rd")]
+layout_mode = 2
+
+[node name="CartaUI3" parent="JuegoUI/manoJugador" instance=ExtResource("1_804rd")]
+layout_mode = 2

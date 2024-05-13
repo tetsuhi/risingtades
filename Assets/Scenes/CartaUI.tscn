@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dejaruvj4arte"]
+
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="1_qtn8c"]
+[ext_resource type="Script" path="res://Assets/Scripts/cardBehaviour.gd" id="2_x64dx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8611"]
+size = Vector2(132, 185)
+
+[node name="CartaUI" type="Control"]
+custom_minimum_size = Vector2(132, 185)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1020.0
+offset_bottom = -463.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(66, 92.5)
+script = ExtResource("2_x64dx")
+
+[node name="cartaTextura" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(132, 185)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 122)
+mouse_filter = 2
+texture = ExtResource("1_qtn8c")
+expand_mode = 1
+
+[node name="detectorColision" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectorColision"]
+position = Vector2(66, 92.5)
+shape = SubResource("RectangleShape2D_i8611")
+
+[connection signal="area_entered" from="detectorColision" to="." method="_on_detector_colision_area_entered"]
+[connection signal="area_exited" from="detectorColision" to="." method="_on_detector_colision_area_exited"]
