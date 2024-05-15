@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpv61m4o4a3j7"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/boton_jugar.gd" id="1_s2tpp"]
+[ext_resource type="Script" path="res://Assets/Scripts/boton_opciones.gd" id="2_iaaa6"]
+[ext_resource type="Script" path="res://Assets/Scripts/boton_coleccion.gd" id="3_isiod"]
+[ext_resource type="Script" path="res://Assets/Scripts/boton_salir.gd" id="4_ic588"]
+
+[node name="menu_principal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="boton_jugar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -432.0
+offset_right = 139.0
+offset_bottom = -333.0
+grow_horizontal = 2
+grow_vertical = 0
+action_mode = 0
+text = "JUGAR"
+script = ExtResource("1_s2tpp")
+
+[node name="boton_opciones" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 296.0
+offset_top = -304.0
+offset_right = 452.0
+offset_bottom = -248.0
+grow_vertical = 0
+action_mode = 0
+text = "OPCIONES
+"
+script = ExtResource("2_iaaa6")
+
+[node name="boton_coleccion" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -304.0
+offset_right = -292.0
+offset_bottom = -248.0
+grow_horizontal = 0
+grow_vertical = 0
+action_mode = 0
+text = "COLECCION
+"
+script = ExtResource("3_isiod")
+
+[node name="boton_salir" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -240.0
+offset_right = 55.5
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+action_mode = 0
+text = "SALIR"
+script = ExtResource("4_ic588")
+
+[connection signal="pressed" from="boton_jugar" to="boton_jugar" method="_on_pressed"]
+[connection signal="pressed" from="boton_opciones" to="boton_opciones" method="_on_pressed"]
+[connection signal="pressed" from="boton_coleccion" to="boton_coleccion" method="_on_pressed"]
+[connection signal="pressed" from="boton_salir" to="boton_salir" method="_on_pressed"]

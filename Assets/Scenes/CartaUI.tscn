@@ -12,8 +12,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1020.0
-offset_bottom = -463.0
+offset_left = -66.0
+offset_top = -92.5
+offset_right = -1086.0
+offset_bottom = -555.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(66, 92.5)
@@ -40,5 +42,4 @@ monitorable = false
 position = Vector2(66, 92.5)
 shape = SubResource("RectangleShape2D_i8611")
 
-[connection signal="area_entered" from="detectorColision" to="." method="_on_detector_colision_area_entered"]
-[connection signal="area_exited" from="detectorColision" to="." method="_on_detector_colision_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
