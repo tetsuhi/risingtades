@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvxjvfmxigir4"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/boton_volver.gd" id="1_ygd8a"]
+[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_volver.gd" id="1_ygd8a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1vl6c"]
 font_size = 150

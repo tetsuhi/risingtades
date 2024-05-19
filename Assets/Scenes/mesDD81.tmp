@@ -1,22 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=14 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="PackedScene" uid="uid://dejaruvj4arte" path="res://Assets/Scenes/CartaUI.tscn" id="1_804rd"]
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="2_6kpf7"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonJugarCarta.gd" id="2_ea1tn"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonJugarCartaOponente.gd" id="3_aixnn"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonRobar.gd" id="3_wxg2y"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonPasarTurno.gd" id="5_t5peg"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/turnoLabel.gd" id="6_aotk2"]
 [ext_resource type="FontFile" uid="uid://sk7x8hxeqldj" path="res://Assets/Fonts/CelticTime.ttf" id="6_k70ok"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/mareaJugadorDebug.gd" id="8_e6xqd"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesJugador.gd" id="8_na5y6"]
 [ext_resource type="Script" path="res://Assets/Scripts/TurnManager.gd" id="9_1trl3"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/mareaOponenteDebug.gd" id="9_8pahl"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasMaxJugador.gd" id="9_f46sj"]
 [ext_resource type="Script" path="res://Assets/Scripts/TorchManager.gd" id="9_rvepi"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesOponente.gd" id="10_ilqw0"]
-[ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
 size = Vector2(722.9, 177)
@@ -69,18 +63,6 @@ offset_right = 924.0
 offset_bottom = 576.0
 text = "Jugar carta"
 script = ExtResource("2_ea1tn")
-
-[node name="botonJugarCartaOponente" type="Button" parent="JuegoUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -64.0
-offset_top = 64.0
-offset_right = 68.0
-offset_bottom = 104.0
-grow_horizontal = 2
-text = "Jugar carta"
-script = ExtResource("3_aixnn")
 
 [node name="baraja" type="Control" parent="JuegoUI"]
 layout_mode = 3
@@ -142,39 +124,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_aotk2")
 
-[node name="mareaJugador" type="Label" parent="JuegoUI"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = 284.0
-offset_right = 200.0
-offset_bottom = 340.0
-grow_vertical = 2
-rotation = -1.57079
-size_flags_horizontal = 0
-text = "ejemplo"
-label_settings = SubResource("LabelSettings_r6cpw")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("8_e6xqd")
-
-[node name="mareaOponente" type="Label" parent="JuegoUI"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = 284.0
-offset_right = 272.0
-offset_bottom = 340.0
-grow_vertical = 2
-rotation = -1.57079
-text = "ejemplo"
-label_settings = SubResource("LabelSettings_r6cpw")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("9_8pahl")
-
 [node name="antorchasActualesJugador" type="Label" parent="JuegoUI"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -207,7 +156,6 @@ grow_vertical = 2
 text = "max.:"
 label_settings = SubResource("LabelSettings_r6cpw")
 vertical_alignment = 1
-script = ExtResource("9_f46sj")
 
 [node name="antorchasActualesOponente" type="Label" parent="JuegoUI"]
 anchors_preset = 8
@@ -224,7 +172,6 @@ grow_vertical = 2
 text = "antorchas:"
 label_settings = SubResource("LabelSettings_r6cpw")
 vertical_alignment = 1
-script = ExtResource("10_ilqw0")
 
 [node name="antorchasMaxOponente" type="Label" parent="JuegoUI"]
 anchors_preset = 8
@@ -241,21 +188,16 @@ grow_vertical = 2
 text = "max.:"
 label_settings = SubResource("LabelSettings_r6cpw")
 vertical_alignment = 1
-script = ExtResource("9_f46sj")
+
+[node name="TorchManager" type="Node" parent="."]
+script = ExtResource("9_rvepi")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("9_1trl3")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("2_6kpf7")
 
-[node name="TurnManager" type="Node" parent="GameManager"]
-script = ExtResource("9_1trl3")
-
-[node name="TorchManager" type="Node" parent="GameManager"]
-script = ExtResource("9_rvepi")
-
-[node name="TideManager" type="Node" parent="GameManager"]
-script = ExtResource("14_x3k5s")
-
 [connection signal="pressed" from="JuegoUI/botonJugarCarta" to="JuegoUI/botonJugarCarta" method="_on_pressed"]
-[connection signal="pressed" from="JuegoUI/botonJugarCartaOponente" to="JuegoUI/botonJugarCartaOponente" method="_on_pressed"]
 [connection signal="pressed" from="JuegoUI/baraja/botonRobar" to="JuegoUI/baraja/botonRobar" method="_on_pressed"]
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="JuegoUI/botonPasarTurno" method="_on_pressed"]

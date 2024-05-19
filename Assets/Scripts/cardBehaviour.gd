@@ -5,9 +5,6 @@ const CARD_DELAY_SPEED = 12.0
 var isClicked: bool = false
 var lastPosition:= Vector2(0.0, 0.0)
 
-func _ready():
-	print(position)
-
 func _process(delta):
 	var mousePos: Vector2 = get_viewport().get_mouse_position()
 	if Input.is_action_pressed("LMB"):

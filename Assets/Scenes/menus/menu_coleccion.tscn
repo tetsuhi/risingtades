@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://3ynxdntchdom"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/boton_volver.gd" id="1_iiyxp"]
+[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_volver.gd" id="1_iiyxp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nlcvi"]
 font_size = 150
@@ -14,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "coleccion"

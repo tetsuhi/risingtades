@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bs615om7u3vog"]
+
+[ext_resource type="PackedScene" uid="uid://dejaruvj4arte" path="res://Assets/Scenes/CartaUI.tscn" id="1_804rd"]
+[ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="2_6kpf7"]
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
+[ext_resource type="Script" path="res://Assets/Scripts/botonJugarCarta.gd" id="2_ea1tn"]
+[ext_resource type="Script" path="res://Assets/Scripts/botonRobar.gd" id="3_wxg2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
+size = Vector2(722.9, 178)
+
+[node name="MesaJuego" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(576, 392)
+shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="JuegoUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="manoJugador" type="HBoxContainer" parent="JuegoUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -112.0
+offset_right = 204.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="CartaUI" parent="JuegoUI/manoJugador" instance=ExtResource("1_804rd")]
+layout_mode = 2
+
+[node name="CartaUI2" parent="JuegoUI/manoJugador" instance=ExtResource("1_804rd")]
+layout_mode = 2
+
+[node name="CartaUI3" parent="JuegoUI/manoJugador" instance=ExtResource("1_804rd")]
+layout_mode = 2
+
+[node name="botonJugarCarta" type="Button" parent="JuegoUI"]
+offset_left = 778.0
+offset_top = 536.0
+offset_right = 907.0
+offset_bottom = 584.0
+text = "Juego una carta"
+script = ExtResource("2_ea1tn")
+
+[node name="baraja" type="Control" parent="JuegoUI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -112.0
+offset_right = -28.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="JuegoUI/baraja"]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 185.0
+texture = ExtResource("2_7r7ex")
+
+[node name="botonRobar" type="Button" parent="JuegoUI/baraja"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 132.0
+text = "Robo del mazo"
+script = ExtResource("3_wxg2y")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_6kpf7")
+
+[connection signal="pressed" from="JuegoUI/botonJugarCarta" to="JuegoUI/botonJugarCarta" method="_on_pressed"]
+[connection signal="pressed" from="JuegoUI/baraja/botonRobar" to="JuegoUI/baraja/botonRobar" method="_on_pressed"]

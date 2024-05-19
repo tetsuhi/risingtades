@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpv61m4o4a3j7"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/boton_jugar.gd" id="1_s2tpp"]
-[ext_resource type="Script" path="res://Assets/Scripts/boton_opciones.gd" id="2_iaaa6"]
-[ext_resource type="Script" path="res://Assets/Scripts/boton_coleccion.gd" id="3_isiod"]
-[ext_resource type="Script" path="res://Assets/Scripts/boton_salir.gd" id="4_ic588"]
+[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_jugar.gd" id="1_s2tpp"]
+[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_opciones.gd" id="2_iaaa6"]
+[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_coleccion.gd" id="3_isiod"]
+[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_salir.gd" id="4_ic588"]
 
 [node name="menu_principal" type="Control"]
 layout_mode = 3
