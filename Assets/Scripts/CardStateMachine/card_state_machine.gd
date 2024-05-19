@@ -2,7 +2,7 @@ extends Node
 
 class_name CardStateMachine
 
-@export var card : Card
+@export var card : Control
 @export var current_state : State
 
 var states : Array[State]

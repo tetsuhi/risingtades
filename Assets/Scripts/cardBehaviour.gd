@@ -2,6 +2,8 @@ extends Control
 
 const CARD_DELAY_SPEED = 12.0
 
+@onready var state_machine : CardStateMachine = $CardStateMachine
+
 var isClicked: bool = false
 var lastPosition:= Vector2(0.0, 0.0)
 
