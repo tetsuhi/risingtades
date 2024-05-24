@@ -2,8 +2,9 @@ extends Node
 
 class_name State
 
-var card : Control
+var card : CardUI
 var next_state : State
+var initial_position : Vector2
 
 func state_process(delta):
 	pass
