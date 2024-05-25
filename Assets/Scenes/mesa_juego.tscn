@@ -33,26 +33,10 @@ shadow_offset = Vector2(0, 2)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(576, 408)
+position = Vector2(576, 343)
 shape = SubResource("RectangleShape2D_kmtpe")
 
 [node name="JuegoUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
-
-[node name="manoJugador" type="HBoxContainer" parent="JuegoUI"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -112.0
-offset_right = 204.0
-offset_bottom = 73.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-alignment = 1
 
 [node name="botonJugarCarta" type="Button" parent="JuegoUI"]
 offset_left = 792.0
@@ -235,7 +219,7 @@ label_settings = SubResource("LabelSettings_r6cpw")
 vertical_alignment = 1
 script = ExtResource("9_f46sj")
 
-[node name="CartaUI" parent="JuegoUI" instance=ExtResource("1_804rd")]
+[node name="CartaUI" parent="." instance=ExtResource("1_804rd")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -246,7 +230,7 @@ offset_bottom = 721.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="CartaUI2" parent="JuegoUI" instance=ExtResource("1_804rd")]
+[node name="CartaUI2" parent="." instance=ExtResource("1_804rd")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -257,7 +241,7 @@ offset_bottom = 721.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="CartaUI3" parent="JuegoUI" instance=ExtResource("1_804rd")]
+[node name="CartaUI3" parent="." instance=ExtResource("1_804rd")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

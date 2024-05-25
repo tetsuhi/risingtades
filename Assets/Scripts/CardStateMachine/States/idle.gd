@@ -3,6 +3,9 @@ extends State
 class_name IdleState
 
 @export var mouse_entered_state : State
+@export var dragged_state : State
+
+var on_card : bool = false;
 
 func on_enter():
 	if not card.is_node_ready():
@@ -12,8 +15,12 @@ func state_process(delta):
 	pass
 
 func state_input(event : InputEvent):
-	pass
-
+	if event.is_action_pressed("LMB") and on_card:
+		next_state = dragged_state
+	
 
 func _on_carta_ui_mouse_entered():
-	next_state = mouse_entered_state
+	on_card = true
+
+func _on_carta_ui_mouse_exited():
+	on_card = false

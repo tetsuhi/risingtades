@@ -11,14 +11,15 @@ const CARD_DELAY_SPEED = 12.0
 var card_name : String
 var card_type : String
 var card_cost : int
+var on_card : bool
 
 func _process(delta):
-	# Escalar la carta segun el estado
-	if state_machine.current_state.name == "enteredState":
+	
+	if on_card and state_machine.current_state.name == "idleState":
 		scale = scale.lerp(Vector2(1.2, 1.2), delta*30)
-	elif state_machine.current_state.name == "idleState" or state_machine.current_state.name == "draggedState":
+	elif not on_card:
 		scale = scale.lerp(Vector2(1, 1), delta*30)
-
+	
 func get_card_name():
 	return card_name
 	
@@ -27,3 +28,10 @@ func get_card_type():
 	
 func get_card_cost():
 	return card_cost
+
+
+func _on_mouse_entered():
+	on_card = true
+
+func _on_mouse_exited():
+	on_card = false

@@ -24,13 +24,15 @@ func state_process(delta):
 	card.position = card.position.lerp(mousePos - card.size/2, delta * card.CARD_DELAY_SPEED)
 
 func state_input(event : InputEvent):
-	if event.is_action_released("LMB"):
+	var confirm = event.is_action_released("LMB")
+	var cancel = event.is_action_pressed("RMB")
+	if confirm and minimum_drag_time_elapsed:
 		if on_board:
 			print("On Board")
 			next_state = onBoard_state
-		else:
-			card.position = initial_position
-			next_state = idle_state
+	elif cancel:
+		card.position = initial_position
+		next_state = idle_state
 
 func _on_detector_colision_area_entered(area):
 	on_board = true

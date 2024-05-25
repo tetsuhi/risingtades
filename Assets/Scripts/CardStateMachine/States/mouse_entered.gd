@@ -13,7 +13,6 @@ func state_process(delta):
 
 func state_input(event : InputEvent):
 	if(event.is_action_pressed("LMB")):
-		#print(initial_position)
 		next_state = dragged_state
 
 func _on_carta_ui_mouse_exited():

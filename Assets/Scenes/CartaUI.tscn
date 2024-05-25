@@ -49,9 +49,10 @@ script = ExtResource("3_3d52g")
 card = NodePath("..")
 current_state = NodePath("idleState")
 
-[node name="idleState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("mouse_entered_state")]
+[node name="idleState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("mouse_entered_state", "dragged_state")]
 script = ExtResource("4_qcqye")
 mouse_entered_state = NodePath("../enteredState")
+dragged_state = NodePath("../draggedState")
 
 [node name="enteredState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("dragged_state", "idle_state")]
 script = ExtResource("5_5g5pp")
@@ -68,6 +69,10 @@ script = ExtResource("7_2mvf3")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="." to="CardStateMachine/idleState" method="_on_carta_ui_mouse_entered"]
+[connection signal="mouse_entered" from="." to="CardStateMachine/onBoardState" method="_on_carta_ui_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="." to="CardStateMachine/idleState" method="_on_carta_ui_mouse_exited"]
 [connection signal="mouse_exited" from="." to="CardStateMachine/enteredState" method="_on_carta_ui_mouse_exited"]
+[connection signal="mouse_exited" from="." to="CardStateMachine/onBoardState" method="_on_carta_ui_mouse_exited"]
 [connection signal="area_entered" from="detectorColision" to="CardStateMachine/draggedState" method="_on_detector_colision_area_entered"]
 [connection signal="area_exited" from="detectorColision" to="CardStateMachine/draggedState" method="_on_detector_colision_area_exited"]
