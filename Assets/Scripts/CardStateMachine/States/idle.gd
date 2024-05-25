@@ -10,6 +10,7 @@ var on_card : bool = false;
 func on_enter():
 	if not card.is_node_ready():
 		await card.ready
+	card.reparent_requested.emit(card)
 	
 func state_process(delta):
 	pass

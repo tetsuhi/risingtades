@@ -11,7 +11,10 @@ var on_board : bool = false
 var minimum_drag_time_elapsed = false
 
 func on_enter():
-	initial_position = card.position
+	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+	if ui_layer:
+		card.reparent(ui_layer)
+	
 	on_board = false
 	
 	minimum_drag_time_elapsed = false
@@ -31,7 +34,6 @@ func state_input(event : InputEvent):
 			print("On Board")
 			next_state = onBoard_state
 	elif cancel:
-		card.position = initial_position
 		next_state = idle_state
 
 func _on_detector_colision_area_entered(area):

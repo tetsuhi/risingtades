@@ -3,6 +3,7 @@ extends Control
 class_name CardUI
 
 signal reparent_requested(which_card_ui : CardUI)
+signal make_child(which_card_ui : CardUI)
 
 const CARD_DELAY_SPEED = 12.0
 

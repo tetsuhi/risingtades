@@ -5,7 +5,9 @@ class_name BoardState
 var on_card : bool
 
 func on_enter():
-	pass
+	var board := get_tree().get_first_node_in_group("board")
+	if board:
+		card.reparent(board)
 	
 func state_process(delta):
 	pass
