@@ -10,7 +10,7 @@ func _process(delta):
 		disabled = false
 
 func _on_pressed():
-	if game_manager.cantidadMano != 0:
+	if game_manager.cantidadManoJugador != 0:
 		print("Juego una carta")
 		game_manager.cantidadMano -= 1
 		print("Te quedan: " + str(game_manager.cantidadMano) + " cartas en la mano.")

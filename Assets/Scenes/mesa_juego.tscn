@@ -1,11 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=18 format=3 uid="uid://bs615om7u3vog"]
 
-[ext_resource type="PackedScene" uid="uid://dejaruvj4arte" path="res://Assets/Scenes/CartaUI.tscn" id="1_804rd"]
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="2_6kpf7"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonJugarCarta.gd" id="2_ea1tn"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonJugarCartaOponente.gd" id="3_aixnn"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonRobar.gd" id="3_wxg2y"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/botonPasarTurno.gd" id="5_t5peg"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/turnoLabel.gd" id="6_aotk2"]
 [ext_resource type="FontFile" uid="uid://sk7x8hxeqldj" path="res://Assets/Fonts/CelticTime.ttf" id="6_k70ok"]
@@ -18,6 +14,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesOponente.gd" id="10_ilqw0"]
 [ext_resource type="Script" path="res://Assets/Scripts/hand.gd" id="13_46606"]
 [ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
+[ext_resource type="Script" path="res://Assets/Scripts/BarajaManager.gd" id="19_r5mae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
 size = Vector2(660, 185)
@@ -39,52 +36,12 @@ shape = SubResource("RectangleShape2D_kmtpe")
 
 [node name="JuegoUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
-[node name="botonJugarCarta" type="Button" parent="JuegoUI"]
-offset_left = 792.0
+[node name="barajaText" type="TextureRect" parent="JuegoUI"]
+offset_left = 992.0
 offset_top = 536.0
-offset_right = 924.0
-offset_bottom = 576.0
-text = "Jugar carta"
-script = ExtResource("2_ea1tn")
-
-[node name="botonJugarCartaOponente" type="Button" parent="JuegoUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -64.0
-offset_top = 64.0
-offset_right = 68.0
-offset_bottom = 104.0
-grow_horizontal = 2
-text = "Jugar carta"
-script = ExtResource("3_aixnn")
-
-[node name="baraja" type="Control" parent="JuegoUI"]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -112.0
-offset_right = -28.0
-offset_bottom = 73.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="JuegoUI/baraja"]
-layout_mode = 0
-offset_right = 132.0
-offset_bottom = 185.0
+offset_right = 1124.0
+offset_bottom = 721.0
 texture = ExtResource("2_7r7ex")
-
-[node name="botonRobar" type="Button" parent="JuegoUI/baraja"]
-layout_mode = 0
-offset_top = -40.0
-offset_right = 132.0
-text = "Robar carta"
-script = ExtResource("3_wxg2y")
 
 [node name="botonPasarTurno" type="Button" parent="JuegoUI"]
 anchors_preset = 6
@@ -221,6 +178,7 @@ vertical_alignment = 1
 script = ExtResource("9_f46sj")
 
 [node name="Mano" type="HBoxContainer" parent="JuegoUI"]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -234,15 +192,6 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 script = ExtResource("13_46606")
-
-[node name="CartaUI" parent="JuegoUI/Mano" instance=ExtResource("1_804rd")]
-layout_mode = 2
-
-[node name="CartaUI2" parent="JuegoUI/Mano" instance=ExtResource("1_804rd")]
-layout_mode = 2
-
-[node name="CartaUI3" parent="JuegoUI/Mano" instance=ExtResource("1_804rd")]
-layout_mode = 2
 
 [node name="Campo" type="HBoxContainer" parent="JuegoUI" groups=["board"]]
 anchors_preset = 8
@@ -270,7 +219,7 @@ script = ExtResource("9_rvepi")
 [node name="TideManager" type="Node" parent="GameManager"]
 script = ExtResource("14_x3k5s")
 
-[connection signal="pressed" from="JuegoUI/botonJugarCarta" to="JuegoUI/botonJugarCarta" method="_on_pressed"]
-[connection signal="pressed" from="JuegoUI/botonJugarCartaOponente" to="JuegoUI/botonJugarCartaOponente" method="_on_pressed"]
-[connection signal="pressed" from="JuegoUI/baraja/botonRobar" to="JuegoUI/baraja/botonRobar" method="_on_pressed"]
+[node name="BarajaManager" type="Node" parent="GameManager"]
+script = ExtResource("19_r5mae")
+
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="JuegoUI/botonPasarTurno" method="_on_pressed"]

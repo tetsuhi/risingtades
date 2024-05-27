@@ -2,6 +2,7 @@ extends Node
 
 @onready var torch_manager = $"../TorchManager"
 @onready var tide_manager = $"../TideManager"
+@onready var baraja_manager = $"../BarajaManager"
 
 var numTurno : int = 0
 var juegaTurno : String
@@ -15,6 +16,7 @@ func determinarInicio():
 	var rng = RandomNumberGenerator.new()
 	if rng.randi_range(0, 1) == 0:
 		juegaTurno = "jugador"
+		esTurnoJugador()
 	else:
 		juegaTurno = "oponente"
 		esTurnoOponente()
@@ -27,6 +29,7 @@ func esTurnoOponente():
 	finalizaTurno()
 	
 func esTurnoJugador():
+	baraja_manager.robaCarta()
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
 	print("La marea del jugador está " + tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador))
