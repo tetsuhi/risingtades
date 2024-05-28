@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://3ynxdntchdom"]
+[gd_scene load_steps=5 format=3 uid="uid://3ynxdntchdom"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_volver.gd" id="1_iiyxp"]
+[ext_resource type="PackedScene" uid="uid://dlgfvphwp34oa" path="res://Assets/Scenes/CartaUINoScript.tscn" id="2_r1wjr"]
+[ext_resource type="Script" path="res://Assets/Scripts/DeckBuildingDebug/añadeCarta.gd" id="3_wuq58"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nlcvi"]
-font_size = 150
+font_size = 75
 
 [node name="menu_coleccion" type="Control"]
 layout_mode = 3
@@ -15,25 +17,101 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 336.0
+offset_bottom = 103.0
 text = "coleccion"
 label_settings = SubResource("LabelSettings_nlcvi")
 
 [node name="boton_volver" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -47.0
 offset_top = -23.0
-offset_right = 47.0
+offset_right = 94.0
 offset_bottom = 23.0
-grow_horizontal = 2
 grow_vertical = 2
 text = "volver"
 script = ExtResource("1_iiyxp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -795.0
+offset_top = 23.0
+offset_bottom = 671.0
+grow_horizontal = 0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 65
+theme_override_constants/v_separation = 25
+columns = 4
+
+[node name="CartaUI" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI2" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI3" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI4" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI5" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI6" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI7" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI8" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI9" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI10" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI11" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI12" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI13" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI14" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI15" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
+
+[node name="CartaUI16" parent="ScrollContainer/GridContainer" instance=ExtResource("2_r1wjr")]
+layout_mode = 2
+script = ExtResource("3_wuq58")
 
 [connection signal="pressed" from="boton_volver" to="boton_volver" method="_on_pressed"]

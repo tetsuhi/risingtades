@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlgfvphwp34oa"]
+
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_f3o6f"]
+
+[node name="CartaUI" type="Control"]
+custom_minimum_size = Vector2(132, 185)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1020.0
+offset_bottom = -463.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(66, 92.5)
+
+[node name="cartaTextura" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(132, 185)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_f3o6f")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=17 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="2_6kpf7"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesOponente.gd" id="10_ilqw0"]
 [ext_resource type="Script" path="res://Assets/Scripts/hand.gd" id="13_46606"]
 [ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
-[ext_resource type="Script" path="res://Assets/Scripts/BarajaManager.gd" id="19_r5mae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
 size = Vector2(660, 185)
@@ -218,8 +217,5 @@ script = ExtResource("9_rvepi")
 
 [node name="TideManager" type="Node" parent="GameManager"]
 script = ExtResource("14_x3k5s")
-
-[node name="BarajaManager" type="Node" parent="GameManager"]
-script = ExtResource("19_r5mae")
 
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="JuegoUI/botonPasarTurno" method="_on_pressed"]
