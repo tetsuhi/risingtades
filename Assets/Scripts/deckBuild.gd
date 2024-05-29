@@ -3,6 +3,7 @@ extends Node
 const MAX_CARTAS_BARAJA = 60
 const MIN_CARTAS_BARAJA = 30
 
+
 var barajaJugador = []
 var barajaOponente = []
 

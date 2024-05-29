@@ -58,4 +58,5 @@ func robaCartaJugador():
 		if DeckBuild.barajaJugador.size() != 0:
 			var nueva_carta = DeckBuild.barajaJugador.pop_back()
 			mano_jugador.add_child(nueva_carta)
-			print(DeckBuild.barajaJugador.size())
+			#print(DeckBuild.barajaJugador.size())
+			print(DeckBuild.barajaJugador)
