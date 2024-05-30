@@ -9,6 +9,8 @@ var juegaTurno : String
 var turnosMareaVivaJugador : int = 0
 var turnosMareaVivaOponente : int = 0
 
+const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
+
 func determinarInicio():
 	DeckBuild.barajaJugador.shuffle()
 	DeckBuild.barajaOponente.shuffle()
@@ -56,7 +58,9 @@ func finalizaTurno():
 func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.barajaJugador.size() != 0:
-			var nueva_carta = DeckBuild.barajaJugador.pop_back()
+			var nueva_carta_info = DeckBuild.barajaJugador.pop_back()
+			var nueva_carta = carta_ui.instantiate()
+			nueva_carta.card_info = nueva_carta_info
 			mano_jugador.add_child(nueva_carta)
 			#print(DeckBuild.barajaJugador.size())
-			print(DeckBuild.barajaJugador)
+			#print(DeckBuild.barajaJugador)

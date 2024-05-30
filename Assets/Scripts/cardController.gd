@@ -9,11 +9,18 @@ const CARD_DELAY_SPEED = 12.0
 
 @onready var state_machine : CardStateMachine = $CardStateMachine
 
-var card_name : String
-var card_type : String
-var card_cost : int
+@onready var texture_rect = $TextureRect
+@onready var nombre = $Nombre
+@onready var coste = $Coste
+
+var card_info : cardResource
 
 var on_card : bool
+
+func _ready():
+	nombre.text = card_info.card_name
+	coste.text = str(card_info.card_cost)
+	texture_rect.texture = card_info.texture
 
 func _process(delta):
 	

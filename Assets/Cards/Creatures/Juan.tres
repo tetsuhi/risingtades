@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="cardResource" load_steps=3 format=3 uid="uid://ewcb76roheb2"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/cardResource.gd" id="1_24n11"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oxeub"]
+load_path = "res://.godot/imported/FB_IMG_1596591789564.webp-4c39e2a6d5cd786ec295baa0b09f0888.ctex"
+
+[resource]
+script = ExtResource("1_24n11")
+card_name = "Juan"
+card_type = "Creature"
+card_cost = 2
+texture = SubResource("CompressedTexture2D_oxeub")

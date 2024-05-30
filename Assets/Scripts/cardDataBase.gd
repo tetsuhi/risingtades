@@ -1,6 +1,6 @@
 const DATA = {
 	0 : 
-		["Luis","Creature",2],
+		"res://Assets/Cards/Creatures/Juan.tres",
 	1 : 
-		["Testicular Torsion", "Spell", 1]
+		"res://Assets/Cards/Creatures/testicularTorsion.tres"
 }

@@ -11,7 +11,7 @@ var barajaOponente = []
 func _ready():
 	
 	for i in range(MIN_CARTAS_BARAJA):
-		var nueva_carta = load("res://Assets/Scenes/CartaUI.tscn").instantiate()
+		var nueva_carta = load("res://Assets/Cards/Creatures/Juan.tres").duplicate()
 		barajaJugador.append(nueva_carta)
 		
 	for i in range(MIN_CARTAS_BARAJA):

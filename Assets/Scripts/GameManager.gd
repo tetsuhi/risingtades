@@ -5,8 +5,6 @@ const MAX_CARTAS_MANO : int = 7
 @onready var turn_manager = $TurnManager
 @onready var torch_manager = $TorchManager
 @onready var tide_manager = $TideManager
-@onready var baraja_manager = $BarajaManager
-@onready var mano_jugador_manager = $ManoJugadorManager
 @onready var mano_jugador = %Mano
 
 var estadoJuego : String
