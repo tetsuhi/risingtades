@@ -2,9 +2,9 @@ extends Node
 
 const MAXIMO_ANTORCHAS_JUEGO : int = 10
 
-var antorchasActualesJugador : int = 0
-var antorchasActualesOponente : int = 0
-var maxAntorchas : int = 0
+@onready var antorchasActualesJugador : int = 0
+@onready var antorchasActualesOponente : int = 0
+@onready var maxAntorchas : int = 0
 
 func iniciarAntorchas():
 	maxAntorchas = 1

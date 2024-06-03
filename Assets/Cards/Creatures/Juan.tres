@@ -10,4 +10,5 @@ script = ExtResource("1_24n11")
 card_name = "Juan"
 card_type = "Creature"
 card_cost = 2
+tide_bonus_end_turn = 2
 texture = SubResource("CompressedTexture2D_oxeub")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=16 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="2_6kpf7"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasMaxJugador.gd" id="9_f46sj"]
 [ext_resource type="Script" path="res://Assets/Scripts/TorchManager.gd" id="9_rvepi"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesOponente.gd" id="10_ilqw0"]
-[ext_resource type="Script" path="res://Assets/Scripts/hand.gd" id="13_46606"]
 [ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
@@ -176,7 +175,7 @@ label_settings = SubResource("LabelSettings_r6cpw")
 vertical_alignment = 1
 script = ExtResource("9_f46sj")
 
-[node name="Mano" type="HBoxContainer" parent="JuegoUI"]
+[node name="Mano" type="HBoxContainer" parent="JuegoUI" groups=["hand"]]
 unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
@@ -184,15 +183,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -202.0
-offset_top = -112.0
+offset_top = -136.0
 offset_right = 202.0
-offset_bottom = 73.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
-script = ExtResource("13_46606")
 
 [node name="Campo" type="HBoxContainer" parent="JuegoUI" groups=["board"]]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -206,16 +205,16 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("2_6kpf7")
+[node name="TideManager" type="Node" parent="."]
+script = ExtResource("14_x3k5s")
 
-[node name="TurnManager" type="Node" parent="GameManager"]
-script = ExtResource("9_1trl3")
-
-[node name="TorchManager" type="Node" parent="GameManager"]
+[node name="TorchManager" type="Node" parent="."]
 script = ExtResource("9_rvepi")
 
-[node name="TideManager" type="Node" parent="GameManager"]
-script = ExtResource("14_x3k5s")
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("9_1trl3")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_6kpf7")
 
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="JuegoUI/botonPasarTurno" method="_on_pressed"]

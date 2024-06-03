@@ -1,6 +1,7 @@
 extends Label
 
-@onready var game_manager = $"../../GameManager"
+@onready var tide_manager = $"../../TideManager"
+@onready var turn_manager = $"../../TurnManager"
 
 func _process(delta):
-	text = "Jug - Cantidad: " + str(game_manager.tide_manager.mareaJugador) + ". Estado: " + str(game_manager.tide_manager.estadoMareaJugador) + ". Turnos marea viva: " + str(game_manager.turn_manager.turnosMareaVivaJugador)
+	text = "Jug - Cantidad: " + str(tide_manager.mareaJugador) + ". Estado: " + str(tide_manager.estadoMareaJugador) + ". Turnos marea viva: " + str(turn_manager.turnosMareaVivaJugador)

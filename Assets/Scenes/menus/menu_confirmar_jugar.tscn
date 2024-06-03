@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://lb8n7lv3dy42"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/MenuConfirmar/menuConfirmarJugar.gd" id="1_d8tak"]
+[ext_resource type="Shader" path="res://Assets/Shaders/blur.gdshader" id="2_cadxs"]
+[ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="3_lg5dg"]
+[ext_resource type="FontFile" uid="uid://sk7x8hxeqldj" path="res://Assets/Fonts/CelticTime.ttf" id="4_xbcan"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fg2cd"]
+shader = ExtResource("2_cadxs")
+shader_parameter/lod = 0.8
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d8tak")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_fg2cd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.5
+offset_top = -148.0
+offset_right = 266.5
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_lg5dg")
+
+[node name="mazo_descripcion" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 197.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_xbcan")
+theme_override_font_sizes/font_size = 24
+
+[node name="boton_proceder" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -74.0
+offset_right = 176.0
+offset_bottom = -41.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_xbcan")
+theme_override_font_sizes/font_size = 24
+text = "Jugar"
+
+[node name="boton_atras" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.5
+offset_top = -73.0
+offset_right = -87.5
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_xbcan")
+theme_override_font_sizes/font_size = 24
+text = "Cancelar"
+
+[node name="boton_coleccion" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -73.0
+offset_right = 43.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_xbcan")
+theme_override_font_sizes/font_size = 24
+text = "Coleccion"
+
+[connection signal="pressed" from="Panel/boton_proceder" to="." method="_on_boton_proceder_pressed"]
+[connection signal="pressed" from="Panel/boton_atras" to="." method="_on_boton_atras_pressed"]
+[connection signal="pressed" from="Panel/boton_coleccion" to="." method="_on_boton_coleccion_pressed"]

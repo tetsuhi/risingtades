@@ -10,7 +10,10 @@ var on_card : bool = false;
 func on_enter():
 	if not card.is_node_ready():
 		await card.ready
-	card.reparent_requested.emit(card)
+	
+	var mano := get_tree().get_first_node_in_group("hand")
+	if mano:
+		card.reparent(mano)
 	
 func state_process(delta):
 	pass

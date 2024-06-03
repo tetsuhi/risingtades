@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://3ynxdntchdom"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/menus/menu_coleccion.gd" id="1_afxhm"]
-[ext_resource type="Script" path="res://Assets/Scripts/Botones/boton_volver.gd" id="1_iiyxp"]
+[ext_resource type="Script" path="res://Assets/Scripts/menu_coleccion.gd" id="1_ufcxo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nlcvi"]
 font_size = 75
@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ufcxo")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -31,7 +32,6 @@ offset_right = 94.0
 offset_bottom = 23.0
 grow_vertical = 2
 text = "volver"
-script = ExtResource("1_iiyxp")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -50,4 +50,7 @@ theme_override_constants/v_separation = 25
 columns = 4
 script = ExtResource("1_afxhm")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="pressed" from="boton_volver" to="." method="_on_boton_volver_pressed"]
 [connection signal="pressed" from="boton_volver" to="boton_volver" method="_on_pressed"]

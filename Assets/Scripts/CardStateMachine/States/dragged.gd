@@ -7,6 +7,8 @@ const DRAG_MINIMUM_THRESHOLD : float = 0.05
 @export var idle_state : State
 @export var onBoard_state : State
 
+@onready var torch_manager = $TorchManager
+
 var on_board : bool = false
 var minimum_drag_time_elapsed = false
 
@@ -20,6 +22,8 @@ func on_enter():
 	minimum_drag_time_elapsed = false
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD,false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
+	
+	#print(str(torch_manager.antorchasJugador))
 
 func state_process(delta):
 	var mousePos: Vector2 = get_viewport().get_mouse_position()
@@ -30,9 +34,12 @@ func state_input(event : InputEvent):
 	var confirm = event.is_action_released("LMB")
 	var cancel = event.is_action_pressed("RMB")
 	if confirm and minimum_drag_time_elapsed:
-		if on_board:
+		if on_board:#and torch_manager.antorchasJugador - card.card_info.card_cost >= 0:
 			print("On Board")
 			next_state = onBoard_state
+		else:
+			print("No hay suficientes antorchas")
+			next_state = idle_state
 	elif cancel:
 		next_state = idle_state
 

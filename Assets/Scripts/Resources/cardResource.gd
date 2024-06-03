@@ -6,6 +6,7 @@ class_name cardResource
 @export var card_name : String
 @export var card_type : String
 @export var card_cost : int
+@export var tide_bonus_end_turn : int
 
 @export_group("Card Visuals")
 @export var texture : Texture
