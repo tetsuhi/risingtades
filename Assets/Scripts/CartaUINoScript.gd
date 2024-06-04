@@ -21,9 +21,28 @@ func _input(event : InputEvent):
 		if DeckBuild.barajaJugador.size() < DeckBuild.MAX_CARTAS_BARAJA:
 			var nueva_carta = card_info.duplicate()
 			DeckBuild.barajaJugador.append(nueva_carta)
+			var id_carta = DeckBuild.id_jugador.find(card_info.card_id)
+			if id_carta == -1:
+				DeckBuild.id_jugador.append(card_info.card_id)
+				DeckBuild.tipo_jugador.append(card_info.card_name)
+				DeckBuild.cantidad_jugador.append(1)
+			else:
+				DeckBuild.cantidad_jugador[id_carta] += 1
 			print("Añadido a baraja: " + card_info.card_name + ". El mazo tiene ahora " + str(DeckBuild.barajaJugador.size()) + " cartas.")
 		else:
 			print("¡Has alcanzado el máximo de cartas en el mazo!")
+	if event.is_action_pressed("RMB") and on_card:
+		var carta_eliminada = DeckBuild.tipo_jugador.find(card_info.card_name)
+		if carta_eliminada != -1:
+			if DeckBuild.cantidad_jugador[carta_eliminada] - 1 == 0:
+				DeckBuild.cantidad_jugador.remove_at(carta_eliminada)
+				DeckBuild.tipo_jugador.remove_at(carta_eliminada)
+				DeckBuild.tipo_jugador.remove_at(carta_eliminada)
+			else:
+				DeckBuild.cantidad_jugador[carta_eliminada] -= 1
+			DeckBuild.build_deck()
+		print(DeckBuild.tipo_jugador + DeckBuild.cantidad_jugador)
+			
 
 func _on_mouse_entered():
 	on_card = true

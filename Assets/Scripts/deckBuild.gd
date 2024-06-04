@@ -1,26 +1,21 @@
 extends Node
 
-var save_path = "user://save_file.save"
-
+const CARD_DATABASE = preload("res://Assets/Scripts/cardDataBase.gd")
 const MAX_CARTAS_BARAJA = 60
 const MIN_CARTAS_BARAJA = 30
 
 
 var barajaJugador = []
-var barajaOponente = []
+var cantidad_jugador = []
+var tipo_jugador = []
+var id_jugador = []
+#var barajaOponente = []
 
-func _ready():
-	pass #load_data()
-
-func save():
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(barajaJugador)
-	file.close()
-
-func load_data():
-	if FileAccess.file_exists(save_path):
-		var file = FileAccess.open(save_path, FileAccess.READ)
-		barajaJugador = file.get_var()
-		print(barajaJugador)
-	else:
-		barajaJugador = []
+func build_deck():
+	barajaJugador = []
+	for i in tipo_jugador.size():
+		for j in cantidad_jugador[i]:
+			var carta_id = CARD_DATABASE.DATA[id_jugador[i]]
+			var carta_info = load(carta_id)
+			var nueva_carta = carta_info.duplicate()
+			barajaJugador.append(nueva_carta)
