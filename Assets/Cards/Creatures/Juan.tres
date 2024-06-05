@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="cardResource" load_steps=3 format=3 uid="uid://ewcb76roheb2"]
+[gd_resource type="Resource" script_class="cardEffectResource" load_steps=3 format=3 uid="uid://ewcb76roheb2"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resources/cardResource.gd" id="1_24n11"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oxeub"]
-load_path = "res://.godot/imported/FB_IMG_1596591789564.webp-4c39e2a6d5cd786ec295baa0b09f0888.ctex"
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/cardEffectResource.gd" id="1_wy5v8"]
+[ext_resource type="Texture2D" uid="uid://hnxj02fihaie" path="res://Assets/Textures/FB_IMG_1596591789564.webp" id="2_y6iyx"]
 
 [resource]
-script = ExtResource("1_24n11")
+script = ExtResource("1_wy5v8")
+texto_efecto = "Aumenta en 1 todo"
+efecto_carta = "res://Assets/Scripts/DebugEfectosCartas/subeMarea.gd"
 card_id = "0"
 card_name = "Juan"
 card_type = "Creature"
+card_target = "Global"
 card_cost = 2
-tide_bonus_end_turn = 2
-texture = SubResource("CompressedTexture2D_oxeub")
+tide_bonus_end_turn = 1
+texture = ExtResource("2_y6iyx")

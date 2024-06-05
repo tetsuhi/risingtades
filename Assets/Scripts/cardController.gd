@@ -24,6 +24,13 @@ func _ready():
 	nombre.text = card_info.card_name
 	coste.text = str(card_info.card_cost)
 	texture_rect.texture = card_info.texture
+	
+	if card_info.card_type == "Spell":
+		print(card_info.card_type)
+	
+	if card_info.card_type == "Creature":
+		var card_effect = load(card_info.efecto_carta)
+		card_effect.subeMarea()
 
 func _process(delta):
 	
