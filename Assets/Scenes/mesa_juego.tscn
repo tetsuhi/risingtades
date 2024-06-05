@@ -208,7 +208,7 @@ alignment = 1
 [node name="TideManager" type="Node" parent="."]
 script = ExtResource("14_x3k5s")
 
-[node name="TorchManager" type="Node" parent="."]
+[node name="TorchManager" type="Node" parent="." groups=["torch"]]
 script = ExtResource("9_rvepi")
 
 [node name="TurnManager" type="Node" parent="."]

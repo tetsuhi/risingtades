@@ -4,6 +4,7 @@ class_name CardUI
 
 #signal reparent_requested(which_card_ui : CardUI)
 #signal make_child(which_card_ui : CardUI)
+#signal consulta_antorchas(carta_coste : int)
 
 const CARD_DELAY_SPEED = 12.0
 
@@ -12,6 +13,8 @@ const CARD_DELAY_SPEED = 12.0
 @onready var texture_rect = $TextureRect
 @onready var nombre = $Nombre
 @onready var coste = $Coste
+@onready var torch_manager = $TorchManager
+
 
 var card_info : cardResource
 

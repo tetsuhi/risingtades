@@ -11,8 +11,8 @@ extends Control
 func _ready():
 	
 	for i in cardData.DATA.size():
-		var resourcePath = cardData.DATA[i]
-		var cardInfo = load(cardData.DATA[i])
+		var resourcePath = cardData.DATA[str(i)]
+		var cardInfo = load(resourcePath)
 		var _card = cardInfo.duplicate()
 		var nueva_carta = carta_ui.instantiate()
 		nueva_carta.card_info = _card

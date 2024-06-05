@@ -63,6 +63,7 @@ func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.barajaJugador.size() != 0:
 			var nueva_carta_id = DeckBuild.barajaJugador.pop_back()
+			print(nueva_carta_id)
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info

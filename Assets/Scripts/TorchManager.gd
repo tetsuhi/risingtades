@@ -1,5 +1,9 @@
 extends Node
 
+class_name torchManager
+
+
+
 const MAXIMO_ANTORCHAS_JUEGO : int = 10
 
 @onready var antorchasActualesJugador : int = 0
@@ -20,3 +24,5 @@ func restauraAntorchasJugador():
 
 func restauraAntorchasOponente():
 	antorchasActualesOponente = maxAntorchas
+	
+
