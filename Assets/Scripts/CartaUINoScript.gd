@@ -38,15 +38,26 @@ func _input(event : InputEvent):
 			print("Añadido a baraja: " + card_info.card_name + ". El mazo tiene ahora " + str(DeckBuild.barajaJugador.size()) + " cartas.")
 		else:
 			print("¡Has alcanzado el máximo de cartas en el mazo!")
-	#if event.is_action_pressed("RMB") and on_card:
-		#var carta_eliminada = DeckBuild.tipo_jugador.find(card_info.card_name)
-		#if carta_eliminada != -1:
-			#if DeckBuild.cantidad_jugador[carta_eliminada] - 1 == 0:
-				#DeckBuild.cantidad_jugador.remove_at(carta_eliminada)
-				#DeckBuild.tipo_jugador.remove_at(carta_eliminada)
-				#DeckBuild.tipo_jugador.remove_at(carta_eliminada)
+			
+	if event.is_action_pressed("RMB") and on_card:
+		var info_eliminada = DeckBuild.nombre_cartas.find(card_info.card_name)
+		if info_eliminada != -1:
+			if DeckBuild.cantidad_cartas[info_eliminada] == 1:
+				DeckBuild.cantidad_cartas.remove_at(info_eliminada)
+				DeckBuild.nombre_cartas.remove_at(info_eliminada)
+			else:
+				DeckBuild.cantidad_cartas[info_eliminada] -= 1
+
+			var carta_eliminada = DeckBuild.barajaJugador.find(card_info.card_id)
+			DeckBuild.barajaJugador.remove_at(carta_eliminada)
+		#var info_eliminada = DeckBuild.tipo_jugador.find(card_info.card_name)
+		#if info_eliminada != -1:
+			#if DeckBuild.cantidad_jugador[info_eliminada] - 1 == 0:
+				#DeckBuild.cantidad_jugador.remove_at(info_eliminada)
+				#DeckBuild.tipo_jugador.remove_at(info_eliminada)
+				#DeckBuild.tipo_jugador.remove_at(info_eliminada)
 			#else:
-				#DeckBuild.cantidad_jugador[carta_eliminada] -= 1
+				#DeckBuild.cantidad_jugador[info_eliminada] -= 1
 			#DeckBuild.build_deck()
 		#print(DeckBuild.tipo_jugador + DeckBuild.cantidad_jugador)
 			
