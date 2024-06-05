@@ -1,7 +1,7 @@
 extends Control
 
 @onready var cardData = preload("res://Assets/Scripts/cardDataBase.gd")
-@onready var CARTA_UI = preload("res://Assets/Scenes/CartaUINoScript.tscn")
+@onready var carta_ui = preload("res://Assets/Scenes/CartaUINoScript.tscn")
 #@onready var cardInfo = preload("res://Assets/Cards/Creatures/Juan.tres")
 
 
@@ -14,7 +14,7 @@ func _ready():
 		var resourcePath = cardData.DATA[i]
 		var cardInfo = load(cardData.DATA[i])
 		var _card = cardInfo.duplicate()
-		var nueva_carta = CARTA_UI.instantiate()
+		var nueva_carta = carta_ui.instantiate()
 		nueva_carta.card_info = _card
 		add_child(nueva_carta)
 	

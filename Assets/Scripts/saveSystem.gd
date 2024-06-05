@@ -4,15 +4,18 @@ extends Node
 const save_path := "user://savegame.json"
 
 var default_data = {
-	"carta_id" : [],
-	"carta_cantidad" : [],
-	"carta_tipo" : []
+	"baraja_jugador" = [],
+	#"carta_id" = [],
+	"carta_cantidad" = [],
+	"carta_nombre" = []
+	
 }
 
 var data = {}
 
 func _ready():
 	load_save()
+	print(data)
 
 func load_save():
 	if FileAccess.file_exists(save_path):
@@ -37,7 +40,8 @@ func reset_data():
 	data = default_data.duplicate(true)
 
 func load_deck():
-	DeckBuild.cantidad_jugador = data["carta_cantidad"]
-	DeckBuild.id_jugador = data["carta_id"]
-	DeckBuild.tipo_jugador = data["carta_tipo"]
+	DeckBuild.barajaJugador = data["baraja_jugador"]
+	DeckBuild.cantidad_cartas = data["carta_cantidad"]
+	#DeckBuild.id_jugador = data["carta_id"]
+	DeckBuild.nombre_cartas = data["carta_nombre"]
 	#DeckBuild.build_deck()

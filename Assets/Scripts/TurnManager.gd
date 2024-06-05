@@ -9,11 +9,12 @@ extends Node
 @onready var turnosMareaVivaJugador : int = 0
 @onready var turnosMareaVivaOponente : int = 0
 
+const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
 
 func determinarInicio():
 	DeckBuild.barajaJugador.shuffle()
-	DeckBuild.barajaOponente.shuffle()
+	#DeckBuild.barajaOponente.shuffle()
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
 	await get_tree().create_timer(2.0).timeout
@@ -61,7 +62,8 @@ func finalizaTurno():
 func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.barajaJugador.size() != 0:
-			var nueva_carta_info = DeckBuild.barajaJugador.pop_back()
+			var nueva_carta_id = DeckBuild.barajaJugador.pop_back()
+			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info
 			mano_jugador.add_child(nueva_carta)
