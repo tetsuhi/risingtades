@@ -7,8 +7,8 @@
 script = ExtResource("1_b74hl")
 card_id = "1"
 card_name = "Testicular Torsion"
-card_type = "Spell"
-card_target = "Global"
+card_type = 1
+card_target = 0
 card_cost = 1
 tide_bonus_end_turn = 0
 texture = ExtResource("2_pe0l2")

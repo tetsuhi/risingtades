@@ -6,6 +6,7 @@ const DRAG_MINIMUM_THRESHOLD : float = 0.05
 
 @export var idle_state : State
 @export var onBoard_state : State
+@export var aim_State : State
 #@export var torch_manager : torchManager
 
 #@onready var torch_manager = %TorchManager
