@@ -13,7 +13,8 @@ const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
 
 func determinarInicio():
-	DeckBuild.barajaJugador.shuffle()
+	DeckBuild.barajaJugadorPartida = DeckBuild.barajaJugador
+	DeckBuild.barajaJugadorPartida.shuffle()
 	#DeckBuild.barajaOponente.shuffle()
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
@@ -27,6 +28,7 @@ func determinarInicio():
 		esTurnoOponente()
 
 func esTurnoOponente():
+	tide_manager.mareaOponente += 1
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
@@ -35,6 +37,7 @@ func esTurnoOponente():
 	finalizaTurno()
 	
 func esTurnoJugador():
+	tide_manager.mareaJugador += 1
 	robaCartaJugador()
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
@@ -61,13 +64,14 @@ func finalizaTurno():
 
 func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
-		if DeckBuild.barajaJugador.size() != 0:
-			var nueva_carta_id = DeckBuild.barajaJugador.pop_back()
+		if DeckBuild.barajaJugadorPartida.size() != 0:
+			var nueva_carta_id = DeckBuild.barajaJugadorPartida.pop_back()
 			print(nueva_carta_id)
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info
 			mano_jugador.add_child(nueva_carta)
+			print(DeckBuild.barajaJugadorPartida)
 			#print(DeckBuild.barajaJugador.size())
 			#print(DeckBuild.barajaJugador)
 

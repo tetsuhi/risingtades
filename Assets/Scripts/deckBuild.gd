@@ -6,6 +6,7 @@ const MIN_CARTAS_BARAJA = 30
 
 
 var barajaJugador = []
+var barajaJugadorPartida = []
 var cantidad_cartas = []
 var nombre_cartas = []
 #var id_jugador = []
