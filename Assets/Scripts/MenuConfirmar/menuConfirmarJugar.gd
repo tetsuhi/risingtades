@@ -12,7 +12,7 @@ func _on_boton_proceder_pressed():
 	get_tree().change_scene_to_file("res://Assets/Scenes/mesa_juego.tscn")
 
 func _on_boton_atras_pressed():
-	get_tree().change_scene_to_file("res://Assets/Scenes/menus/menu_principal.tscn")
+	get_tree().queue_free()
 
 func _on_boton_coleccion_pressed():
 	get_tree().change_scene_to_file("res://Assets/Scenes/menus/menu_coleccion.tscn")

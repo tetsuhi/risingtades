@@ -1,0 +1,525 @@
+[gd_scene load_steps=12 format=3 uid="uid://whogxsmuiqnw"]
+
+[ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="1_hhkjo"]
+[ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
+[ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
+[ext_resource type="FontFile" uid="uid://sk7x8hxeqldj" path="res://Assets/Fonts/CelticTime.ttf" id="2_241fu"]
+[ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="5_j1ppe"]
+[ext_resource type="Script" path="res://Assets/Scenes/menus (no uso)/menu_coleccion.gd" id="6_rewjm"]
+[ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="7_0fh4u"]
+
+[sub_resource type="Theme" id="Theme_e3nta"]
+default_font = ExtResource("2_241fu")
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_md8ar"]
+default_font = ExtResource("1_hhkjo")
+default_font_size = 120
+
+[sub_resource type="Theme" id="Theme_fbls0"]
+default_font = ExtResource("5_j1ppe")
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_jnh1p"]
+default_font = ExtResource("5_j1ppe")
+default_font_size = 24
+
+[node name="MenuNuevo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lny0i")
+
+[node name="inicio" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pulsa_empezar" type="RichTextLabel" parent="inicio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = 92.0
+offset_right = 188.5
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(188, 16)
+theme = SubResource("Theme_e3nta")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 6
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][wave amp=40.0 freq=4.0 connected=1][center]Pulsa espacio para empezar[/center][/wave][/pulse]"
+
+[node name="creditos" type="RichTextLabel" parent="inicio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -108.0
+offset_right = 188.5
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(188, 16)
+theme = SubResource("Theme_e3nta")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 6
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]Santiago Llamas y Miguel Martinez presentan[/center][/wave]"
+
+[node name="titulo_menu" type="RichTextLabel" parent="inicio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -67.5
+offset_right = 345.0
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(345, 67)
+theme = SubResource("Theme_md8ar")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 30
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
+
+[node name="menu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="titulo_menu" type="RichTextLabel" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -135.9
+offset_right = 345.0
+offset_bottom = -0.899994
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(345, 67)
+theme = SubResource("Theme_md8ar")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 30
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
+
+[node name="boton_jugar" type="Button" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = 36.0
+offset_right = 93.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ty4a6")
+text = "JUGAR"
+
+[node name="boton_opciones" type="Button" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = 124.0
+offset_right = -117.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 40
+text = "OPCIONES"
+
+[node name="boton_coleccion" type="Button" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 124.0
+offset_right = 267.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 40
+text = "BARAJA"
+
+[node name="boton_salir" type="Button" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = 172.0
+offset_right = 45.0
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 32
+text = "SALIR"
+
+[node name="opciones" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="opciones"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.5
+offset_top = -143.0
+offset_right = 257.5
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Video" type="TabBar" parent="opciones/TabContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="opciones/TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.5
+offset_top = -43.5
+offset_right = 199.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="opciones/TabContainer/Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Screen Mode" type="Label" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_fbls0")
+text = "Modo de pantalla  "
+
+[node name="V-Sync" type="Label" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_fbls0")
+text = "V-Sync"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="opciones/TabContainer/Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="screen_mode" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_jnh1p")
+item_count = 2
+selected = 0
+popup/item_0/text = "Ventana"
+popup/item_0/id = 0
+popup/item_1/text = "Completa"
+popup/item_1/id = 1
+
+[node name="v_sync" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_jnh1p")
+item_count = 2
+selected = 1
+popup/item_0/text = "Desactivado"
+popup/item_0/id = 0
+popup/item_1/text = "Activado"
+popup/item_1/id = 1
+
+[node name="volver_button" type="Button" parent="opciones/TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -75.0
+offset_right = 34.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 24
+text = "Volver"
+
+[node name="Guardado" type="TabBar" parent="opciones/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="coleccion" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="titulo_coleccion" type="RichTextLabel" parent="coleccion"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -344.0
+offset_top = 48.0
+offset_right = 346.0
+offset_bottom = 183.0
+grow_horizontal = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(345, 67)
+theme = SubResource("Theme_md8ar")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 30
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]COLECCION[/center][/wave]"
+
+[node name="boton_volver_coleccion" type="Button" parent="coleccion"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 124.0
+offset_right = 174.0
+offset_bottom = 170.0
+grow_vertical = 2
+text = "Volver"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="coleccion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="coleccion/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 65
+theme_override_constants/v_separation = 25
+columns = 4
+script = ExtResource("6_rewjm")
+
+[node name="confirmar_mazo" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="confirmar_mazo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.5
+offset_top = -148.0
+offset_right = 266.5
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_0fh4u")
+
+[node name="mazo_descripcion_confirmar" type="Label" parent="confirmar_mazo/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 197.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+
+[node name="boton_proceder" type="Button" parent="confirmar_mazo/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -74.0
+offset_right = 176.0
+offset_bottom = -41.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+text = "Jugar"
+
+[node name="boton_atras" type="Button" parent="confirmar_mazo/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.5
+offset_top = -73.0
+offset_right = -87.5
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+text = "Cancelar"
+
+[node name="boton_coleccion_confirmar" type="Button" parent="confirmar_mazo/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -73.0
+offset_right = 43.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+text = "Coleccion"
+
+[node name="confirmar_mazo_coleccion" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="confirmar_mazo_coleccion"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.5
+offset_top = -148.0
+offset_right = 266.5
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_0fh4u")
+
+[node name="mazo_descripcion_coleccion" type="Label" parent="confirmar_mazo_coleccion/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 197.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+
+[node name="boton_guardar_mazo" type="Button" parent="confirmar_mazo_coleccion/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = -74.0
+offset_right = 176.0
+offset_bottom = -41.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+text = "Guardar mazo"
+
+[node name="boton_atras_coleccion" type="Button" parent="confirmar_mazo_coleccion/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.5
+offset_top = -73.0
+offset_right = -87.5
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_241fu")
+theme_override_font_sizes/font_size = 24
+text = "Seguir editando"
+
+[connection signal="pressed" from="menu/boton_jugar" to="." method="_on_boton_jugar_pressed"]
+[connection signal="pressed" from="menu/boton_opciones" to="." method="_on_boton_opciones_pressed"]
+[connection signal="pressed" from="menu/boton_coleccion" to="." method="_on_boton_coleccion_pressed"]
+[connection signal="pressed" from="menu/boton_salir" to="." method="_on_boton_salir_pressed"]
+[connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/screen_mode" to="." method="_on_screen_mode_item_selected"]
+[connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/v_sync" to="." method="_on_v_sync_item_selected"]
+[connection signal="pressed" from="opciones/TabContainer/Video/volver_button" to="." method="_on_volver_button_pressed"]
+[connection signal="pressed" from="coleccion/boton_volver_coleccion" to="." method="_on_boton_volver_coleccion_pressed"]
+[connection signal="pressed" from="coleccion/boton_volver_coleccion" to="coleccion/boton_volver_coleccion" method="_on_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_proceder" to="." method="_on_boton_proceder_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_atras" to="." method="_on_boton_atras_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_coleccion_confirmar" to="." method="_on_boton_coleccion_confirmar_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_coleccion_confirmar" to="." method="_on_boton_coleccion_pressed"]
+[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_guardar_mazo" to="." method="_on_boton_guardar_mazo_pressed"]
+[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_atras_coleccion" to="." method="_on_boton_atras_coleccion_pressed"]
+[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_atras_coleccion" to="." method="_on_boton_atras_pressed"]

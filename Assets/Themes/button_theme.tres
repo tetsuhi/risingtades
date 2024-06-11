@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dw1hiod4ykxab"]
+
+[ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="1_wgbej"]
+
+[resource]
+default_font = ExtResource("1_wgbej")
+default_font_size = 50
