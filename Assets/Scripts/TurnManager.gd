@@ -14,9 +14,9 @@ const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
 
 func determinarInicio():
 	if DeckBuild.baraja_seleccionada == 0:
-		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1
+		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
 	elif DeckBuild.baraja_seleccionada == 1:
-		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador2
+		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador2.duplicate()
 	DeckBuild.baraja_jugador_partida.shuffle()
 	#DeckBuild.barajaOponente.shuffle()
 	numTurno = 1
@@ -35,7 +35,7 @@ func esTurnoOponente():
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
-	print("La marea del oponente está " + tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente))
+	#print("La marea del oponente está " + tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente))
 	await get_tree().create_timer(2.0).timeout
 	finalizaTurno()
 	
@@ -45,7 +45,7 @@ func esTurnoJugador():
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
 	tide_manager.estadoMareaJugador = tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador)
-	print("La marea del jugador está " + tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador))
+	#print("La marea del jugador está " + tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador))
 
 func finalizaTurno():
 	if juegaTurno == "jugador":
@@ -69,12 +69,10 @@ func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.baraja_jugador_partida.size() != 0:
 			var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()
-			print(nueva_carta_id)
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info
 			mano_jugador.add_child(nueva_carta)
-			print(DeckBuild.baraja_jugador_partida)
 
 func leerCartasEnMesa():
 	var board := get_tree().get_first_node_in_group("board")

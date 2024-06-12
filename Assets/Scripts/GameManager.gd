@@ -20,6 +20,7 @@ func _ready():
 func _process(delta):
 	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo.get_child_count() == 0:
 		print("Se acabó el juego")
+		print(DeckBuild.baraja_jugador1)
 		await get_tree().create_timer(2.0).timeout
 		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 		
