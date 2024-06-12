@@ -14,7 +14,7 @@ default_font_size = 24
 
 [sub_resource type="Theme" id="Theme_md8ar"]
 default_font = ExtResource("1_hhkjo")
-default_font_size = 120
+default_font_size = 90
 
 [sub_resource type="Theme" id="Theme_fbls0"]
 default_font = ExtResource("5_j1ppe")
@@ -298,6 +298,111 @@ text = "Volver"
 visible = false
 layout_mode = 2
 
+[node name="personaliza" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="titulo_personaliza" type="RichTextLabel" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -344.0
+offset_top = 48.0
+offset_right = 346.0
+offset_bottom = 156.0
+grow_horizontal = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(345, 67)
+theme = SubResource("Theme_md8ar")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 30
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]PERSONALIZA TU MAZO[/center][/wave]"
+
+[node name="boton_volver_personaliza" type="Button" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 156.0
+offset_right = 174.0
+offset_bottom = 187.0
+grow_vertical = 2
+text = "Cancelar"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="personaliza/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 65
+theme_override_constants/v_separation = 25
+columns = 4
+script = ExtResource("6_rewjm")
+
+[node name="boton_baraja1" type="Button" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = -20.0
+offset_right = 159.0
+offset_bottom = 11.0
+grow_vertical = 2
+text = "Mazo 1"
+
+[node name="boton_baraja2" type="Button" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = 28.0
+offset_right = 159.0
+offset_bottom = 59.0
+grow_vertical = 2
+text = "Mazo 2"
+
+[node name="baraja_seleccionada" type="Label" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -60.0
+offset_right = 138.0
+offset_bottom = -37.0
+grow_vertical = 2
+text = "Editando:"
+
+[node name="boton_guardar_cambios" type="Button" parent="personaliza"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = 116.0
+offset_right = 197.0
+offset_bottom = 147.0
+grow_vertical = 2
+text = "Guardar cambios"
+
 [node name="coleccion" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -315,13 +420,14 @@ anchor_right = 0.5
 offset_left = -344.0
 offset_top = 48.0
 offset_right = 346.0
-offset_bottom = 183.0
+offset_bottom = 156.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(345, 67)
 theme = SubResource("Theme_md8ar")
 theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 30
+theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]COLECCION[/center][/wave]"
 
@@ -331,11 +437,23 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 80.0
-offset_top = 124.0
-offset_right = 174.0
-offset_bottom = 170.0
+offset_top = 4.0
+offset_right = 184.0
+offset_bottom = 35.0
 grow_vertical = 2
 text = "Volver"
+
+[node name="boton_editar_mazo" type="Button" parent="coleccion"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -44.0
+offset_right = 184.0
+offset_bottom = -13.0
+grow_vertical = 2
+text = "Editar mazo"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="coleccion"]
 layout_mode = 1
@@ -343,7 +461,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 256.0
-offset_top = 192.0
+offset_top = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -383,10 +501,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -243.0
-offset_top = 28.0
-offset_right = 243.0
-offset_bottom = 197.0
+offset_left = -127.5
+offset_top = 40.0
+offset_right = 235.5
+offset_bottom = 209.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_241fu")
 theme_override_font_sizes/font_size = 24
@@ -396,48 +514,61 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 89.0
-offset_top = -74.0
-offset_right = 176.0
-offset_bottom = -41.0
+offset_left = 194.5
+offset_top = -68.0
+offset_right = 281.5
+offset_bottom = -35.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_241fu")
 theme_override_font_sizes/font_size = 24
 text = "Jugar"
 
-[node name="boton_atras" type="Button" parent="confirmar_mazo/Panel"]
+[node name="boton_atras_confirmar" type="Button" parent="confirmar_mazo/Panel"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -174.5
-offset_top = -73.0
-offset_right = -87.5
-offset_bottom = -40.0
+offset_left = -170.5
+offset_top = -68.0
+offset_right = -83.5
+offset_bottom = -35.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_241fu")
 theme_override_font_sizes/font_size = 24
 text = "Cancelar"
 
-[node name="boton_coleccion_confirmar" type="Button" parent="confirmar_mazo/Panel"]
+[node name="boton_seleccionar_mazo1" type="Button" parent="confirmar_mazo/Panel"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -43.5
-offset_top = -73.0
-offset_right = 43.5
-offset_bottom = -40.0
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -64.0
+offset_right = -153.0
+offset_bottom = -33.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
-text = "Coleccion"
+grow_vertical = 2
+text = "Mazo 1"
+
+[node name="boton_seleccionar_mazo2" type="Button" parent="confirmar_mazo/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -16.0
+offset_right = -152.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mazo 2"
 
 [node name="confirmar_mazo_coleccion" type="Control" parent="."]
 visible = false
@@ -514,12 +645,15 @@ text = "Seguir editando"
 [connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/screen_mode" to="." method="_on_screen_mode_item_selected"]
 [connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/v_sync" to="." method="_on_v_sync_item_selected"]
 [connection signal="pressed" from="opciones/TabContainer/Video/volver_button" to="." method="_on_volver_button_pressed"]
+[connection signal="pressed" from="personaliza/boton_volver_personaliza" to="." method="_on_boton_volver_personaliza_pressed"]
+[connection signal="pressed" from="personaliza/boton_baraja1" to="." method="_on_boton_mazo_1_pressed"]
+[connection signal="pressed" from="personaliza/boton_baraja2" to="." method="_on_boton_mazo_2_pressed"]
+[connection signal="pressed" from="personaliza/boton_guardar_cambios" to="." method="_on_boton_guardar_cambios_pressed"]
 [connection signal="pressed" from="coleccion/boton_volver_coleccion" to="." method="_on_boton_volver_coleccion_pressed"]
-[connection signal="pressed" from="coleccion/boton_volver_coleccion" to="coleccion/boton_volver_coleccion" method="_on_pressed"]
+[connection signal="pressed" from="coleccion/boton_editar_mazo" to="." method="_on_boton_editar_mazo_pressed"]
 [connection signal="pressed" from="confirmar_mazo/Panel/boton_proceder" to="." method="_on_boton_proceder_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_atras" to="." method="_on_boton_atras_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_coleccion_confirmar" to="." method="_on_boton_coleccion_confirmar_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_coleccion_confirmar" to="." method="_on_boton_coleccion_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_atras_confirmar" to="." method="_on_boton_atras_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_seleccionar_mazo1" to="." method="_on_boton_seleccionar_mazo_1_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/boton_seleccionar_mazo2" to="." method="_on_boton_seleccionar_mazo_2_pressed"]
 [connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_guardar_mazo" to="." method="_on_boton_guardar_mazo_pressed"]
 [connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_atras_coleccion" to="." method="_on_boton_atras_coleccion_pressed"]
-[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_atras_coleccion" to="." method="_on_boton_atras_pressed"]

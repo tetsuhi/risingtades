@@ -5,10 +5,22 @@ const MAX_CARTAS_BARAJA = 60
 const MIN_CARTAS_BARAJA = 30
 
 
-var barajaJugador = []
-var barajaJugadorPartida = []
-var cantidad_cartas = []
-var nombre_cartas = []
+var baraja_jugador1 = []
+var cantidad_cartas1 = []
+var nombre_cartas1 = []
+
+var baraja_jugador2 = []
+var cantidad_cartas2 = []
+var nombre_cartas2 = []
+
+var baraja_seleccionada : int
+
+var baraja_jugador_partida = []
+
+var baraja_temp = []
+var cantidad_temp = []
+var nombre_temp = []
+
 #var id_jugador = []
 #var barajaOponente = []
 

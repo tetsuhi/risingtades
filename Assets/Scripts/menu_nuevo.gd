@@ -8,7 +8,38 @@ extends Control
 @onready var confirmar_mazo_coleccion = $confirmar_mazo_coleccion
 @onready var mazo_descripcion_confirmar = $confirmar_mazo/Panel/mazo_descripcion_confirmar
 @onready var mazo_descripcion_coleccion = $confirmar_mazo_coleccion/Panel/mazo_descripcion_coleccion
+@onready var personaliza = $personaliza
+@onready var baraja_seleccionada = $personaliza/baraja_seleccionada
 
+
+func _ready():
+	print(DeckBuild.baraja_jugador2)
+	if DeckBuild.baraja_seleccionada == 0: 
+		baraja_seleccionada.text = "Editando baraja 1"
+		DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
+		DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
+		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
+		
+		if DeckBuild.nombre_cartas1.size() != 0:
+			print("tengo cartas")
+			mazo_descripcion_confirmar.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas1.size():
+				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
+		else:
+			mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+
+	else:
+		baraja_seleccionada.text = "Editando baraja 2"
+		DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
+		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
+		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
+		
+		if DeckBuild.nombre_cartas2.size() != 0:
+			mazo_descripcion_confirmar.text = "Tu mazo seleccionado (2) contiene " + str(DeckBuild.baraja_jugador2.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas2.size():
+				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
+		else:
+			mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
 
 #menu inicio
 
@@ -21,12 +52,21 @@ func _input(event):
 #menu principal
 
 func _on_boton_jugar_pressed():
-	if DeckBuild.nombre_cartas.size() != 0:
-		mazo_descripcion_confirmar.text = "Tu mazo contiene " + str(DeckBuild.barajaJugador.size()) + " cartas."
-		for i in DeckBuild.nombre_cartas.size():
-			mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas[i]) + "x " + DeckBuild.nombre_cartas[i]
-	else:
-		mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+	if DeckBuild.baraja_seleccionada == 0:
+		if DeckBuild.nombre_cartas1.size() != 0:
+			print("tengo cartas")
+			mazo_descripcion_coleccion.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas1.size():
+				mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
+		else:
+			mazo_descripcion_coleccion.text = "No tienes cartas en el mazo"
+	elif DeckBuild.baraja_seleccionada == 1:
+		if DeckBuild.nombre_cartas2.size() != 0:
+			mazo_descripcion_coleccion.text = "Tu mazo seleccionado (2) contiene " + str(DeckBuild.baraja_jugador2.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas2.size():
+				mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
+		else:
+			mazo_descripcion_coleccion.text = "No tienes cartas en el mazo"
 	menu_transition(menu, confirmar_mazo)
 
 func _on_boton_opciones_pressed():
@@ -58,37 +98,122 @@ func _on_v_sync_item_selected(index):
 #coleccion
 
 func _on_boton_volver_coleccion_pressed():
-	if DeckBuild.nombre_cartas.size() != 0:
-		mazo_descripcion_coleccion.text = "Tu mazo contiene " + str(DeckBuild.barajaJugador.size()) + " cartas."
-		for i in DeckBuild.nombre_cartas.size():
-			mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas[i]) + "x " + DeckBuild.nombre_cartas[i]
+	menu_transition(coleccion, menu)
+
+func _on_boton_editar_mazo_pressed():
+	print(DeckBuild.baraja_jugador1)
+	if DeckBuild.baraja_seleccionada == 0: 
+		baraja_seleccionada.text = "Editando baraja 1"
+		DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
+		DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
+		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
 	else:
-		mazo_descripcion_coleccion.text = "No tienes cartas en el mazo"
+		baraja_seleccionada.text = "Editando baraja 2"
+		DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
+		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
+		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
+	menu_transition(coleccion, personaliza)
+
+
+#personaliza
+
+func _on_boton_guardar_cambios_pressed():
+	print(DeckBuild.nombre_temp)
+	if DeckBuild.baraja_seleccionada == 0:
+		DeckBuild.baraja_jugador1 = DeckBuild.baraja_temp
+		DeckBuild.cantidad_cartas1 = DeckBuild.cantidad_temp
+		DeckBuild.nombre_cartas1 = DeckBuild.nombre_temp
+		if DeckBuild.nombre_cartas1.size() != 0:
+			print("tengo cartas")
+			mazo_descripcion_coleccion.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas1.size():
+				mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
+		else:
+			mazo_descripcion_coleccion.text = "No tienes cartas en el mazo"
+	elif DeckBuild.baraja_seleccionada == 1:
+		DeckBuild.baraja_jugador2 = DeckBuild.baraja_temp
+		DeckBuild.cantidad_cartas2 = DeckBuild.cantidad_temp
+		DeckBuild.nombre_cartas2 = DeckBuild.nombre_temp
+		if DeckBuild.nombre_cartas2.size() != 0:
+			mazo_descripcion_coleccion.text = "Tu mazo seleccionado (2) contiene " + str(DeckBuild.baraja_jugador2.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas2.size():
+				mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
+		else:
+			mazo_descripcion_coleccion.text = "No tienes cartas en el mazo"
 	confirmar_mazo_coleccion.show()
+
+func _on_boton_volver_personaliza_pressed():
+	DeckBuild.baraja_temp = []
+	DeckBuild.cantidad_temp = []
+	DeckBuild.nombre_temp = []
+	menu_transition(personaliza, coleccion)
+
+func _on_boton_mazo_1_pressed():
+	baraja_seleccionada.text = "Editando baraja 1"
+	DeckBuild.baraja_seleccionada = 0
+	DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
+	DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
+	DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
+	print(DeckBuild.baraja_jugador1)
+
+func _on_boton_mazo_2_pressed():
+	baraja_seleccionada.text = "Editando baraja 2"
+	DeckBuild.baraja_seleccionada = 1
+	DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
+	DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
+	DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
+	print(DeckBuild.baraja_jugador2)
 
 
 #confirmar mazo menu
 
 func _on_boton_proceder_pressed():
+	Save.data.baraja_seleccionada = DeckBuild.baraja_seleccionada
+	Save.save_game()
 	get_tree().change_scene_to_file("res://Assets/Scenes/mesa_juego.tscn")
 
 func _on_boton_atras_pressed():
 	menu_transition(confirmar_mazo, menu)
 
-func _on_boton_coleccion_confirmar_pressed():
-	menu_transition(confirmar_mazo, coleccion)
+func _on_boton_seleccionar_mazo_1_pressed():
+	DeckBuild.baraja_seleccionada = 0
+	if DeckBuild.nombre_cartas1.size() != 0:
+		print("tengo cartas")
+		mazo_descripcion_confirmar.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
+		for i in DeckBuild.nombre_cartas1.size():
+			mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
+	else:
+		mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+
+
+func _on_boton_seleccionar_mazo_2_pressed():
+	DeckBuild.baraja_seleccionada = 1
+	if DeckBuild.nombre_cartas2.size() != 0:
+			mazo_descripcion_confirmar.text = "Tu mazo seleccionado (2) contiene " + str(DeckBuild.baraja_jugador2.size()) + " cartas."
+			for i in DeckBuild.nombre_cartas2.size():
+				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
+	else:
+		mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
 
 
 #confirmar mazo coleccion
 
 func _on_boton_guardar_mazo_pressed():
-	Save.data["carta_cantidad"] = DeckBuild.cantidad_cartas
-	Save.data["carta_nombre"] = DeckBuild.nombre_cartas
-	Save.data["baraja_jugador"] = DeckBuild.barajaJugador
+	if DeckBuild.baraja_seleccionada == 0:
+		Save.data.baraja1.carta_cantidad = DeckBuild.cantidad_cartas1
+		Save.data.baraja1.carta_nombre = DeckBuild.nombre_cartas1
+		Save.data.baraja1.baraja_jugador = DeckBuild.baraja_jugador1
+	elif DeckBuild.baraja_seleccionada == 1:
+		Save.data.baraja2.carta_cantidad = DeckBuild.cantidad_cartas2
+		Save.data.baraja2.carta_nombre = DeckBuild.nombre_cartas2
+		Save.data.baraja2.baraja_jugador = DeckBuild.baraja_jugador2
 	Save.save_game()
+	DeckBuild.baraja_temp = []
+	DeckBuild.cantidad_temp = []
+	DeckBuild.nombre_temp = []
 	confirmar_mazo_coleccion.hide()
-	coleccion.hide()
-	menu.show()
+	personaliza.hide()
+	coleccion.show()
 
 func _on_boton_atras_coleccion_pressed():
 	confirmar_mazo_coleccion.hide()

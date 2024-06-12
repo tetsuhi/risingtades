@@ -4,11 +4,19 @@ extends Node
 const save_path := "user://savegame.json"
 
 var default_data = {
-	"baraja_jugador" = [],
-	#"carta_id" = [],
-	"carta_cantidad" = [],
-	"carta_nombre" = []
+	"baraja1" : {
+		"baraja_jugador" = [],
+		"carta_cantidad" = [],
+		"carta_nombre" = []
+	},
 	
+	"baraja2" : {
+		"baraja_jugador" = [],
+		"carta_cantidad" = [],
+		"carta_nombre" = []
+	},
+	
+	"baraja_seleccionada" : 0
 }
 
 var data = {}
@@ -40,8 +48,12 @@ func reset_data():
 	data = default_data.duplicate(true)
 
 func load_deck():
-	DeckBuild.barajaJugador = data["baraja_jugador"]
-	DeckBuild.cantidad_cartas = data["carta_cantidad"]
-	#DeckBuild.id_jugador = data["carta_id"]
-	DeckBuild.nombre_cartas = data["carta_nombre"]
-	#DeckBuild.build_deck()
+	DeckBuild.baraja_jugador1 = data.baraja1.baraja_jugador
+	DeckBuild.cantidad_cartas1 = data.baraja1.carta_cantidad
+	DeckBuild.nombre_cartas1 = data.baraja1.carta_nombre
+	
+	DeckBuild.baraja_jugador2 = data.baraja2.baraja_jugador
+	DeckBuild.cantidad_cartas2 = data.baraja2.carta_cantidad
+	DeckBuild.nombre_cartas2 = data.baraja2.carta_nombre
+	
+	DeckBuild.baraja_seleccionada = data.baraja_seleccionada

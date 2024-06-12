@@ -13,8 +13,11 @@ const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
 
 func determinarInicio():
-	DeckBuild.barajaJugadorPartida = DeckBuild.barajaJugador
-	DeckBuild.barajaJugadorPartida.shuffle()
+	if DeckBuild.baraja_seleccionada == 0:
+		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1
+	elif DeckBuild.baraja_seleccionada == 1:
+		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador2
+	DeckBuild.baraja_jugador_partida.shuffle()
 	#DeckBuild.barajaOponente.shuffle()
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
@@ -64,16 +67,14 @@ func finalizaTurno():
 
 func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
-		if DeckBuild.barajaJugadorPartida.size() != 0:
-			var nueva_carta_id = DeckBuild.barajaJugadorPartida.pop_back()
+		if DeckBuild.baraja_jugador_partida.size() != 0:
+			var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()
 			print(nueva_carta_id)
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info
 			mano_jugador.add_child(nueva_carta)
-			print(DeckBuild.barajaJugadorPartida)
-			#print(DeckBuild.barajaJugador.size())
-			#print(DeckBuild.barajaJugador)
+			print(DeckBuild.baraja_jugador_partida)
 
 func leerCartasEnMesa():
 	var board := get_tree().get_first_node_in_group("board")
