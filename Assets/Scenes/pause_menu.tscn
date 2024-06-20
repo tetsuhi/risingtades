@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxgf48eb41sdp"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/PauseHandler.gd" id="1_hqb6l"]
+[ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="1_sxn1t"]
+[ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="2_u1p7p"]
+
+[node name="pause_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hqb6l")
+
+[node name="pause_panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -72.0
+offset_right = 160.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sxn1t")
+
+[node name="pause_text" type="RichTextLabel" parent="pause_panel"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -60.0
+offset_right = 72.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0.352941, 0.415686, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/normal_font = ExtResource("2_u1p7p")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=5.0 connected=1][center]PAUSED[/center][/wave]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pause_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 12.0
+offset_right = 78.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+
+[node name="reanudar_boton" type="Button" parent="pause_panel/HBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u1p7p")
+theme_override_font_sizes/font_size = 32
+text = "Reanudar"
+
+[node name="menu_boton" type="Button" parent="pause_panel/HBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u1p7p")
+theme_override_font_sizes/font_size = 32
+text = "Salir"
+
+[connection signal="pressed" from="pause_panel/HBoxContainer/reanudar_boton" to="." method="_on_reanudar_boton_pressed"]
+[connection signal="pressed" from="pause_panel/HBoxContainer/menu_boton" to="." method="_on_menu_boton_pressed"]

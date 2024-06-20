@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dvsojcmw5svs1"]
+
+[ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="1_0cv0t"]
+
+[resource]
+default_font = ExtResource("1_0cv0t")
+default_font_size = 36

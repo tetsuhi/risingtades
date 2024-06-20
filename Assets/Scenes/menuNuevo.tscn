@@ -1,28 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=8 format=3 uid="uid://whogxsmuiqnw"]
 
-[ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="1_hhkjo"]
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
-[ext_resource type="FontFile" uid="uid://sk7x8hxeqldj" path="res://Assets/Fonts/CelticTime.ttf" id="2_241fu"]
-[ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="5_j1ppe"]
+[ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="2_namtc"]
+[ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="4_e1nl7"]
 [ext_resource type="Script" path="res://Assets/Scenes/menus (no uso)/menu_coleccion.gd" id="6_rewjm"]
 [ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="7_0fh4u"]
 
-[sub_resource type="Theme" id="Theme_e3nta"]
-default_font = ExtResource("2_241fu")
-default_font_size = 24
-
 [sub_resource type="Theme" id="Theme_md8ar"]
-default_font = ExtResource("1_hhkjo")
-default_font_size = 90
-
-[sub_resource type="Theme" id="Theme_fbls0"]
-default_font = ExtResource("5_j1ppe")
-default_font_size = 32
-
-[sub_resource type="Theme" id="Theme_jnh1p"]
-default_font = ExtResource("5_j1ppe")
-default_font_size = 24
+default_font = ExtResource("2_namtc")
+default_font_size = 144
 
 [node name="MenuNuevo" type="Control"]
 layout_mode = 3
@@ -32,77 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lny0i")
-
-[node name="inicio" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="pulsa_empezar" type="RichTextLabel" parent="inicio"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -188.5
-offset_top = 92.0
-offset_right = 188.5
-offset_bottom = 124.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-pivot_offset = Vector2(188, 16)
-theme = SubResource("Theme_e3nta")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
-theme_override_constants/shadow_offset_y = 6
-bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][wave amp=40.0 freq=4.0 connected=1][center]Pulsa espacio para empezar[/center][/wave][/pulse]"
-
-[node name="creditos" type="RichTextLabel" parent="inicio"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -188.5
-offset_top = -108.0
-offset_right = 188.5
-offset_bottom = -76.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-pivot_offset = Vector2(188, 16)
-theme = SubResource("Theme_e3nta")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
-theme_override_constants/shadow_offset_y = 6
-bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1][center]Santiago Llamas y Miguel Martinez presentan[/center][/wave]"
-
-[node name="titulo_menu" type="RichTextLabel" parent="inicio"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -345.0
-offset_top = -67.5
-offset_right = 345.0
-offset_bottom = 67.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-pivot_offset = Vector2(345, 67)
-theme = SubResource("Theme_md8ar")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
-theme_override_constants/shadow_offset_y = 30
-bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
 
 [node name="menu" type="Control" parent="."]
 visible = false
@@ -120,85 +36,53 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -345.0
-offset_top = -135.9
-offset_right = 345.0
-offset_bottom = -0.899994
+offset_left = -523.0
+offset_top = -220.0
+offset_right = 523.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3, 1.3)
-pivot_offset = Vector2(345, 67)
+pivot_offset = Vector2(523, 83)
 theme = SubResource("Theme_md8ar")
 theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 30
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
 
-[node name="boton_jugar" type="Button" parent="menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = 36.0
-offset_right = 93.0
-offset_bottom = 108.0
+offset_left = -114.5
+offset_top = 100.0
+offset_right = 114.5
+offset_bottom = 376.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="boton_jugar" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("1_ty4a6")
 text = "JUGAR"
 
-[node name="boton_opciones" type="Button" parent="menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -264.0
-offset_top = 124.0
-offset_right = -117.0
-offset_bottom = 182.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="boton_opciones" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("1_ty4a6")
-theme_override_font_sizes/font_size = 40
 text = "OPCIONES"
 
-[node name="boton_coleccion" type="Button" parent="menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 120.0
-offset_top = 124.0
-offset_right = 267.0
-offset_bottom = 182.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="boton_coleccion" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("1_ty4a6")
-theme_override_font_sizes/font_size = 40
 text = "BARAJA"
 
-[node name="boton_salir" type="Button" parent="menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = 172.0
-offset_right = 45.0
-offset_bottom = 213.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="boton_salir" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("1_ty4a6")
-theme_override_font_sizes/font_size = 32
 text = "SALIR"
 
 [node name="opciones" type="Control" parent="."]
@@ -217,12 +101,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -257.5
+offset_left = -285.0
 offset_top = -143.0
-offset_right = 257.5
+offset_right = 285.0
 offset_bottom = 143.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_e1nl7")
+theme_override_font_sizes/font_size = 27
 
 [node name="Video" type="TabBar" parent="opciones/TabContainer"]
 layout_mode = 2
@@ -246,12 +132,14 @@ layout_mode = 2
 
 [node name="Screen Mode" type="Label" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_fbls0")
+theme = ExtResource("4_e1nl7")
+theme_override_font_sizes/font_size = 27
 text = "Modo de pantalla  "
 
 [node name="V-Sync" type="Label" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_fbls0")
+theme = ExtResource("4_e1nl7")
+theme_override_font_sizes/font_size = 27
 text = "V-Sync"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="opciones/TabContainer/Video/HBoxContainer"]
@@ -259,9 +147,10 @@ layout_mode = 2
 
 [node name="screen_mode" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme = SubResource("Theme_jnh1p")
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 27
 item_count = 2
-selected = 0
+selected = 1
 popup/item_0/text = "Ventana"
 popup/item_0/id = 0
 popup/item_1/text = "Completa"
@@ -269,7 +158,8 @@ popup/item_1/id = 1
 
 [node name="v_sync" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme = SubResource("Theme_jnh1p")
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 27
 item_count = 2
 selected = 1
 popup/item_0/text = "Desactivado"
@@ -284,9 +174,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -34.0
+offset_left = -48.0
 offset_top = -75.0
-offset_right = 34.0
+offset_right = 48.0
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -299,7 +189,6 @@ visible = false
 layout_mode = 2
 
 [node name="personaliza" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -312,13 +201,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -344.0
-offset_top = 48.0
-offset_right = 346.0
-offset_bottom = 156.0
+offset_left = -568.0
+offset_top = 32.0
+offset_right = 305.0
+offset_bottom = 146.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
-pivot_offset = Vector2(345, 67)
 theme = SubResource("Theme_md8ar")
 theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 30
@@ -326,25 +214,13 @@ theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]PERSONALIZA TU MAZO[/center][/wave]"
 
-[node name="boton_volver_personaliza" type="Button" parent="personaliza"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = 156.0
-offset_right = 174.0
-offset_bottom = 187.0
-grow_vertical = 2
-text = "Cancelar"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="personaliza"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 256.0
-offset_top = 160.0
+offset_left = 400.0
+offset_top = 192.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -355,53 +231,61 @@ theme_override_constants/v_separation = 25
 columns = 4
 script = ExtResource("6_rewjm")
 
-[node name="boton_baraja1" type="Button" parent="personaliza"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 96.0
-offset_top = -20.0
-offset_right = 159.0
-offset_bottom = 11.0
-grow_vertical = 2
-text = "Mazo 1"
-
-[node name="boton_baraja2" type="Button" parent="personaliza"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 96.0
-offset_top = 28.0
-offset_right = 159.0
-offset_bottom = 59.0
-grow_vertical = 2
-text = "Mazo 2"
-
 [node name="baraja_seleccionada" type="Label" parent="personaliza"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 64.0
-offset_top = -60.0
-offset_right = 138.0
-offset_bottom = -37.0
+offset_left = 112.0
+offset_top = -62.5
+offset_right = 234.0
+offset_bottom = -34.5
 grow_vertical = 2
+theme = ExtResource("4_e1nl7")
+theme_override_font_sizes/font_size = 27
 text = "Editando:"
 
-[node name="boton_guardar_cambios" type="Button" parent="personaliza"]
+[node name="VBoxContainer" type="VBoxContainer" parent="personaliza"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 56.0
-offset_top = 116.0
-offset_right = 197.0
-offset_bottom = 147.0
+offset_left = 43.0
+offset_top = 84.0
+offset_right = 363.0
+offset_bottom = 188.0
 grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="boton_guardar_cambios" type="Button" parent="personaliza/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
 text = "Guardar cambios"
+
+[node name="boton_volver_personaliza" type="Button" parent="personaliza/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+text = "Cancelar"
+
+[node name="baraja_seleccion" type="OptionButton" parent="personaliza"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 121.0
+offset_top = -12.0
+offset_right = 284.0
+offset_bottom = 38.0
+grow_vertical = 2
+theme = ExtResource("1_ty4a6")
+item_count = 2
+selected = 0
+popup/item_0/text = "Baraja 1"
+popup/item_0/id = 0
+popup/item_1/text = "Baraja 2"
+popup/item_1/id = 1
 
 [node name="coleccion" type="Control" parent="."]
 visible = false
@@ -418,9 +302,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -344.0
-offset_top = 48.0
+offset_top = 56.0
 offset_right = 346.0
-offset_bottom = 156.0
+offset_bottom = 164.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(345, 67)
@@ -429,39 +313,15 @@ theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1][center]COLECCION[/center][/wave]"
-
-[node name="boton_volver_coleccion" type="Button" parent="coleccion"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = 4.0
-offset_right = 184.0
-offset_bottom = 35.0
-grow_vertical = 2
-text = "Volver"
-
-[node name="boton_editar_mazo" type="Button" parent="coleccion"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = -44.0
-offset_right = 184.0
-offset_bottom = -13.0
-grow_vertical = 2
-text = "Editar mazo"
+text = "[wave amp=40.0 freq=4.0 connected=1][center]COLECCIóN[/center][/wave]"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="coleccion"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 256.0
-offset_top = 160.0
+offset_left = 400.0
+offset_top = 192.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -471,6 +331,33 @@ theme_override_constants/h_separation = 65
 theme_override_constants/v_separation = 25
 columns = 4
 script = ExtResource("6_rewjm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="coleccion"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -34.0
+offset_right = 292.0
+offset_bottom = 44.0
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="boton_editar_mazo" type="Button" parent="coleccion/VBoxContainer"]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 36
+text = "Editar mazo"
+
+[node name="boton_volver_coleccion" type="Button" parent="coleccion/VBoxContainer"]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 36
+text = "Volver"
 
 [node name="confirmar_mazo" type="Control" parent="."]
 visible = false
@@ -488,9 +375,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -266.5
+offset_left = -323.0
 offset_top = -148.0
-offset_right = 266.5
+offset_right = 323.0
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -501,74 +388,60 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -127.5
+offset_left = -127.0
 offset_top = 40.0
-offset_right = 235.5
+offset_right = 297.0
 offset_bottom = 209.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("4_e1nl7")
+theme_override_font_sizes/font_size = 18
+autowrap_mode = 3
 
-[node name="boton_proceder" type="Button" parent="confirmar_mazo/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="confirmar_mazo/Panel"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 194.5
-offset_top = -68.0
-offset_right = 281.5
-offset_bottom = -35.0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
-text = "Jugar"
-
-[node name="boton_atras_confirmar" type="Button" parent="confirmar_mazo/Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -170.5
-offset_top = -68.0
-offset_right = -83.5
-offset_bottom = -35.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
-text = "Cancelar"
-
-[node name="boton_seleccionar_mazo1" type="Button" parent="confirmar_mazo/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -232.0
-offset_top = -64.0
-offset_right = -153.0
-offset_bottom = -33.0
-grow_horizontal = 2
+offset_left = 51.0
+offset_top = -52.0
+offset_right = 171.0
+offset_bottom = 24.0
 grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="boton_seleccionar_mazo1" type="Button" parent="confirmar_mazo/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 27
 text = "Mazo 1"
 
-[node name="boton_seleccionar_mazo2" type="Button" parent="confirmar_mazo/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -232.0
-offset_top = -16.0
-offset_right = -152.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="boton_seleccionar_mazo2" type="Button" parent="confirmar_mazo/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 27
 text = "Mazo 2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="confirmar_mazo/Panel"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 224.0
+offset_right = 388.0
+offset_bottom = 264.0
+theme_override_constants/separation = 150
+
+[node name="boton_proceder" type="Button" parent="confirmar_mazo/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 27
+text = "Jugar"
+
+[node name="boton_atras_confirmar" type="Button" parent="confirmar_mazo/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 27
+text = "Cancelar"
 
 [node name="confirmar_mazo_coleccion" type="Control" parent="."]
 visible = false
@@ -604,56 +477,55 @@ offset_top = 28.0
 offset_right = 243.0
 offset_bottom = 197.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("4_e1nl7")
+theme_override_font_sizes/font_size = 18
+text = "texto de ejemplo
+1x
+2x"
 
-[node name="boton_guardar_mazo" type="Button" parent="confirmar_mazo_coleccion/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="confirmar_mazo_coleccion/Panel"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 89.0
-offset_top = -74.0
-offset_right = 176.0
-offset_bottom = -41.0
+offset_left = -133.0
+offset_top = -64.0
+offset_right = 133.0
+offset_bottom = -24.0
+grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="boton_guardar_mazo" type="Button" parent="confirmar_mazo_coleccion/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 18
 text = "Guardar mazo"
 
-[node name="boton_atras_coleccion" type="Button" parent="confirmar_mazo_coleccion/Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -174.5
-offset_top = -73.0
-offset_right = -87.5
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_241fu")
-theme_override_font_sizes/font_size = 24
+[node name="boton_atras_coleccion" type="Button" parent="confirmar_mazo_coleccion/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ty4a6")
+theme_override_font_sizes/font_size = 18
 text = "Seguir editando"
 
-[connection signal="pressed" from="menu/boton_jugar" to="." method="_on_boton_jugar_pressed"]
-[connection signal="pressed" from="menu/boton_opciones" to="." method="_on_boton_opciones_pressed"]
-[connection signal="pressed" from="menu/boton_coleccion" to="." method="_on_boton_coleccion_pressed"]
-[connection signal="pressed" from="menu/boton_salir" to="." method="_on_boton_salir_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/boton_opciones" to="." method="_on_boton_opciones_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/boton_coleccion" to="." method="_on_boton_coleccion_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/boton_salir" to="." method="_on_boton_salir_pressed"]
 [connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/screen_mode" to="." method="_on_screen_mode_item_selected"]
 [connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/v_sync" to="." method="_on_v_sync_item_selected"]
 [connection signal="pressed" from="opciones/TabContainer/Video/volver_button" to="." method="_on_volver_button_pressed"]
-[connection signal="pressed" from="personaliza/boton_volver_personaliza" to="." method="_on_boton_volver_personaliza_pressed"]
-[connection signal="pressed" from="personaliza/boton_baraja1" to="." method="_on_boton_mazo_1_pressed"]
-[connection signal="pressed" from="personaliza/boton_baraja2" to="." method="_on_boton_mazo_2_pressed"]
-[connection signal="pressed" from="personaliza/boton_guardar_cambios" to="." method="_on_boton_guardar_cambios_pressed"]
-[connection signal="pressed" from="coleccion/boton_volver_coleccion" to="." method="_on_boton_volver_coleccion_pressed"]
-[connection signal="pressed" from="coleccion/boton_editar_mazo" to="." method="_on_boton_editar_mazo_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_proceder" to="." method="_on_boton_proceder_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_atras_confirmar" to="." method="_on_boton_atras_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_seleccionar_mazo1" to="." method="_on_boton_seleccionar_mazo_1_pressed"]
-[connection signal="pressed" from="confirmar_mazo/Panel/boton_seleccionar_mazo2" to="." method="_on_boton_seleccionar_mazo_2_pressed"]
-[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_guardar_mazo" to="." method="_on_boton_guardar_mazo_pressed"]
-[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/boton_atras_coleccion" to="." method="_on_boton_atras_coleccion_pressed"]
+[connection signal="pressed" from="personaliza/VBoxContainer/boton_guardar_cambios" to="." method="_on_boton_guardar_cambios_pressed"]
+[connection signal="pressed" from="personaliza/VBoxContainer/boton_volver_personaliza" to="." method="_on_boton_volver_personaliza_pressed"]
+[connection signal="item_selected" from="personaliza/baraja_seleccion" to="." method="_on_baraja_seleccion_item_selected"]
+[connection signal="pressed" from="coleccion/VBoxContainer/boton_editar_mazo" to="." method="_on_boton_editar_mazo_pressed"]
+[connection signal="pressed" from="coleccion/VBoxContainer/boton_volver_coleccion" to="." method="_on_boton_volver_coleccion_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/VBoxContainer/boton_seleccionar_mazo1" to="." method="_on_boton_seleccionar_mazo_1_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/VBoxContainer/boton_seleccionar_mazo2" to="." method="_on_boton_seleccionar_mazo_2_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/HBoxContainer/boton_proceder" to="." method="_on_boton_proceder_pressed"]
+[connection signal="pressed" from="confirmar_mazo/Panel/HBoxContainer/boton_atras_confirmar" to="." method="_on_boton_atras_pressed"]
+[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/HBoxContainer/boton_guardar_mazo" to="." method="_on_boton_guardar_mazo_pressed"]
+[connection signal="pressed" from="confirmar_mazo_coleccion/Panel/HBoxContainer/boton_atras_coleccion" to="." method="_on_boton_atras_coleccion_pressed"]

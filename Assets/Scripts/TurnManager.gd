@@ -3,6 +3,7 @@ extends Node
 @onready var torch_manager = $"../TorchManager"
 @onready var tide_manager = $"../TideManager"
 @onready var mano_jugador = %Mano
+@onready var mano_oponente = %ManoOponente
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -11,17 +12,23 @@ extends Node
 
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
+const carta_ui_oponente = preload("res://Assets/Scenes/CartaUIOponente.tscn")
 
 func determinarInicio():
+	
 	if DeckBuild.baraja_seleccionada == 0:
 		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
 	elif DeckBuild.baraja_seleccionada == 1:
 		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador2.duplicate()
+	
+	DeckBuild.baraja_oponente_partida = DeckBuild.barajaOponente.duplicate()
+	
 	DeckBuild.baraja_jugador_partida.shuffle()
-	#DeckBuild.barajaOponente.shuffle()
+	DeckBuild.barajaOponente.shuffle()
+	
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	var rng = RandomNumberGenerator.new()
 	if rng.randi_range(0, 1) == 0:
 		juegaTurno = "jugador"
@@ -31,6 +38,7 @@ func determinarInicio():
 		esTurnoOponente()
 
 func esTurnoOponente():
+	robaCartaOponente()
 	tide_manager.mareaOponente += 1
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
@@ -73,6 +81,15 @@ func robaCartaJugador():
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info
 			mano_jugador.add_child(nueva_carta)
+
+func robaCartaOponente():
+	if mano_oponente.get_child_count() < 7:
+		if DeckBuild.baraja_oponente_partida.size() != 0:
+			var nueva_carta_id = DeckBuild.baraja_oponente_partida.pop_back()
+			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
+			var nueva_carta = carta_ui_oponente.instantiate()
+			nueva_carta.card_info = nueva_carta_info
+			mano_oponente.add_child(nueva_carta)
 
 func leerCartasEnMesa():
 	var board := get_tree().get_first_node_in_group("board")

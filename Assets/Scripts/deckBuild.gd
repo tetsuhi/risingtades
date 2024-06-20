@@ -5,6 +5,8 @@ const MAX_CARTAS_BARAJA = 60
 const MIN_CARTAS_BARAJA = 30
 
 
+#barajas para guardar
+
 var baraja_jugador1 = []
 var cantidad_cartas1 = []
 var nombre_cartas1 = []
@@ -13,16 +15,29 @@ var baraja_jugador2 = []
 var cantidad_cartas2 = []
 var nombre_cartas2 = []
 
+
+#seleccionar una baraja al empezar una partida
+
 var baraja_seleccionada : int
 
+
+#array para copiar la baraja seleccionada al jugar
+
 var baraja_jugador_partida = []
+var baraja_oponente_partida = []
+
+
+#arrays para configurar mazos antes de guardarlos
 
 var baraja_temp = []
 var cantidad_temp = []
 var nombre_temp = []
 
-#var id_jugador = []
-#var barajaOponente = []
+var barajaOponente = []
+
+func _ready():
+	for i in 5:
+		barajaOponente.append("0")
 
 #func build_deck():
 	#barajaJugador = []

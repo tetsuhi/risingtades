@@ -16,13 +16,6 @@ func _ready():
 	print(DeckBuild.baraja_jugador1)
 	print(DeckBuild.baraja_jugador2)
 
-#menu inicio
-
-func _input(event):
-	if event is InputEventKey or event is InputEventMouseButton and inicio.visible:
-		if event.is_released():
-			menu_transition(inicio, menu)
-
 
 #menu principal
 
@@ -121,19 +114,33 @@ func _on_boton_volver_personaliza_pressed():
 	DeckBuild.nombre_temp = []
 	menu_transition(personaliza, coleccion)
 
-func _on_boton_mazo_1_pressed():
-	baraja_seleccionada.text = "Editando baraja 1"
-	DeckBuild.baraja_seleccionada = 0
-	DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
-	DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
-	DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
+#func _on_boton_mazo_1_pressed():
+	#baraja_seleccionada.text = "Editando baraja 1"
+	#DeckBuild.baraja_seleccionada = 0
+	#DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
+	#DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
+	#DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
+#
+#func _on_boton_mazo_2_pressed():
+	#baraja_seleccionada.text = "Editando baraja 2"
+	#DeckBuild.baraja_seleccionada = 1
+	#DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
+	#DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
+	#DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
 
-func _on_boton_mazo_2_pressed():
-	baraja_seleccionada.text = "Editando baraja 2"
-	DeckBuild.baraja_seleccionada = 1
-	DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
-	DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
-	DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
+func _on_baraja_seleccion_item_selected(index):
+	if index == 0:
+		baraja_seleccionada.text = "Editando: baraja 1"
+		DeckBuild.baraja_seleccionada = 0
+		DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
+		DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
+		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
+	else:
+		baraja_seleccionada.text = "Editando: baraja 2"
+		DeckBuild.baraja_seleccionada = 1
+		DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
+		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
+		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
 
 
 #confirmar mazo menu
