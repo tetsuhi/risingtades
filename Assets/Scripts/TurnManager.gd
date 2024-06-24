@@ -4,6 +4,8 @@ extends Node
 @onready var tide_manager = $"../TideManager"
 @onready var mano_jugador = %Mano
 @onready var mano_oponente = %ManoOponente
+@onready var collision_jugador = $"../JuegoUI/Area2D/CollisionJugador"
+@onready var collision_oponente = $"../JuegoUI/Area2D2/CollisionOponente"
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -15,6 +17,9 @@ const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
 const carta_ui_oponente = preload("res://Assets/Scenes/CartaUIOponente.tscn")
 
 func determinarInicio():
+	
+	collision_jugador.hide()
+	collision_oponente.hide()
 	
 	if DeckBuild.baraja_seleccionada == 0:
 		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
@@ -38,16 +43,20 @@ func determinarInicio():
 		esTurnoOponente()
 
 func esTurnoOponente():
-	robaCartaOponente()
+	collision_oponente.show()
+	collision_jugador.hide()
 	tide_manager.mareaOponente += 1
+	robaCartaOponente()
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
 	#print("La marea del oponente está " + tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente))
-	await get_tree().create_timer(2.0).timeout
-	finalizaTurno()
+	#await get_tree().create_timer(2.0).timeout
+	#finalizaTurno()
 	
 func esTurnoJugador():
+	collision_jugador.show()
+	collision_oponente.hide()
 	tide_manager.mareaJugador += 1
 	robaCartaJugador()
 	if tide_manager.estadoMareaJugador == "viva":

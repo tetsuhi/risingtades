@@ -2,7 +2,7 @@ extends State
 
 class_name IdleState
 
-@export var mouse_entered_state : State
+#@export var mouse_entered_state : State
 @export var dragged_state : State
 
 var on_card : bool = false;
@@ -21,7 +21,7 @@ func state_process(delta):
 func state_input(event : InputEvent):
 	if event.is_action_pressed("LMB") and on_card:
 		next_state = dragged_state
-	
+
 
 func _on_carta_ui_mouse_entered():
 	on_card = true

@@ -27,9 +27,9 @@ func _process(delta):
 	if turn_manager.turnosMareaVivaJugador == 3:
 		print("¡Has ganado!")
 		await get_tree().create_timer(2.0).timeout
-		get_tree().change_scene_to_file("res://Assets/Scenes/menus/menu_principal.tscn")
+		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 		
 	if turn_manager.turnosMareaVivaOponente == 3:
 		print("¡Has perdido!")
 		await get_tree().create_timer(2.0).timeout
-		get_tree().change_scene_to_file("res://Assets/Scenes/menus/menu_principal.tscn")
+		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")

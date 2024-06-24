@@ -2,7 +2,8 @@ extends State
 
 class_name IdleStateOponente
 
-@export var on_board_state : State
+@export var dragged_state : State
+#@export var on_board_state : State
 
 var on_card : bool = false;
 
@@ -18,13 +19,11 @@ func state_process(delta):
 	pass
 
 func state_input(event : InputEvent):
-	#if event.is_action_pressed("LMB") and on_card:
-		#next_state = dragged_state
-	pass
-	
+	if event.is_action_pressed("LMB") and on_card:
+		next_state = dragged_state
 
-#func _on_carta_ui_mouse_entered():
-	#on_card = true
-#
-#func _on_carta_ui_mouse_exited():
-	#on_card = false
+func _on_carta_ui_oponente_mouse_entered():
+	on_card = true
+
+func _on_carta_ui_oponente_mouse_exited():
+	on_card = false
