@@ -6,18 +6,32 @@ extends Node
 @onready var mano_oponente = %ManoOponente
 @onready var collision_jugador = $"../JuegoUI/Area2D/CollisionJugador"
 @onready var collision_oponente = $"../JuegoUI/Area2D2/CollisionOponente"
+@onready var boton_pasar_turno = $"../JuegoUI/botonPasarTurno"
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
 @onready var turnosMareaVivaJugador : int = 0
 @onready var turnosMareaVivaOponente : int = 0
+@onready var campo = %Campo
+@onready var campo_oponente = %CampoOponente
 
+var estadoJuego : String
+
+const MAX_CARTAS_MANO : int = 7
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
 const carta_ui_oponente = preload("res://Assets/Scenes/CartaUIOponente.tscn")
 
+func _ready():
+	estadoJuego = "decide"
+	determinarInicio()
+	estadoJuego = "jugando"
+	torch_manager.iniciarAntorchas()
+	tide_manager.iniciarMareas()
+
 func determinarInicio():
 	
+	boton_pasar_turno.disabled = true
 	collision_jugador.hide()
 	collision_oponente.hide()
 	
@@ -34,6 +48,7 @@ func determinarInicio():
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
 	await get_tree().create_timer(1.0).timeout
+	boton_pasar_turno.disabled = false
 	var rng = RandomNumberGenerator.new()
 	if rng.randi_range(0, 1) == 0:
 		juegaTurno = "jugador"
@@ -43,6 +58,7 @@ func determinarInicio():
 		esTurnoOponente()
 
 func esTurnoOponente():
+	leerCartasEnMesa(0, 1)
 	collision_oponente.disabled = false
 	collision_jugador.disabled = true
 	collision_oponente.show()
@@ -57,6 +73,7 @@ func esTurnoOponente():
 	#finalizaTurno()
 	
 func esTurnoJugador():
+	leerCartasEnMesa(0,0)
 	collision_oponente.disabled = true
 	collision_jugador.disabled = false
 	collision_jugador.show()
@@ -70,7 +87,7 @@ func esTurnoJugador():
 
 func finalizaTurno():
 	if juegaTurno == "jugador":
-		leerCartasEnMesa()
+		leerCartasEnMesa(1,0)
 		numTurno += 1
 		if numTurno % 2 != 0 and numTurno != 1:
 			torch_manager.subeMaximo()
@@ -79,6 +96,7 @@ func finalizaTurno():
 		esTurnoOponente()
 
 	elif juegaTurno == "oponente":
+		leerCartasEnMesa(1,1)
 		numTurno += 1
 		if numTurno % 2 != 0 and numTurno != 1:
 			torch_manager.subeMaximo()
@@ -104,7 +122,43 @@ func robaCartaOponente():
 			nueva_carta.card_info = nueva_carta_info
 			mano_oponente.add_child(nueva_carta)
 
-func leerCartasEnMesa():
-	var board := get_tree().get_first_node_in_group("board")
+func leerCartasEnMesa(moment, player):
+	#moment -> 0 - Inicio del turno
+	#			1 - Final del turno
+	#player -> 0 - Jugador 1 (jugador normal)
+	#			1 - Jugador 2 (IA / segundo jugador)
+	var board
+
+	if player == 0:
+		board = get_tree().get_first_node_in_group("board")
+		tide_manager.marea_seleccionada = 0
+	else:
+		board = get_tree().get_first_node_in_group("boardOponente")
+		tide_manager.marea_seleccionada = 1
+
 	for child in board.get_children():
-		tide_manager.mareaJugador += child.card_info.tide_bonus_end_turn
+		if moment == 0:
+			#if child.card_info.has_method("effect") and child.card_info.execution == "Start"
+			pass
+		else:
+			if child.card_info.has_method("effect") and child.card_info.execution == child.card_info.Execution.End:
+				tide_manager.update_tide(child.card_info.effect())
+
+func comprobar_estado_partida():
+	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo.get_child_count() == 0:
+		print("Se acabó el juego")
+		print(DeckBuild.baraja_jugador1)
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		
+	if turnosMareaVivaJugador == 3:
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		
+	if turnosMareaVivaOponente == 3:
+		print("¡Has perdido!")
+		await get_tree().create_timer(2.0).timeout
+		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+
+func _on_boton_pasar_turno_pressed():
+	finalizaTurno()

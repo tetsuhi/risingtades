@@ -11,7 +11,6 @@ enum CardTarget {None, Single, Multi, Global}
 @export var card_type : CardType = CardType.Creature
 @export var card_target : CardTarget = CardTarget.None
 @export var card_cost : int
-@export var tide_bonus_end_turn : int
 
 @export_group("Card Visuals")
 @export var texture : Texture

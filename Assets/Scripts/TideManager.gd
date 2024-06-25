@@ -4,6 +4,7 @@ const MAREA_INICIAL : int = 0
 
 var mareaJugador : int = MAREA_INICIAL
 var mareaOponente : int = MAREA_INICIAL
+var marea_seleccionada : int 
 var estadoMareaJugador : String
 var estadoMareaOponente : String
 
@@ -26,3 +27,9 @@ func comprobarMarea(marea, estado):
 		print("Está fuera de los valores considerados.")
 		return estado
 	return estado
+
+func update_tide(amount):
+	if marea_seleccionada == 0:
+		mareaJugador += amount
+	else:
+		mareaOponente += amount

@@ -23,14 +23,14 @@ func _ready():
 	coste.text = str(card_info.card_cost)
 	texture_rect.texture = card_info.texture
 	
-	if card_info.card_type == card_info.CardType.Spell:
-		print(card_info.card_type)
-	
-	if card_info.card_type == card_info.CardType.Creature:
-		card_info.sube_marea()
-		
-	if card_info.card_target == card_info.CardTarget.Multi:
-		print("SEXO")
+	#if card_info.card_type == card_info.CardType.Spell:
+		#print(card_info.card_type)
+	#
+	#if card_info.card_type == card_info.CardType.Creature:
+		#card_info.effect(card_info.tide_amount, )
+		#
+	#if card_info.card_target == card_info.CardTarget.Multi:
+		#print("SEXO")
 
 func _process(delta):
 	

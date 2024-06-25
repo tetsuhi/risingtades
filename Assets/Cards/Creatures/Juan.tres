@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="cardEffectResource" load_steps=3 format=3 uid="uid://ewcb76roheb2"]
+[gd_resource type="Resource" script_class="effect_update_tide" load_steps=3 format=3 uid="uid://ewcb76roheb2"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resources/cardEffectResource.gd" id="1_wy5v8"]
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effect_update_tide.gd" id="1_fmd1o"]
 [ext_resource type="Texture2D" uid="uid://hnxj02fihaie" path="res://Assets/Textures/FB_IMG_1596591789564.webp" id="2_y6iyx"]
 
 [resource]
-script = ExtResource("1_wy5v8")
-texto_efecto = "Aumenta en 1 todo"
-efecto_carta = ""
+script = ExtResource("1_fmd1o")
+execution = 1
+tide_amount = 5
 card_id = "0"
 card_name = "Juan"
 card_type = 0
-card_target = 2
+card_target = 1
 card_cost = 2
-tide_bonus_end_turn = 1
 texture = ExtResource("2_y6iyx")

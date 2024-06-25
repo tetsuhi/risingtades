@@ -13,6 +13,8 @@ const CARD_DELAY_SPEED = 12.0
 @onready var texture_rect = $TextureRect
 @onready var nombre = $Nombre
 @onready var coste = $Coste
+@onready var descripcion = $Descripcion
+@onready var marea = $Marea
 @onready var torch_manager = $TorchManager
 
 
@@ -24,15 +26,9 @@ func _ready():
 	nombre.text = card_info.card_name
 	coste.text = str(card_info.card_cost)
 	texture_rect.texture = card_info.texture
-	
-	if card_info.card_type == card_info.CardType.Spell:
-		print(card_info.card_type)
-	
-	if card_info.card_type == card_info.CardType.Creature:
-		card_info.sube_marea()
-		
-	if card_info.card_target == card_info.CardTarget.Multi:
-		print("SEXO")
+	descripcion.text = card_info.effect_text
+	marea.text = str(card_info.tide_amount)
+
 
 func _process(delta):
 	
