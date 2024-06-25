@@ -43,6 +43,8 @@ func determinarInicio():
 		esTurnoOponente()
 
 func esTurnoOponente():
+	collision_oponente.disabled = false
+	collision_jugador.disabled = true
 	collision_oponente.show()
 	collision_jugador.hide()
 	tide_manager.mareaOponente += 1
@@ -55,6 +57,8 @@ func esTurnoOponente():
 	#finalizaTurno()
 	
 func esTurnoJugador():
+	collision_oponente.disabled = true
+	collision_jugador.disabled = false
 	collision_jugador.show()
 	collision_oponente.hide()
 	tide_manager.mareaJugador += 1
