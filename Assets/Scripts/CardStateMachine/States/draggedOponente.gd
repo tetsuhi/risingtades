@@ -46,6 +46,7 @@ func state_input(event : InputEvent):
 		if on_board and card.torch_manager.antorchasActualesOponente - card.card_info.card_cost >= 0:
 			print("On Board")
 			card.torch_manager.antorchasActualesOponente -= card.card_info.card_cost
+			card.torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(card.torch_manager.antorchasActualesOponente)
 			next_state = onBoard_state
 		else:
 			print("No hay suficientes antorchas")

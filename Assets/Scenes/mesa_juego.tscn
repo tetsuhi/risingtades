@@ -1,18 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=13 format=3 uid="uid://bs615om7u3vog"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="2_6kpf7"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="2_a0jdj"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="2_t0m6k"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="3_2hdho"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/turnoLabel.gd" id="6_aotk2"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/mareaJugadorDebug.gd" id="8_e6xqd"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesJugador.gd" id="8_na5y6"]
 [ext_resource type="Script" path="res://Assets/Scripts/TurnManager.gd" id="9_1trl3"]
 [ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/mareaOponenteDebug.gd" id="9_8pahl"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasMaxJugador.gd" id="9_f46sj"]
 [ext_resource type="Script" path="res://Assets/Scripts/TorchManager.gd" id="9_rvepi"]
-[ext_resource type="Script" path="res://Assets/Scripts/debugGameManager/antorchasActualesOponente.gd" id="10_ilqw0"]
 [ext_resource type="PackedScene" uid="uid://bxgf48eb41sdp" path="res://Assets/Scenes/pause_menu.tscn" id="12_24cjn"]
 [ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
 
@@ -161,7 +156,6 @@ theme = ExtResource("3_2hdho")
 text = "ejemplo"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_aotk2")
 metadata/_edit_use_anchors_ = true
 
 [node name="mareaJugador" type="Label" parent="JuegoUI"]
@@ -212,7 +206,6 @@ grow_vertical = 2
 theme = ExtResource("3_2hdho")
 text = "antorchas: "
 vertical_alignment = 1
-script = ExtResource("8_na5y6")
 metadata/_edit_use_anchors_ = true
 
 [node name="antorchasMaxJugador" type="Label" parent="JuegoUI"]
@@ -230,7 +223,6 @@ grow_vertical = 2
 theme = ExtResource("3_2hdho")
 text = "max.:"
 vertical_alignment = 1
-script = ExtResource("9_f46sj")
 metadata/_edit_use_anchors_ = true
 
 [node name="antorchasActualesOponente" type="Label" parent="JuegoUI"]
@@ -247,7 +239,6 @@ grow_vertical = 2
 theme = ExtResource("3_2hdho")
 text = "antorchas:"
 vertical_alignment = 1
-script = ExtResource("10_ilqw0")
 metadata/_edit_use_anchors_ = true
 
 [node name="antorchasMaxOponente" type="Label" parent="JuegoUI"]
@@ -265,7 +256,6 @@ grow_vertical = 2
 theme = ExtResource("3_2hdho")
 text = "max.:"
 vertical_alignment = 1
-script = ExtResource("9_f46sj")
 metadata/_edit_use_anchors_ = true
 
 [node name="Mano" type="HBoxContainer" parent="JuegoUI" groups=["hand"]]
@@ -332,8 +322,5 @@ script = ExtResource("9_rvepi")
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource("9_1trl3")
-
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("2_6kpf7")
 
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]

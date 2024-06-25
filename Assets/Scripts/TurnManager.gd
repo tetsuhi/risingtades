@@ -14,6 +14,7 @@ extends Node
 @onready var turnosMareaVivaOponente : int = 0
 @onready var campo = %Campo
 @onready var campo_oponente = %CampoOponente
+@onready var turn_label = $"../JuegoUI/turno"
 
 var estadoJuego : String
 
@@ -47,6 +48,7 @@ func determinarInicio():
 	
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
+	turn_label.text = juegaTurno
 	await get_tree().create_timer(1.0).timeout
 	boton_pasar_turno.disabled = false
 	var rng = RandomNumberGenerator.new()
@@ -56,8 +58,11 @@ func determinarInicio():
 	else:
 		juegaTurno = "oponente"
 		esTurnoOponente()
+		
+	change_turn_label()
 
 func esTurnoOponente():
+	torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(torch_manager.maxAntorchas)
 	leerCartasEnMesa(0, 1)
 	collision_oponente.disabled = false
 	collision_jugador.disabled = true
@@ -73,6 +78,7 @@ func esTurnoOponente():
 	#finalizaTurno()
 	
 func esTurnoJugador():
+	torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(torch_manager.maxAntorchas)
 	leerCartasEnMesa(0,0)
 	collision_oponente.disabled = true
 	collision_jugador.disabled = false
@@ -104,6 +110,8 @@ func finalizaTurno():
 		juegaTurno = "jugador"
 		esTurnoJugador()
 
+	change_turn_label()
+
 func robaCartaJugador():
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.baraja_jugador_partida.size() != 0:
@@ -111,6 +119,7 @@ func robaCartaJugador():
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
 			var nueva_carta = carta_ui.instantiate()
 			nueva_carta.card_info = nueva_carta_info
+			nueva_carta.card_info.effect_text = "Modifica la marea en " + str(nueva_carta.card_info.tide_amount) + " puntos"
 			mano_jugador.add_child(nueva_carta)
 
 func robaCartaOponente():
@@ -162,3 +171,9 @@ func comprobar_estado_partida():
 
 func _on_boton_pasar_turno_pressed():
 	finalizaTurno()
+
+func change_turn_label():
+	if juegaTurno == "Decidiendo...":
+		turn_label.text = juegaTurno
+	else:
+		turn_label.text = "Turno de " + juegaTurno + ". Ronda " + str(numTurno)
