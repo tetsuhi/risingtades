@@ -68,11 +68,12 @@ func esTurnoOponente():
 	collision_jugador.disabled = true
 	collision_oponente.show()
 	collision_jugador.hide()
-	tide_manager.mareaOponente += 1
+	#tide_manager.mareaOponente += 1
 	robaCartaOponente()
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
+	comprobar_estado_partida()
 	#print("La marea del oponente está " + tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente))
 	#await get_tree().create_timer(2.0).timeout
 	#finalizaTurno()
@@ -84,11 +85,12 @@ func esTurnoJugador():
 	collision_jugador.disabled = false
 	collision_jugador.show()
 	collision_oponente.hide()
-	tide_manager.mareaJugador += 1
+	#tide_manager.mareaJugador += 1
 	robaCartaJugador()
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
 	tide_manager.estadoMareaJugador = tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador)
+	comprobar_estado_partida()
 	#print("La marea del jugador está " + tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador))
 
 func finalizaTurno():

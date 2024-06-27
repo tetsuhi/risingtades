@@ -7,6 +7,9 @@ var mareaOponente : int = MAREA_INICIAL
 var marea_seleccionada : int 
 var estadoMareaJugador : String
 var estadoMareaOponente : String
+@onready var marea_jugador = $"../JuegoUI/mareaJugador"
+@onready var marea_oponente = $"../JuegoUI/mareaOponente"
+@onready var turn_manager = $"../TurnManager"
 
 func iniciarMareas():
 	estadoMareaJugador = comprobarMarea(mareaJugador, estadoMareaJugador)
@@ -23,13 +26,33 @@ func comprobarMarea(marea, estado):
 		estado = "alta"
 	elif marea > 16 and marea <= 20:
 		estado = "viva"
-	else:
-		print("Está fuera de los valores considerados.")
+	
+	if marea > 20:
+		marea = 20
+		estado = "viva"
+	if marea < -20:
+		marea = -20
+		estado = "muerta"
+	
 		return estado
 	return estado
 
 func update_tide(amount):
 	if marea_seleccionada == 0:
-		mareaJugador += amount
+		if mareaJugador + amount > 20:
+			mareaJugador = 20
+		elif mareaJugador + amount < -20:
+			mareaJugador = -20
+		else:
+			mareaJugador += amount
 	else:
-		mareaOponente += amount
+		if mareaOponente + amount > 20:
+			mareaOponente = 20
+		elif mareaOponente + amount < -20:
+			mareaOponente = -20
+		else:
+			mareaOponente += amount
+
+func _process(delta):
+	marea_jugador.text = "Jug - Cantidad: " + str(mareaJugador) + ". Estado: " + str(estadoMareaJugador) + ". Turnos marea viva: " + str(turn_manager.turnosMareaVivaJugador)
+	marea_oponente.text = "Opo - Cantidad: " + str(mareaOponente) + ". Estado: " + str(estadoMareaOponente) + ". Turnos marea viva: " + str(turn_manager.turnosMareaVivaOponente)
