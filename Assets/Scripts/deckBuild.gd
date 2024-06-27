@@ -36,8 +36,10 @@ var nombre_temp = []
 var barajaOponente = []
 
 func _ready():
-	for i in 5:
+	for i in 1:
 		barajaOponente.append("0")
+		barajaOponente.append("1")
+		barajaOponente.append("2")
 
 #func build_deck():
 	#barajaJugador = []

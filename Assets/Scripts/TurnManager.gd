@@ -20,8 +20,14 @@ var estadoJuego : String
 
 const MAX_CARTAS_MANO : int = 7
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
-const carta_ui = preload("res://Assets/Scenes/CartaUI.tscn")
-const carta_ui_oponente = preload("res://Assets/Scenes/CartaUIOponente.tscn")
+
+const criatura_activa_jugador = preload("res://Assets/Scenes/CartasJugador/criaturaActivaJugador.tscn")
+const criatura_pasiva_jugador = preload("res://Assets/Scenes/CartasJugador/criaturaPasivaJugador.tscn")
+const conjuro_jugador = preload("res://Assets/Scenes/CartasJugador/conjuroJugador.tscn")
+
+const criatura_activa_oponente = preload("res://Assets/Scenes/CartasOponente/criaturaActivaOponente.tscn")
+const criatura_pasiva_oponente = preload("res://Assets/Scenes/CartasOponente/criaturaPasivaOponente.tscn")
+const conjuro_oponente = preload("res://Assets/Scenes/CartasOponente/conjuroOponente.tscn")
 
 func _ready():
 	estadoJuego = "decide"
@@ -119,9 +125,15 @@ func robaCartaJugador():
 		if DeckBuild.baraja_jugador_partida.size() != 0:
 			var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
-			var nueva_carta = carta_ui.instantiate()
+			var nueva_carta
+			if nueva_carta_info.card_type == 0:
+				nueva_carta = criatura_activa_jugador.instantiate()
+			elif nueva_carta_info.card_type == 1:
+				nueva_carta = criatura_pasiva_jugador.instantiate()
+			else:
+				nueva_carta = conjuro_jugador.instantiate()
 			nueva_carta.card_info = nueva_carta_info
-			nueva_carta.card_info.effect_text = "Modifica la marea en " + str(nueva_carta.card_info.tide_amount) + " puntos"
+			#nueva_carta.card_info.effect_text = "Modifica la marea en " + str(nueva_carta.card_info.tide_amount) + " puntos"
 			mano_jugador.add_child(nueva_carta)
 
 func robaCartaOponente():
@@ -129,7 +141,13 @@ func robaCartaOponente():
 		if DeckBuild.baraja_oponente_partida.size() != 0:
 			var nueva_carta_id = DeckBuild.baraja_oponente_partida.pop_back()
 			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
-			var nueva_carta = carta_ui_oponente.instantiate()
+			var nueva_carta
+			if nueva_carta_info.card_type == 0:
+				nueva_carta = criatura_activa_oponente.instantiate()
+			elif nueva_carta_info.card_type == 1:
+				nueva_carta = criatura_pasiva_oponente.instantiate()
+			else:
+				nueva_carta = conjuro_oponente.instantiate()
 			nueva_carta.card_info = nueva_carta_info
 			mano_oponente.add_child(nueva_carta)
 

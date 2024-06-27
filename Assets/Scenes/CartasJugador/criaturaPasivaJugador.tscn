@@ -1,36 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://dejaruvj4arte"]
+[gd_scene load_steps=9 format=3 uid="uid://dejaruvj4arte"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/cardController.gd" id="1_fbhii"]
-[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="1_qtn8c"]
-[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/card_state_machine.gd" id="3_3d52g"]
-[ext_resource type="FontFile" uid="uid://sk7x8hxeqldj" path="res://Assets/Fonts/CelticTime.ttf" id="3_6o46u"]
-[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/idle.gd" id="4_qcqye"]
-[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/dragged.gd" id="6_mwrw3"]
-[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/on_board.gd" id="7_2mvf3"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_10cfd"]
-font = ExtResource("3_6o46u")
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_0g3dm"]
-font = ExtResource("3_6o46u")
-font_size = 32
+[ext_resource type="Script" path="res://Assets/Scripts/cardController.gd" id="1_w3qoi"]
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_pbnvt"]
+[ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="3_ytqhh"]
+[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/card_state_machine.gd" id="4_nk75t"]
+[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/idle.gd" id="5_kei48"]
+[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/dragged.gd" id="6_ux1rn"]
+[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/on_board.gd" id="7_h2kvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8611"]
-size = Vector2(132, 185)
+size = Vector2(169, 238)
 
 [node name="CartaUI" type="Control"]
-custom_minimum_size = Vector2(132, 185)
+custom_minimum_size = Vector2(170, 238)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1788.0
-offset_bottom = -895.0
+offset_right = -1750.0
+offset_bottom = -842.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(66, 92.5)
-script = ExtResource("1_fbhii")
+script = ExtResource("1_w3qoi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -39,39 +31,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_qtn8c")
+texture = ExtResource("2_pbnvt")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Nombre" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 28.0
-grow_horizontal = 2
-text = "pipo"
-label_settings = SubResource("LabelSettings_10cfd")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Coste" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -13.0
-offset_top = -151.0
-offset_right = 13.0
-offset_bottom = -123.0
+offset_left = -30.5
+offset_top = -89.0
+offset_right = 30.5
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_ytqhh")
+theme_override_font_sizes/font_size = 30
+text = "pipo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coste" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 37.0
+grow_horizontal = 2
+theme = ExtResource("3_ytqhh")
+theme_override_font_sizes/font_size = 20
 text = "74"
-label_settings = SubResource("LabelSettings_0g3dm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -82,12 +76,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -56.5
-offset_top = -56.0
-offset_right = 56.5
-offset_bottom = -13.0
+offset_left = -68.5
+offset_top = -59.0
+offset_right = 68.5
+offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_ytqhh")
+theme_override_font_sizes/font_size = 12
+text = "Hago esto jeje"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Marea" type="Label" parent="."]
 layout_mode = 1
@@ -96,36 +95,41 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -49.0
-offset_top = -86.0
-offset_right = -9.0
-offset_bottom = -63.0
+offset_left = -32.0
+offset_top = -33.0
+offset_right = 8.0
+offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("3_ytqhh")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="detectorColision" type="Area2D" parent="."]
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectorColision"]
-position = Vector2(66, 92.5)
+position = Vector2(85, 119)
 shape = SubResource("RectangleShape2D_i8611")
 
 [node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("card", "current_state")]
-script = ExtResource("3_3d52g")
+script = ExtResource("4_nk75t")
 card = NodePath("..")
 current_state = NodePath("idleState")
 
 [node name="idleState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("dragged_state")]
-script = ExtResource("4_qcqye")
+script = ExtResource("5_kei48")
 dragged_state = NodePath("../draggedState")
 
 [node name="draggedState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("idle_state", "onBoard_state")]
-script = ExtResource("6_mwrw3")
+script = ExtResource("6_ux1rn")
 idle_state = NodePath("../idleState")
 onBoard_state = NodePath("../onBoardState")
 
 [node name="onBoardState" type="Node" parent="CardStateMachine"]
-script = ExtResource("7_2mvf3")
+script = ExtResource("7_h2kvf")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="." to="CardStateMachine/idleState" method="_on_carta_ui_mouse_entered"]
