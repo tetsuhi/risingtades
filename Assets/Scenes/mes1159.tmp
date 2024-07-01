@@ -314,8 +314,15 @@ alignment = 1
 visible = false
 default_color = Color(0.930177, 0, 0.13985, 1)
 
-[node name="RayCast2D" type="RayCast2D" parent="JuegoUI" groups=["raycast"]]
-collision_mask = 2
+[node name="aim_position" type="Control" parent="JuegoUI" groups=["aim"]]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="pause_menu" parent="JuegoUI" instance=ExtResource("12_24cjn")]
 mouse_filter = 2

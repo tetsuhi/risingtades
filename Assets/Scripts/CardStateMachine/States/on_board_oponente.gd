@@ -13,8 +13,9 @@ func state_process(delta):
 	pass
 
 func state_input(event : InputEvent):
-	if event.is_action_pressed("LMB") and on_card:
-		card.queue_free()
+	#if event.is_action_pressed("LMB") and on_card:
+		#card.queue_free()
+	pass
 
 func _on_carta_ui_oponente_mouse_entered():
 	on_card = true;

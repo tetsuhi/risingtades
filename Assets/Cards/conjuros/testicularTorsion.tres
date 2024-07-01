@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="effect_update_tide" load_steps=3 format=3 uid="uid://cq6d8j2pbkgju"]
+[gd_resource type="Resource" script_class="effect_upgrade_passive" load_steps=3 format=3 uid="uid://cq6d8j2pbkgju"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resources/effect_upgrade_passive.gd" id="1_1w5cd"]
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_upgrade_passive.gd" id="1_1w5cd"]
 [ext_resource type="Texture2D" uid="uid://ke57yht62w6s" path="res://Assets/Textures/torsion-illustration.png" id="2_pe0l2"]
 
 [resource]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc1tdt7tutmkn"]
+[gd_scene load_steps=10 format=3 uid="uid://dc1tdt7tutmkn"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/cardController.gd" id="1_m3hck"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_loduv"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/card_state_machine.gd" id="4_74406"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/idle.gd" id="5_2lryn"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/dragged.gd" id="6_hk0bl"]
-[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/on_board.gd" id="7_227x1"]
+[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/on_board_active.gd" id="7_jbhnw"]
+[ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/aim.gd" id="8_bg5ls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8611"]
 size = Vector2(169, 238)
@@ -14,11 +15,10 @@ size = Vector2(169, 238)
 [node name="CartaUI" type="Control"]
 custom_minimum_size = Vector2(170, 238)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1750.0
-offset_bottom = -842.0
+anchor_right = 0.089
+anchor_bottom = 0.22
+offset_right = -0.880005
+offset_bottom = 0.399979
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(66, 92.5)
@@ -53,6 +53,7 @@ theme_override_font_sizes/font_size = 30
 text = "pipo"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Coste" type="Label" parent="."]
 layout_mode = 1
@@ -88,7 +89,7 @@ text = "Hago esto jeje"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Marea" type="Label" parent="."]
+[node name="Ataque" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -102,10 +103,26 @@ offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("3_y43it")
+theme_override_colors/font_color = Color(0.376471, 0.541176, 1, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Vida" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -30.0
+offset_right = 47.0
+offset_bottom = 1.0
+grow_vertical = 0
+theme = ExtResource("3_y43it")
+theme_override_colors/font_color = Color(100, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "0"
 
 [node name="detectorColision" type="Area2D" parent="."]
 monitorable = false
@@ -128,14 +145,21 @@ script = ExtResource("6_hk0bl")
 idle_state = NodePath("../idleState")
 onBoard_state = NodePath("../onBoardState")
 
-[node name="onBoardState" type="Node" parent="CardStateMachine"]
-script = ExtResource("7_227x1")
+[node name="onBoardState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("aim_State")]
+script = ExtResource("7_jbhnw")
+aim_State = NodePath("../aimState")
+
+[node name="aimState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("on_board_state")]
+script = ExtResource("8_bg5ls")
+on_board_state = NodePath("../onBoardState")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="." to="CardStateMachine/idleState" method="_on_carta_ui_mouse_entered"]
 [connection signal="mouse_entered" from="." to="CardStateMachine/onBoardState" method="_on_carta_ui_mouse_entered"]
+[connection signal="mouse_entered" from="." to="CardStateMachine/aimState" method="_on_carta_ui_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="." to="CardStateMachine/idleState" method="_on_carta_ui_mouse_exited"]
 [connection signal="mouse_exited" from="." to="CardStateMachine/onBoardState" method="_on_carta_ui_mouse_exited"]
+[connection signal="mouse_exited" from="." to="CardStateMachine/aimState" method="_on_carta_ui_mouse_exited"]
 [connection signal="area_entered" from="detectorColision" to="CardStateMachine/draggedState" method="_on_detector_colision_area_entered"]
 [connection signal="area_exited" from="detectorColision" to="CardStateMachine/draggedState" method="_on_detector_colision_area_exited"]

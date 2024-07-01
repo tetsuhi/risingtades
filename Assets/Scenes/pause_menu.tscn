@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxgf48eb41sdp"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/PauseHandler.gd" id="1_hqb6l"]
+[ext_resource type="Script" path="res://Assets/Scripts/PauseButtonHandler.gd" id="1_41e7q"]
 [ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="1_sxn1t"]
 [ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="2_u1p7p"]
 
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hqb6l")
+script = ExtResource("1_41e7q")
 
 [node name="pause_panel" type="Panel" parent="."]
 visible = false

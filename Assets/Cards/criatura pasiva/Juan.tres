@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="effect_update_tide" load_steps=3 format=3 uid="uid://ewcb76roheb2"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Resources/effect_update_tide.gd" id="1_fmd1o"]
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_update_tide.gd" id="1_fmd1o"]
 [ext_resource type="Texture2D" uid="uid://hnxj02fihaie" path="res://Assets/Textures/FB_IMG_1596591789564.webp" id="2_y6iyx"]
 
 [resource]
 script = ExtResource("1_fmd1o")
-effect_text = "Modifica la marea en self.tide_amount puntos"
 execution = 1
+effect_text = "Modifica la marea en self.tide_amount puntos"
 tide_amount = 5
+life = 2
 card_id = "0"
 card_name = "Juan"
 card_type = 1

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="effect_upgrade_passive" load_steps=3 format=3 uid="uid://db3xcf53asoq1"]
+[gd_resource type="Resource" script_class="active_creature" load_steps=3 format=3 uid="uid://db3xcf53asoq1"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Resources/activeCreature.gd" id="1_n6w0l"]
 [ext_resource type="Texture2D" uid="uid://xsyccpslg142" path="res://Assets/Textures/Drip-Goku-meme-3.jpg" id="2_gcasp"]
@@ -7,6 +7,7 @@
 script = ExtResource("1_n6w0l")
 effect_text = "Maldito seas estado de israel"
 damage = 3
+life = 4
 card_id = "2"
 card_name = "Goku"
 card_type = 0

@@ -35,6 +35,9 @@ var nombre_temp = []
 
 var barajaOponente = []
 
+var cementerio_jugador = []
+var cementerio_oponente = []
+
 func _ready():
 	for i in 1:
 		barajaOponente.append("0")

@@ -1,40 +1,12 @@
 extends CardUI
 
-#signal reparent_requested(which_card_ui : CardUI)
-#signal make_child(which_card_ui : CardUI)
-#signal consulta_antorchas(carta_coste : int)
-
-#const CARD_DELAY_SPEED = 12.0
-#
-#@onready var state_machine : CardStateMachine = $CardStateMachine
-#
-#@onready var texture_rect = $TextureRect
-#@onready var nombre = $Nombre
-#@onready var coste = $Coste
-#@onready var torch_manager = $TorchManager
-#
-#
-#var card_info : cardResource
-#
-#var on_card : bool
-#
 func _ready():
 	nombre.text = card_info.card_name
 	coste.text = str(card_info.card_cost)
 	texture_rect.texture = card_info.texture
-	
-	#if card_info.card_type == card_info.CardType.Spell:
-		#print(card_info.card_type)
-	#
-	#if card_info.card_type == card_info.CardType.Creature:
-		#card_info.effect(card_info.tide_amount, )
-		#
-	#if card_info.card_target == card_info.CardTarget.Multi:
-		#print("SEXO")
 
 func _process(delta):
-	
-	if on_card and state_machine.current_state.name == "idleState":
+	if on_card and state_machine.current_state.name == "idleState" and not disabled_card:
 		scale = scale.lerp(Vector2(1.2, 1.2), delta*30)
 	elif not on_card:
 		scale = scale.lerp(Vector2(1, 1), delta*30)

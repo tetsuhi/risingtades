@@ -310,23 +310,17 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="puntero" type="Line2D" parent="JuegoUI" groups=["puntero"]]
-visible = false
-default_color = Color(0.930177, 0, 0.13985, 1)
-
-[node name="RayCast2D" type="RayCast2D" parent="JuegoUI" groups=["raycast"]]
-collision_mask = 2
+[node name="aim_position" type="Control" parent="JuegoUI" groups=["aim"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 960.0
+offset_top = 544.0
+offset_right = 960.0
+offset_bottom = 544.0
 
 [node name="pause_menu" parent="JuegoUI" instance=ExtResource("12_24cjn")]
 mouse_filter = 2
 script = ExtResource("8_niflv")
-
-[node name="mouse_pos" type="Control" parent="JuegoUI" groups=["mouse_pos"]]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
 
 [node name="pause_button" type="Button" parent="JuegoUI"]
 offset_left = 8.0

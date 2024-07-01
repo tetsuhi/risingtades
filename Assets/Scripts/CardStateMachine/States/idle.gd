@@ -19,7 +19,7 @@ func state_process(delta):
 	pass
 
 func state_input(event : InputEvent):
-	if event.is_action_pressed("LMB") and on_card:
+	if event.is_action_pressed("LMB") and on_card and not card.disabled_card:
 		next_state = dragged_state
 
 

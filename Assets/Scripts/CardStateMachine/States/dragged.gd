@@ -6,7 +6,6 @@ const DRAG_MINIMUM_THRESHOLD : float = 0.05
 
 @export var idle_state : State
 @export var onBoard_state : State
-@export var aim_State : State
 #@export var torch_manager : torchManager
 
 #@onready var torch_manager = %TorchManager
@@ -42,12 +41,10 @@ func state_input(event : InputEvent):
 	var cancel = event.is_action_pressed("RMB")
 	if confirm and minimum_drag_time_elapsed:
 		if on_board and card.torch_manager.antorchasActualesJugador - card.card_info.card_cost >= 0:
-			print("On Board")
 			card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
 			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 			next_state = onBoard_state
 		else:
-			print("No hay suficientes antorchas")
 			next_state = idle_state
 	elif cancel:
 		next_state = idle_state
