@@ -124,7 +124,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_7r7ex")
 
-[node name="botonPasarTurno" type="Button" parent="JuegoUI"]
+[node name="botonPasarTurno" type="Button" parent="JuegoUI" groups=["boton_pasar_turno"]]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -310,28 +310,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="puntero" type="Line2D" parent="JuegoUI" groups=["puntero"]]
-visible = false
-default_color = Color(0.930177, 0, 0.13985, 1)
-
-[node name="pause_menu" parent="JuegoUI" instance=ExtResource("12_24cjn")]
-mouse_filter = 2
-script = ExtResource("8_niflv")
-
-[node name="mouse_pos" type="Control" parent="JuegoUI" groups=["mouse_pos"]]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
 [node name="RayCast2D" type="RayCast2D" parent="JuegoUI" groups=["raycast"]]
 target_position = Vector2(0, 0)
 collision_mask = 3
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="pause_button" type="Button" parent="JuegoUI"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="pause_button" type="Button" parent="CanvasLayer" groups=["boton_pausa"]]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 66.0
@@ -339,6 +326,21 @@ offset_bottom = 66.0
 icon = ExtResource("9_qoctp")
 flat = true
 script = ExtResource("7_yvgv3")
+
+[node name="mouse_pos" type="Control" parent="CanvasLayer" groups=["mouse_pos"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="puntero" type="Line2D" parent="CanvasLayer" groups=["puntero"]]
+visible = false
+default_color = Color(0.930177, 0, 0.13985, 1)
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("12_24cjn")]
+mouse_filter = 2
+script = ExtResource("8_niflv")
 
 [node name="TideManager" type="Node" parent="."]
 script = ExtResource("14_x3k5s")
@@ -350,4 +352,4 @@ script = ExtResource("9_rvepi")
 script = ExtResource("9_1trl3")
 
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
-[connection signal="pressed" from="JuegoUI/pause_button" to="JuegoUI/pause_menu" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_menu" method="_on_pause_button_pressed"]

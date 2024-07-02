@@ -1,8 +1,7 @@
 extends State
 
-class_name AimState
+class_name SpellAimState
 
-@export var on_board_state : State
 @onready var collision := get_tree().get_first_node_in_group("collision_jugador")
 @onready var puntero := get_tree().get_first_node_in_group("puntero")
 @onready var mouse_pos := get_tree().get_first_node_in_group("mouse_pos")
@@ -10,17 +9,25 @@ class_name AimState
 @onready var mano := get_tree().get_first_node_in_group("hand")
 @onready var manoOpo := get_tree().get_first_node_in_group("hand_oponente")
 @onready var raycast := get_tree().get_first_node_in_group("raycast")
-#@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var boton_pasar_turno := get_tree().get_first_node_in_group("boton_pasar_turno")
 @onready var boton_pausa := get_tree().get_first_node_in_group("boton_pausa")
+
+@export var idle_state : State
 
 var card_pos : Vector2
 var on_card : bool
 
 func on_enter():
+	
+	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+	if ui_layer:
+		card.reparent(ui_layer)
+	card.position = Vector2(get_viewport().size.x/2 - card.size.x/2, get_viewport().size.y/2 - card.size.y/2)
+	
+	collision.disabled = true
 	boton_pasar_turno.set_disabled(true)
 	boton_pausa.set_disabled(true)
-	collision.disabled = true
 	puntero.show()
 	disabling_cards()
 
@@ -43,7 +50,7 @@ func state_input(event : InputEvent):
 			i.disabled_card = false
 		for i in campo_oponente.get_children():
 			i.disabled_card = true
-		next_state = on_board_state
+		next_state = idle_state
 
 	if event.is_action_pressed("LMB"):
 		var collider = raycast.get_collider()
@@ -57,20 +64,17 @@ func state_input(event : InputEvent):
 
 				enabling_cards()
 
-				card.has_attacked = true
+				DeckBuild.cementerio_jugador.append(card.card_info.card_id)
+				card.queue_free()
 				boton_pasar_turno.set_disabled(false)
 				boton_pausa.set_disabled(false)
 				collision.disabled = false
 				puntero.hide()
-				next_state = on_board_state
-		else:
-			enabling_cards()
-
-			boton_pasar_turno.set_disabled(false)
-			boton_pausa.set_disabled(false)
-			collision.disabled = false
-			puntero.hide()
-			next_state = on_board_state
+		#else:
+			#enabling_cards()
+#
+			#collision.disabled = false
+			#puntero.hide()
 
 func disabling_cards():
 	for i in mano.get_children():

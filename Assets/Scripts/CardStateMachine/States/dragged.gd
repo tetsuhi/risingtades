@@ -5,7 +5,7 @@ class_name DraggedState
 const DRAG_MINIMUM_THRESHOLD : float = 0.05
 
 @export var idle_state : State
-@export var onBoard_state : State
+@export var aim_state : State
 #@export var torch_manager : torchManager
 
 #@onready var torch_manager = %TorchManager
@@ -45,7 +45,7 @@ func state_input(event : InputEvent):
 			card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
 			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 			card.is_dragged = false
-			next_state = onBoard_state
+			next_state = aim_state
 		else:
 			card.is_dragged = false
 			next_state = idle_state
