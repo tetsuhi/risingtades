@@ -25,8 +25,8 @@ func state_input(event : InputEvent):
 			#print("Cementerio jugador: " + str(DeckBuild.cementerio_jugador))
 		next_state = aim_State
 
-func _on_carta_ui_mouse_entered():
-	on_card = true;
+func _on_detector_colision_mouse_entered():
+	on_card = true
 
-func _on_carta_ui_mouse_exited():
+func _on_detector_colision_mouse_exited():
 	on_card = false

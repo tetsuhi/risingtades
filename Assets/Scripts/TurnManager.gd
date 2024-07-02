@@ -240,14 +240,21 @@ func activar_cartas_en_mesa(target : int, estado : int):
 		if estado == 0:
 			for i in campo.get_children():
 				i.disabled_card = true
+			for i in mano_jugador.get_children():
+				i.disabled_card = true
 		else:
 			for i in campo.get_children():
 				i.disabled_card = false
-				print("he desactivado " + i.card_info.card_name)
+			for i in mano_jugador.get_children():
+				i.disabled_card = false
 	else:
 		if estado == 0:
 			for i in campo_oponente.get_children():
 				i.disabled_card = true
+			for i in mano_oponente.get_children():
+				i.disabled_card = true
 		else:
 			for i in campo_oponente.get_children():
+				i.disabled_card = false
+			for i in mano_oponente.get_children():
 				i.disabled_card = false

@@ -6,13 +6,13 @@ func _ready():
 	texture_rect.texture = card_info.texture
 
 func _process(delta):
-	if on_card and state_machine.current_state.name == "idleState" and not disabled_card:
+	if on_card and state_machine.current_state.name == "idleState" and not disabled_card and not is_dragged:
 		scale = scale.lerp(Vector2(1.2, 1.2), delta*30)
-	elif not on_card:
+	else:
 		scale = scale.lerp(Vector2(1, 1), delta*30)
 
-func _on_mouse_entered():
+func _on_area_2d_mouse_entered():
 	on_card = true
 
-func _on_mouse_exited():
+func _on_area_2d_mouse_exited():
 	on_card = false

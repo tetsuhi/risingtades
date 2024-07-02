@@ -30,6 +30,7 @@ offset_bottom = -895.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(66, 92.5)
+mouse_filter = 1
 script = ExtResource("1_1yrqw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -100,11 +101,10 @@ onBoard_state = NodePath("../onBoardState")
 [node name="onBoardState" type="Node" parent="CardStateMachine"]
 script = ExtResource("7_5pbur")
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="." to="CardStateMachine/idleState" method="_on_carta_ui_oponente_mouse_entered"]
-[connection signal="mouse_entered" from="." to="CardStateMachine/onBoardState" method="_on_carta_ui_oponente_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="." to="CardStateMachine/idleState" method="_on_carta_ui_oponente_mouse_exited"]
-[connection signal="mouse_exited" from="." to="CardStateMachine/onBoardState" method="_on_carta_ui_oponente_mouse_exited"]
 [connection signal="area_entered" from="Area2D" to="CardStateMachine/draggedState" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="CardStateMachine/draggedState" method="_on_area_2d_area_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_entered" from="Area2D" to="CardStateMachine/idleState" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_exited" from="Area2D" to="CardStateMachine/idleState" method="_on_area_2d_mouse_exited"]

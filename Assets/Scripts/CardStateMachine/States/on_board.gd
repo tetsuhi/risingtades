@@ -21,8 +21,8 @@ func state_input(event : InputEvent):
 			card.queue_free()
 			print("Cementerio jugador: " + str(DeckBuild.cementerio_jugador))
 
-func _on_carta_ui_mouse_entered():
-	on_card = true;
+func _on_detector_colision_mouse_entered():
+	on_card = true
 
-func _on_carta_ui_mouse_exited():
+func _on_detector_colision_mouse_exited():
 	on_card = false

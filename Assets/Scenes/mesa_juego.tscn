@@ -314,9 +314,6 @@ alignment = 1
 visible = false
 default_color = Color(0.930177, 0, 0.13985, 1)
 
-[node name="RayCast2D" type="RayCast2D" parent="JuegoUI" groups=["raycast"]]
-collision_mask = 2
-
 [node name="pause_menu" parent="JuegoUI" instance=ExtResource("12_24cjn")]
 mouse_filter = 2
 script = ExtResource("8_niflv")
@@ -327,6 +324,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="JuegoUI" groups=["raycast"]]
+target_position = Vector2(0, 0)
+collision_mask = 3
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="pause_button" type="Button" parent="JuegoUI"]
 offset_left = 8.0

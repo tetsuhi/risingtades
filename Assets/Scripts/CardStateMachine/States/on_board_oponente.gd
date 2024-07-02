@@ -17,8 +17,7 @@ func state_input(event : InputEvent):
 		#card.queue_free()
 	pass
 
-func _on_carta_ui_oponente_mouse_entered():
-	on_card = true;
+#func _on_area_2d_input_event(viewport, event, shape_idx):
+	#if event.is_action_pressed("LMB"):
+		#print("me han clickado jeje")
 
-func _on_carta_ui_oponente_mouse_exited():
-	on_card = false
