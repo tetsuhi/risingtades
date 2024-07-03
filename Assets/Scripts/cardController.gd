@@ -14,12 +14,14 @@ const CARD_DELAY_SPEED = 12.0
 @onready var nombre = $Nombre
 @onready var coste = $Coste
 @onready var descripcion = $Descripcion
-@onready var marea = $Marea
+@onready var marea_label = $Marea
 @onready var vida_label = $Vida
 @onready var torch_manager = $TorchManager
-@onready var ataque = $Ataque
+@onready var ataque_label = $Ataque
 
 var vida : int
+var ataque : int
+var marea : int
 
 var card_info : cardResource
 
@@ -41,10 +43,12 @@ func _ready():
 		vida = card_info.life
 	
 	if card_info.card_type == 0:
-		ataque.text = str(card_info.damage)
+		ataque_label.text = str(card_info.damage)
+		ataque = card_info.damage
 	
 	if card_info.card_type == 1:
-		marea.text = str(card_info.tide_amount)
+		marea_label.text = str(card_info.tide_amount)
+		marea = card_info.tide_amount
 
 func _process(delta):
 	

@@ -22,8 +22,8 @@ func state_input(event : InputEvent):
 	if event.is_action_pressed("LMB") and on_card and not card.disabled_card:
 		next_state = dragged_state
 
-func _on_area_2d_mouse_entered():
+func _on_detector_colision_mouse_entered():
 	on_card = true
 
-func _on_area_2d_mouse_exited():
+func _on_detector_colision_mouse_exited():
 	on_card = false

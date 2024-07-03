@@ -1,14 +1,13 @@
 extends State
 
-class_name AimState
+class_name AimStateOponente
 
 @export var on_board_state : State
-@onready var collision := get_tree().get_first_node_in_group("collision_jugador")
+@onready var collision := get_tree().get_first_node_in_group("collision_oponente")
 @onready var puntero := get_tree().get_first_node_in_group("puntero")
 @onready var mouse_pos := get_tree().get_first_node_in_group("mouse_pos")
-@onready var campo_oponente := get_tree().get_first_node_in_group("boardOponente")
-@onready var mano := get_tree().get_first_node_in_group("hand")
-@onready var manoOpo := get_tree().get_first_node_in_group("hand_oponente")
+@onready var campo_jugador := get_tree().get_first_node_in_group("board")
+@onready var mano_oponente := get_tree().get_first_node_in_group("hand_oponente")
 @onready var raycast := get_tree().get_first_node_in_group("raycast")
 #@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var boton_pasar_turno := get_tree().get_first_node_in_group("boton_pasar_turno")
@@ -35,7 +34,6 @@ func state_process(delta):
 	#raycast.target_position = mouse_pos.get_global_mouse_position()
 	
 	collider = raycast.get_collider()
-	print(collider)
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("RMB"):
@@ -43,10 +41,7 @@ func state_input(event : InputEvent):
 		boton_pasar_turno.set_disabled(false)
 		boton_pausa.set_disabled(false)
 		collision.disabled = false
-		for i in mano.get_children():
-			i.disabled_card = false
-		for i in campo_oponente.get_children():
-			i.disabled_card = true
+		enabling_cards()
 		next_state = on_board_state
 
 	if event.is_action_released("LMB") and collider != null:
@@ -54,9 +49,9 @@ func state_input(event : InputEvent):
 		if not card_objective.disabled_card and card_objective != card:
 			
 			if card_objective.vida - card.ataque <= 0:
-				DeckBuild.cementerio_oponente.append(card_objective.card_info.card_id)
+				DeckBuild.cementerio_jugador.append(card_objective.card_info.card_id)
+				print(DeckBuild.cementerio_jugador)
 				card_objective.queue_free()
-				print(DeckBuild.cementerio_oponente)
 			card_objective.vida -= 1
 			card_objective.vida_label.text = str(card_objective.vida)
 
@@ -87,15 +82,15 @@ func state_input(event : InputEvent):
 		next_state = on_board_state
 
 func disabling_cards():
-	for i in mano.get_children():
+	for i in mano_oponente.get_children():
 		i.disabled_card = true
-	for i in campo_oponente.get_children():
+	for i in campo_jugador.get_children():
 		i.disabled_card = false
 
 func enabling_cards():
-	for i in mano.get_children():
+	for i in mano_oponente.get_children():
 		i.disabled_card = false
-	for i in campo_oponente.get_children():
+	for i in campo_jugador.get_children():
 		i.disabled_card = true
 
 func _on_detector_colision_mouse_entered():

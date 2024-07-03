@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_n6w0l")
 effect_text = "Maldito seas estado de israel"
-damage = 3
+damage = 1
 life = 4
 card_id = "2"
 card_name = "Goku"

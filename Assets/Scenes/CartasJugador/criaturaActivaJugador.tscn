@@ -141,9 +141,10 @@ current_state = NodePath("idleState")
 script = ExtResource("5_2lryn")
 dragged_state = NodePath("../draggedState")
 
-[node name="draggedState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="draggedState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("idle_state", "on_board_state")]
 script = ExtResource("6_hk0bl")
 idle_state = NodePath("../idleState")
+on_board_state = NodePath("../onBoardState")
 
 [node name="onBoardState" type="Node" parent="CardStateMachine" node_paths=PackedStringArray("aim_State")]
 script = ExtResource("7_jbhnw")

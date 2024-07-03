@@ -14,10 +14,15 @@ func state_process(delta):
 
 func state_input(event : InputEvent):
 	#if event.is_action_pressed("LMB") and on_card:
-		#card.queue_free()
+		#if card.vida - 1 == 0:
+			#DeckBuild.cementerio_oponente.append(card.card_info.card_id)
+			#card.queue_free()
+		#card.vida -= 1
+		#card.vida_label.text = str(card.vida)
 	pass
 
-#func _on_area_2d_input_event(viewport, event, shape_idx):
-	#if event.is_action_pressed("LMB"):
-		#print("me han clickado jeje")
+func _on_detector_colision_mouse_entered():
+	on_card = true
 
+func _on_detector_colision_mouse_exited():
+	on_card = false

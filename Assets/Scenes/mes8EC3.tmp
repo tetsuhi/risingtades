@@ -348,7 +348,7 @@ script = ExtResource("14_x3k5s")
 [node name="TorchManager" type="Node" parent="." groups=["torch"]]
 script = ExtResource("9_rvepi")
 
-[node name="TurnManager" type="Node" parent="." groups=["turn_manager"]]
+[node name="TurnManager" type="Node" parent="."]
 script = ExtResource("9_1trl3")
 
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]

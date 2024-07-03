@@ -1,14 +1,13 @@
 extends State
 
-class_name ActiveBoardState
+class_name ActiveBoardStateOponente
 
 var on_card : bool
-var mouse_left_down : bool
 @export var aim_State : State
 @onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
 
 func on_enter():
-	var board := get_tree().get_first_node_in_group("board")
+	var board := get_tree().get_first_node_in_group("boardOponente")
 	if board:
 		card.reparent(board)
 	#card.card_on_board = true
@@ -18,7 +17,7 @@ func state_process(delta):
 
 func state_input(event : InputEvent):
 	
-	if event.is_action_pressed("LMB") and on_card and not card.has_attacked and not card.first_turn_resting and not card.disabled_card and turn_manager.juegaTurno == "jugador":
+	if event.is_action_pressed("LMB") and on_card and not card.has_attacked and not card.first_turn_resting and not card.disabled_card and turn_manager.juegaTurno == "oponente":
 		next_state = aim_State
 
 func _on_detector_colision_mouse_entered():

@@ -1,28 +1,36 @@
 extends State
 
-class_name AimState
+class_name SpellAimStateOpoonente
 
-@export var on_board_state : State
-@onready var collision := get_tree().get_first_node_in_group("collision_jugador")
+@onready var collision := get_tree().get_first_node_in_group("collision_oponente")
 @onready var puntero := get_tree().get_first_node_in_group("puntero")
 @onready var mouse_pos := get_tree().get_first_node_in_group("mouse_pos")
+@onready var campo_jugador := get_tree().get_first_node_in_group("board")
 @onready var campo_oponente := get_tree().get_first_node_in_group("boardOponente")
 @onready var mano := get_tree().get_first_node_in_group("hand")
-@onready var manoOpo := get_tree().get_first_node_in_group("hand_oponente")
+@onready var mano_opo := get_tree().get_first_node_in_group("hand_oponente")
 @onready var raycast := get_tree().get_first_node_in_group("raycast")
-#@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var boton_pasar_turno := get_tree().get_first_node_in_group("boton_pasar_turno")
 @onready var boton_pausa := get_tree().get_first_node_in_group("boton_pausa")
+
+@export var idle_state : State
 
 var card_pos : Vector2
 var on_card : bool
 var collider
+var apuntando : bool
 
 func on_enter():
+	
+	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+	if ui_layer:
+		card.reparent(ui_layer)
+	card.position = Vector2(get_viewport().size.x/2 - card.size.x/2, get_viewport().size.y/2 - card.size.y/2)
+	
+	collision.disabled = true
 	boton_pasar_turno.set_disabled(true)
 	boton_pausa.set_disabled(true)
-	collision.disabled = true
-	puntero.show()
 	disabling_cards()
 
 func state_process(delta):
@@ -35,67 +43,59 @@ func state_process(delta):
 	#raycast.target_position = mouse_pos.get_global_mouse_position()
 	
 	collider = raycast.get_collider()
-	print(collider)
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("RMB"):
+		card.torch_manager.antorchasActualesOponente += card.card_info.card_cost
+		card.torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(card.torch_manager.antorchasActualesOponente)
 		puntero.hide()
 		boton_pasar_turno.set_disabled(false)
 		boton_pausa.set_disabled(false)
 		collision.disabled = false
-		for i in mano.get_children():
-			i.disabled_card = false
-		for i in campo_oponente.get_children():
-			i.disabled_card = true
-		next_state = on_board_state
-
-	if event.is_action_released("LMB") and collider != null:
-		var card_objective = collider.get_owner()
-		if not card_objective.disabled_card and card_objective != card:
-			
-			if card_objective.vida - card.ataque <= 0:
-				DeckBuild.cementerio_oponente.append(card_objective.card_info.card_id)
-				card_objective.queue_free()
-				print(DeckBuild.cementerio_oponente)
-			card_objective.vida -= 1
-			card_objective.vida_label.text = str(card_objective.vida)
-
-			enabling_cards()
-
-			card.has_attacked = true
-			boton_pasar_turno.set_disabled(false)
-			boton_pausa.set_disabled(false)
-			collision.disabled = false
-			puntero.hide()
-			next_state = on_board_state
-		else:
-			enabling_cards()
-
-			boton_pasar_turno.set_disabled(false)
-			boton_pausa.set_disabled(false)
-			collision.disabled = false
-			puntero.hide()
-			next_state = on_board_state
-	
-	elif event.is_action_released("LMB") and collider == null:
 		enabling_cards()
+		next_state = idle_state
 
-		boton_pasar_turno.set_disabled(false)
-		boton_pausa.set_disabled(false)
-		collision.disabled = false
+	if not apuntando and event.is_action_pressed("LMB") and on_card:
+		apuntando = true
+		puntero.show()
+	
+	if apuntando and event.is_action_released("LMB") and collider != null:
+		var card_objective = collider.get_owner()
+		if not card_objective.disabled_card  and card_objective != card:
+		
+			print(card_objective.card_info.card_name)
+			
+			#*************************
+			#aquí pondría se efecto
+			#*************************
+			
+			card_objective.queue_free()
+
+			enabling_cards()
+
+			DeckBuild.cementerio_oponente.append(card.card_info.card_id)
+			card.queue_free()
+			boton_pasar_turno.set_disabled(false)
+			boton_pausa.set_disabled(false)
+			collision.disabled = false
+			puntero.hide()
+		else:
+			apuntando = false
+			puntero.hide()
+	elif event.is_action_released("LMB") and collider == null:
+		apuntando = false
 		puntero.hide()
-		next_state = on_board_state
 
 func disabling_cards():
-	for i in mano.get_children():
+	for i in mano_opo.get_children():
 		i.disabled_card = true
-	for i in campo_oponente.get_children():
+	for i in campo_jugador.get_children():
 		i.disabled_card = false
 
 func enabling_cards():
-	for i in mano.get_children():
+	for i in mano_opo.get_children():
 		i.disabled_card = false
-	for i in campo_oponente.get_children():
+	for i in campo_jugador.get_children():
 		i.disabled_card = true
 
 func _on_detector_colision_mouse_entered():

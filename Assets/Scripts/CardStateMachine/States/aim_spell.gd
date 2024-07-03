@@ -17,6 +17,8 @@ class_name SpellAimState
 
 var card_pos : Vector2
 var on_card : bool
+var collider
+var apuntando : bool = false
 
 func on_enter():
 	
@@ -28,7 +30,6 @@ func on_enter():
 	collision.disabled = true
 	boton_pasar_turno.set_disabled(true)
 	boton_pausa.set_disabled(true)
-	puntero.show()
 	disabling_cards()
 
 func state_process(delta):
@@ -39,9 +40,13 @@ func state_process(delta):
 	puntero.points[1] = mouse_pos.get_global_mouse_position()
 	raycast.position = mouse_pos.get_local_mouse_position()
 	#raycast.target_position = mouse_pos.get_global_mouse_position()
+	
+	collider = raycast.get_collider()
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("RMB"):
+		card.torch_manager.antorchasActualesJugador += card.card_info.card_cost
+		card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 		puntero.hide()
 		boton_pasar_turno.set_disabled(false)
 		boton_pausa.set_disabled(false)
@@ -52,29 +57,38 @@ func state_input(event : InputEvent):
 			i.disabled_card = true
 		next_state = idle_state
 
-	if event.is_action_pressed("LMB"):
-		var collider = raycast.get_collider()
+	if not apuntando and event.is_action_pressed("LMB") and on_card:
 		
-		if collider != null:
-			var card_objective = collider.get_owner()
-			if not card_objective.disabled_card:
+		#carta en el centro, se le pulsa para empezar a apuntar
+		apuntando = true
+		puntero.show()
+		
+	if apuntando and event.is_action_released("LMB") and collider != null:
+		var card_objective = collider.get_owner()
+		if not card_objective.disabled_card and card_objective != card:
+		
+			print(card_objective.card_info.card_name)
 			
-				print(card_objective.card_info.card_name)
-				card_objective.queue_free()
+			#*************************
+			#aquí pondría se efecto
+			#*************************
+			
+			card_objective.queue_free()
 
-				enabling_cards()
+			enabling_cards()
 
-				DeckBuild.cementerio_jugador.append(card.card_info.card_id)
-				card.queue_free()
-				boton_pasar_turno.set_disabled(false)
-				boton_pausa.set_disabled(false)
-				collision.disabled = false
-				puntero.hide()
-		#else:
-			#enabling_cards()
-#
-			#collision.disabled = false
-			#puntero.hide()
+			DeckBuild.cementerio_jugador.append(card.card_info.card_id)
+			card.queue_free()
+			boton_pasar_turno.set_disabled(false)
+			boton_pausa.set_disabled(false)
+			collision.disabled = false
+			puntero.hide()
+		else:
+			apuntando = false
+			puntero.hide()
+	elif event.is_action_released("LMB") and collider == null:
+		apuntando = false
+		puntero.hide()
 
 func disabling_cards():
 	for i in mano.get_children():
