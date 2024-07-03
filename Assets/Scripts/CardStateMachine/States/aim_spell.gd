@@ -44,18 +44,19 @@ func state_process(delta):
 	collider = raycast.get_collider()
 
 func state_input(event : InputEvent):
-	if event.is_action_pressed("RMB"):
+	if not apuntando and event.is_action_pressed("RMB"):
 		card.torch_manager.antorchasActualesJugador += card.card_info.card_cost
 		card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 		puntero.hide()
 		boton_pasar_turno.set_disabled(false)
 		boton_pausa.set_disabled(false)
 		collision.disabled = false
-		for i in mano.get_children():
-			i.disabled_card = false
-		for i in campo_oponente.get_children():
-			i.disabled_card = true
+		enabling_cards()
 		next_state = idle_state
+	
+	if apuntando and event.is_action_pressed("RMB"):
+		apuntando = false
+		puntero.hide()
 
 	if not apuntando and event.is_action_pressed("LMB") and on_card:
 		
