@@ -18,7 +18,7 @@ func state_process(delta):
 
 func state_input(event : InputEvent):
 	
-	if event.is_action_pressed("LMB") and on_card and not card.has_attacked and not card.first_turn_resting and not card.disabled_card and turn_manager.juegaTurno == "jugador":
+	if event.is_action_pressed("LMB") and on_card and not card.has_attacked and not card.disabled_card and turn_manager.juegaTurno == "jugador":
 		next_state = aim_State
 
 func _on_detector_colision_mouse_entered():

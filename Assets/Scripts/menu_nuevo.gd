@@ -13,11 +13,12 @@ extends Control
 
 
 func _ready():
-	print(DeckBuild.baraja_jugador1)
-	print(DeckBuild.baraja_jugador2)
+	pass
 
 
+#*********************************************************
 #menu principal
+#*********************************************************
 
 func _on_boton_jugar_pressed():
 	if DeckBuild.baraja_seleccionada == 0:
@@ -46,7 +47,9 @@ func _on_boton_salir_pressed():
 	get_tree().quit()
 
 
+#*********************************************************
 #opciones menu
+#*********************************************************
 
 func _on_volver_button_pressed():
 	menu_transition(opciones, menu)
@@ -62,8 +65,9 @@ func _on_v_sync_item_selected(index):
 	DisplayServer.window_set_vsync_mode(index)
 
 
+#*********************************************************
 #coleccion
-
+#*********************************************************
 func _on_boton_volver_coleccion_pressed():
 	menu_transition(coleccion, menu)
 
@@ -81,7 +85,9 @@ func _on_boton_editar_mazo_pressed():
 	menu_transition(coleccion, personaliza)
 
 
+#*********************************************************
 #personaliza
+#*********************************************************
 
 func _on_boton_guardar_cambios_pressed():
 	print(DeckBuild.nombre_temp)
@@ -129,7 +135,9 @@ func _on_baraja_seleccion_item_selected(index):
 		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
 
 
+#*********************************************************
 #confirmar mazo menu
+#*********************************************************
 
 func _on_boton_proceder_pressed():
 	get_tree().change_scene_to_file("res://Assets/Scenes/mesa_juego.tscn")
@@ -159,7 +167,9 @@ func _on_boton_seleccionar_mazo_2_pressed():
 		mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
 
 
+#*********************************************************
 #confirmar mazo coleccion
+#*********************************************************
 
 func _on_boton_guardar_mazo_pressed():
 	if DeckBuild.baraja_seleccionada == 0:

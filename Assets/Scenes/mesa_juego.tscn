@@ -318,15 +318,6 @@ collide_with_areas = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="pause_button" type="Button" parent="CanvasLayer" groups=["boton_pausa"]]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 66.0
-offset_bottom = 66.0
-icon = ExtResource("9_qoctp")
-flat = true
-script = ExtResource("7_yvgv3")
-
 [node name="mouse_pos" type="Control" parent="CanvasLayer" groups=["mouse_pos"]]
 layout_mode = 3
 anchors_preset = 0
@@ -342,6 +333,16 @@ default_color = Color(0.930177, 0, 0.13985, 1)
 mouse_filter = 2
 script = ExtResource("8_niflv")
 
+[node name="pause_button" type="Button" parent="CanvasLayer" groups=["boton_pausa"]]
+process_mode = 3
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 66.0
+icon = ExtResource("9_qoctp")
+flat = true
+script = ExtResource("7_yvgv3")
+
 [node name="TideManager" type="Node" parent="."]
 script = ExtResource("14_x3k5s")
 
@@ -352,4 +353,4 @@ script = ExtResource("9_rvepi")
 script = ExtResource("9_1trl3")
 
 [connection signal="pressed" from="JuegoUI/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
-[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_menu" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_button" method="_on_pressed"]

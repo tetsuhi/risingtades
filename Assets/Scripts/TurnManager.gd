@@ -50,7 +50,7 @@ func determinarInicio():
 	DeckBuild.baraja_oponente_partida = DeckBuild.barajaOponente.duplicate()
 	
 	DeckBuild.baraja_jugador_partida.shuffle()
-	DeckBuild.barajaOponente.shuffle()
+	DeckBuild.baraja_oponente_partida.shuffle()
 	
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
@@ -224,11 +224,11 @@ func despertar_cartas(target : int):
 	
 	if target == 0:
 		for i in campo.get_children():
-			i.first_turn_resting = false
+			#i.first_turn_resting = false
 			i.has_attacked = false
 	else:
 		for i in campo_oponente.get_children():
-			i.first_turn_resting = false
+			#i.first_turn_resting = false
 			i.has_attacked = false
 
 func activar_cartas_en_mesa(target : int, estado : int):
