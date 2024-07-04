@@ -3,6 +3,7 @@ extends Node
 
 const save_path := "user://savegame.json"
 
+#Cuando no hay datos de guardado, se crean unos por defecto con la estructura de guardado
 var default_data = {
 	"baraja1" : {
 		"baraja_jugador" = [],
@@ -17,7 +18,7 @@ var default_data = {
 	}
 }
 
-var data = {}
+var data = {}	#Donde se cargan los datos de guardado
 
 func _ready():
 	load_save()

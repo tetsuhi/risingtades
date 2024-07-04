@@ -3,10 +3,15 @@ extends Node
 @onready var torch_manager = $"../TorchManager"
 @onready var tide_manager = $"../TideManager"
 @onready var mano_jugador = %Mano
+#*****************************************************
+@export var curva_distancia_mano : Curve
+@export var curva_arco_mano : Curve
+@onready var mano_provisional = %mano_provisional
+#*****************************************************
 @onready var mano_oponente = %ManoOponente
-@onready var collision_jugador = $"../JuegoUI/Area2D/CollisionJugador"
-@onready var collision_oponente = $"../JuegoUI/Area2D2/CollisionOponente"
-@onready var boton_pasar_turno = $"../JuegoUI/botonPasarTurno"
+@onready var collision_jugador = $"../Juego/Area2D/CollisionJugador"
+@onready var collision_oponente = $"../Juego/Area2D2/CollisionOponente"
+@onready var boton_pasar_turno = $"../Juego/botonPasarTurno"
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -14,11 +19,13 @@ extends Node
 @onready var turnosMareaVivaOponente : int = 0
 @onready var campo = %Campo
 @onready var campo_oponente = %CampoOponente
-@onready var turn_label = $"../JuegoUI/turno"
+@onready var turn_label = $"../Juego/turno"
 
 var estadoJuego : String
 
 const MAX_CARTAS_MANO : int = 7
+const HAND_WIDTH : float = 250.0
+const HAND_HEIGHT : float = 5.0
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 
 const criatura_activa_jugador = preload("res://Assets/Scenes/CartasJugador/criaturaActivaJugador.tscn")
@@ -35,6 +42,26 @@ func _ready():
 	estadoJuego = "jugando"
 	torch_manager.iniciarAntorchas()
 	tide_manager.iniciarMareas()
+
+	for i in 2:
+		var id_prov = "2"
+		var info_prov = load(card_database.DATA[id_prov])
+		var carta_prov = criatura_activa_jugador.instantiate()
+		carta_prov.card_info = info_prov
+		mano_provisional.add_child(carta_prov)
+	
+	for card in mano_provisional.get_children():
+		var hand_ratio = 0.5
+		
+		if mano_provisional.get_child_count() > 1:
+			hand_ratio = float(card.get_index())/float(mano_provisional.get_child_count() - 1)
+			
+		var destination = mano_provisional.position
+		destination.x += curva_distancia_mano.sample(hand_ratio) * HAND_WIDTH
+		destination.y += curva_arco_mano.sample(hand_ratio) * HAND_HEIGHT
+		
+		card.position.x = mano_provisional.position.x - destination.x - card.size.x/2
+		card.position.y = mano_provisional.position.y - destination.y - card.size.y/2
 
 func determinarInicio():
 	
@@ -127,6 +154,10 @@ func finalizaTurno():
 	comprobar_estado_partida()
 
 func robaCartaJugador():
+	
+	#for card in mano_provisional.get_children():
+		#pass
+	
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.baraja_jugador_partida.size() != 0:
 			var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()

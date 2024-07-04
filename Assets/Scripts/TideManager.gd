@@ -2,13 +2,17 @@ extends Node
 
 const MAREA_INICIAL : int = 0
 
+#Contador de mareas de la partida
 var mareaJugador : int = MAREA_INICIAL
 var mareaOponente : int = MAREA_INICIAL
-var marea_seleccionada : int 
+
+var marea_seleccionada : int 	#Sirve para la función update_tide, permite hacer efectivos los efectos de las cartas relacionados con la marea
+
+#Estados de marea
 var estadoMareaJugador : String
 var estadoMareaOponente : String
-@onready var marea_jugador = $"../JuegoUI/mareaJugador"
-@onready var marea_oponente = $"../JuegoUI/mareaOponente"
+@onready var marea_jugador = $"../Juego/mareaJugador"
+@onready var marea_oponente = $"../Juego/mareaOponente"
 @onready var turn_manager = $"../TurnManager"
 
 func iniciarMareas():

@@ -3,7 +3,6 @@ extends Control
 @onready var pause_menu = $"../pause_menu"
 
 func _on_pressed():
-	print("me han pulsado")
 	
 	if not get_tree().paused:
 		pause_menu.pause_panel.visible = true

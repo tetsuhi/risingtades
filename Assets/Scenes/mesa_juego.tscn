@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=16 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="2_a0jdj"]
@@ -18,27 +18,38 @@ size = Vector2(1152, 184)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3jj8"]
 bg_color = Color(0.241156, 0.241156, 0.241156, 1)
 
+[sub_resource type="Curve" id="Curve_g282d"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xhv7g"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 5.86305, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), -5.863, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
 [node name="MesaJuego" type="Node2D"]
 
-[node name="JuegoUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+[node name="Juego" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
-[node name="Area2D" type="Area2D" parent="JuegoUI"]
+[node name="Area2D" type="Area2D" parent="Juego"]
 position = Vector2(0, 24)
 
-[node name="CollisionJugador" type="CollisionShape2D" parent="JuegoUI/Area2D" groups=["collision_jugador"]]
+[node name="CollisionJugador" type="CollisionShape2D" parent="Juego/Area2D" groups=["collision_jugador"]]
 position = Vector2(960, 644)
 shape = SubResource("RectangleShape2D_kmtpe")
 
-[node name="Area2D2" type="Area2D" parent="JuegoUI"]
+[node name="Area2D2" type="Area2D" parent="Juego"]
 position = Vector2(0, 24)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionOponente" type="CollisionShape2D" parent="JuegoUI/Area2D2" groups=["collision_oponente"]]
+[node name="CollisionOponente" type="CollisionShape2D" parent="Juego/Area2D2" groups=["collision_oponente"]]
 position = Vector2(960, 392)
 shape = SubResource("RectangleShape2D_kmtpe")
 
-[node name="barajaText" type="TextureRect" parent="JuegoUI"]
+[node name="barajaText" type="TextureRect" parent="Juego"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -52,7 +63,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_7r7ex")
 
-[node name="barajaText5" type="TextureRect" parent="JuegoUI"]
+[node name="barajaText5" type="TextureRect" parent="Juego"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -67,7 +78,7 @@ grow_vertical = 0
 rotation = 1.57079
 texture = ExtResource("2_a0jdj")
 
-[node name="barajaText6" type="TextureRect" parent="JuegoUI"]
+[node name="barajaText6" type="TextureRect" parent="Juego"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -82,7 +93,7 @@ grow_vertical = 0
 rotation = 1.57079
 texture = ExtResource("2_a0jdj")
 
-[node name="barajaText3" type="TextureRect" parent="JuegoUI"]
+[node name="barajaText3" type="TextureRect" parent="Juego"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -96,7 +107,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_7r7ex")
 
-[node name="barajaText4" type="TextureRect" parent="JuegoUI"]
+[node name="barajaText4" type="TextureRect" parent="Juego"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -110,7 +121,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_7r7ex")
 
-[node name="barajaText2" type="TextureRect" parent="JuegoUI"]
+[node name="barajaText2" type="TextureRect" parent="Juego"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -124,7 +135,7 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_7r7ex")
 
-[node name="botonPasarTurno" type="Button" parent="JuegoUI" groups=["boton_pasar_turno"]]
+[node name="botonPasarTurno" type="Button" parent="Juego" groups=["boton_pasar_turno"]]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -141,7 +152,7 @@ theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
 text = "Pasar"
 
-[node name="turno" type="Label" parent="JuegoUI"]
+[node name="turno" type="Label" parent="Juego"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -159,7 +170,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="mareaJugador" type="Label" parent="JuegoUI"]
+[node name="mareaJugador" type="Label" parent="Juego"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -175,7 +186,7 @@ text = "ejemplo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="mareaOponente" type="Label" parent="JuegoUI"]
+[node name="mareaOponente" type="Label" parent="Juego"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -190,7 +201,7 @@ text = "ejemplo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="antorchasActualesJugador" type="Label" parent="JuegoUI"]
+[node name="antorchasActualesJugador" type="Label" parent="Juego"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -207,7 +218,7 @@ text = "antorchas: "
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="antorchasMaxJugador" type="Label" parent="JuegoUI"]
+[node name="antorchasMaxJugador" type="Label" parent="Juego"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -224,7 +235,7 @@ text = "max.:"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="antorchasActualesOponente" type="Label" parent="JuegoUI"]
+[node name="antorchasActualesOponente" type="Label" parent="Juego"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -240,7 +251,7 @@ text = "antorchas:"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="antorchasMaxOponente" type="Label" parent="JuegoUI"]
+[node name="antorchasMaxOponente" type="Label" parent="Juego"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -257,7 +268,7 @@ text = "max.:"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Mano" type="HBoxContainer" parent="JuegoUI" groups=["hand"]]
+[node name="Mano" type="HBoxContainer" parent="Juego" groups=["hand"]]
 unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
@@ -272,7 +283,7 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="ManoOponente" type="HBoxContainer" parent="JuegoUI" groups=["hand_oponente"]]
+[node name="ManoOponente" type="HBoxContainer" parent="Juego" groups=["hand_oponente"]]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -284,7 +295,7 @@ offset_bottom = 225.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Campo" type="HBoxContainer" parent="JuegoUI" groups=["board"]]
+[node name="Campo" type="HBoxContainer" parent="Juego" groups=["board"]]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.2
@@ -297,7 +308,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="CampoOponente" type="HBoxContainer" parent="JuegoUI" groups=["boardOponente"]]
+[node name="CampoOponente" type="HBoxContainer" parent="Juego" groups=["boardOponente"]]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.2
@@ -310,30 +321,41 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="RayCast2D" type="RayCast2D" parent="JuegoUI" groups=["raycast"]]
+[node name="RayCast2D" type="RayCast2D" parent="Juego" groups=["raycast"]]
 target_position = Vector2(0, 0)
 collision_mask = 3
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="mano_provisional" type="Control" parent="Juego"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="mouse_pos" type="Control" parent="CanvasLayer" groups=["mouse_pos"]]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="mouse_pos" type="Control" parent="UI" groups=["mouse_pos"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="puntero" type="Line2D" parent="CanvasLayer" groups=["puntero"]]
+[node name="puntero" type="Line2D" parent="UI" groups=["puntero"]]
 visible = false
 default_color = Color(0.930177, 0, 0.13985, 1)
 
-[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("12_24cjn")]
+[node name="pause_menu" parent="UI" instance=ExtResource("12_24cjn")]
 mouse_filter = 2
 script = ExtResource("8_niflv")
 
-[node name="pause_button" type="Button" parent="CanvasLayer" groups=["boton_pausa"]]
+[node name="pause_button" type="Button" parent="UI" groups=["boton_pausa"]]
 process_mode = 3
 offset_left = 8.0
 offset_top = 8.0
@@ -351,6 +373,8 @@ script = ExtResource("9_rvepi")
 
 [node name="TurnManager" type="Node" parent="." groups=["turn_manager"]]
 script = ExtResource("9_1trl3")
+curva_distancia_mano = SubResource("Curve_g282d")
+curva_arco_mano = SubResource("Curve_xhv7g")
 
-[connection signal="pressed" from="JuegoUI/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
-[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/pause_button" method="_on_pressed"]
+[connection signal="pressed" from="Juego/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
+[connection signal="pressed" from="UI/pause_button" to="UI/pause_button" method="_on_pressed"]
