@@ -5,15 +5,19 @@ class_name IdleState
 #@export var mouse_entered_state : State
 @export var dragged_state : State
 
+@onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
+
 var on_card : bool = false;
 
 func on_enter():
 	if not card.is_node_ready():
 		await card.ready
 	
-	var mano := get_tree().get_first_node_in_group("hand")
-	if mano:
-		card.reparent(mano)
+	var mano_jugador := get_tree().get_first_node_in_group("hand")
+	if mano_jugador:
+		card.reparent(mano_jugador)
+		
+	turn_manager.reajustar_mano()
 	
 func state_process(delta):
 	pass

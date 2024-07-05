@@ -4,6 +4,8 @@ class_name SpellDraggedState
 
 const DRAG_MINIMUM_THRESHOLD : float = 0.05
 
+@onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
+
 @export var idle_state : State
 @export var aim_state : State
 #@export var torch_manager : torchManager
@@ -30,7 +32,7 @@ func on_enter():
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD,false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 	
-	print("Antorchas actuales jugador: " + str(card.torch_manager.antorchasActualesJugador))
+	turn_manager.reajustar_mano()
 
 func state_process(delta):
 	var mousePos: Vector2 = get_viewport().get_mouse_position()

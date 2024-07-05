@@ -2,7 +2,7 @@ extends Node
 
 @onready var torch_manager = $"../TorchManager"
 @onready var tide_manager = $"../TideManager"
-@onready var mano_jugador = %Mano
+@onready var mano_jugador = %mano_jugador1
 #*****************************************************
 @export var curva_distancia_mano : Curve
 @export var curva_arco_mano : Curve
@@ -24,7 +24,7 @@ extends Node
 var estadoJuego : String
 
 const MAX_CARTAS_MANO : int = 7
-const HAND_WIDTH : float = 250.0
+const HAND_WIDTH : float = 50.0
 const HAND_HEIGHT : float = 5.0
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 
@@ -43,25 +43,25 @@ func _ready():
 	torch_manager.iniciarAntorchas()
 	tide_manager.iniciarMareas()
 
-	for i in 2:
-		var id_prov = "2"
-		var info_prov = load(card_database.DATA[id_prov])
-		var carta_prov = criatura_activa_jugador.instantiate()
-		carta_prov.card_info = info_prov
-		mano_provisional.add_child(carta_prov)
-	
-	for card in mano_provisional.get_children():
-		var hand_ratio = 0.5
-		
-		if mano_provisional.get_child_count() > 1:
-			hand_ratio = float(card.get_index())/float(mano_provisional.get_child_count() - 1)
-			
-		var destination = mano_provisional.position
-		destination.x += curva_distancia_mano.sample(hand_ratio) * HAND_WIDTH
-		destination.y += curva_arco_mano.sample(hand_ratio) * HAND_HEIGHT
-		
-		card.position.x = mano_provisional.position.x - destination.x - card.size.x/2
-		card.position.y = mano_provisional.position.y - destination.y - card.size.y/2
+	#for i in 7:
+		#var id_prov = "2"
+		#var info_prov = load(card_database.DATA[id_prov])
+		#var carta_prov = criatura_activa_jugador.instantiate()
+		#carta_prov.card_info = info_prov
+		#mano_provisional.add_child(carta_prov)
+	#
+	#for card in mano_provisional.get_children():
+		#var hand_ratio = 0.5
+		#
+		#if mano_provisional.get_child_count() > 1:
+			#hand_ratio = float(card.get_index())/float(mano_provisional.get_child_count() - 1)
+			#
+		#var destination = mano_provisional.position
+		#destination.x += curva_distancia_mano.sample(hand_ratio) * HAND_WIDTH
+		#destination.y += curva_arco_mano.sample(hand_ratio) * HAND_HEIGHT
+		#
+		#card.position.x = mano_provisional.position.x - destination.x - card.size.x/2
+		#card.position.y = mano_provisional.position.y - destination.y - card.size.y/2
 
 func determinarInicio():
 	
@@ -99,9 +99,6 @@ func esTurnoOponente():
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
-
-	despertar_cartas(1)
-	activar_cartas_en_mesa(1, 1)
 	torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(torch_manager.maxAntorchas)
 	leerCartasEnMesa(0, 1)
 	collision_oponente.disabled = false
@@ -110,16 +107,14 @@ func esTurnoOponente():
 	collision_jugador.hide()
 	#tide_manager.mareaOponente += 1
 	robaCartaOponente()
+	despertar_cartas(1)
+	activar_cartas_en_mesa(1, 1)
 	
 func esTurnoJugador():
 	
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
-	tide_manager.estadoMareaJugador = tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador)
-
-	despertar_cartas(0)
-	activar_cartas_en_mesa(0, 1)
-	
+	tide_manager.estadoMareaJugador = tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador)	
 	torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(torch_manager.maxAntorchas)
 	leerCartasEnMesa(0,0)
 	collision_oponente.disabled = true
@@ -128,6 +123,8 @@ func esTurnoJugador():
 	collision_oponente.hide()
 	#tide_manager.mareaJugador += 1
 	robaCartaJugador()
+	despertar_cartas(0)
+	activar_cartas_en_mesa(0, 1)
 
 func finalizaTurno():
 	if juegaTurno == "jugador":
@@ -155,9 +152,6 @@ func finalizaTurno():
 
 func robaCartaJugador():
 	
-	#for card in mano_provisional.get_children():
-		#pass
-	
 	if mano_jugador.get_child_count() < 7:
 		if DeckBuild.baraja_jugador_partida.size() != 0:
 			var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()
@@ -172,6 +166,8 @@ func robaCartaJugador():
 			nueva_carta.card_info = nueva_carta_info
 			#nueva_carta.card_info.effect_text = "Modifica la marea en " + str(nueva_carta.card_info.tide_amount) + " puntos"
 			mano_jugador.add_child(nueva_carta)
+	
+	reajustar_mano()
 
 func robaCartaOponente():
 	if mano_oponente.get_child_count() < 7:
@@ -277,6 +273,7 @@ func activar_cartas_en_mesa(target : int, estado : int):
 			for i in campo.get_children():
 				i.disabled_card = false
 			for i in mano_jugador.get_children():
+				print("carta estado: " + i.state_machine.current_state.name)
 				i.disabled_card = false
 	else:
 		if estado == 0:
@@ -289,3 +286,17 @@ func activar_cartas_en_mesa(target : int, estado : int):
 				i.disabled_card = false
 			for i in mano_oponente.get_children():
 				i.disabled_card = false
+
+func reajustar_mano():
+	for card in mano_jugador.get_children():
+		var hand_ratio = 0.5
+		
+		if mano_jugador.get_child_count() > 1:
+			hand_ratio = float(card.get_index())/float(mano_jugador.get_child_count() - 1)
+			
+		var destination = mano_jugador.position
+		destination.x += - 1 * curva_distancia_mano.sample(hand_ratio) * (HAND_WIDTH * mano_jugador.get_child_count())
+		destination.y += curva_arco_mano.sample(hand_ratio) * HAND_HEIGHT
+		
+		card.position.x = mano_jugador.position.x - destination.x - card.size.x/2
+		card.position.y = mano_jugador.position.y - destination.y - card.size.y/2
