@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0lr4dkvotqi0"]
+[gd_scene load_steps=10 format=3 uid="uid://b0lr4dkvotqi0"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/cardControllerOponente.gd" id="1_t211q"]
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_kd3rl"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="3_f5asn"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/card_state_machine.gd" id="4_e7fce"]
+[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="4_jt0cu"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/idle_oponente.gd" id="5_43kun"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/draggedOponente.gd" id="6_jekbv"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/on_board_oponente.gd" id="7_07c1w"]
@@ -29,7 +30,16 @@ pivot_offset = Vector2(66, 92.5)
 mouse_filter = 1
 script = ExtResource("1_t211q")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="on_hand" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="on_hand_tex" type="TextureRect" parent="on_hand"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +50,7 @@ texture = ExtResource("2_kd3rl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Nombre" type="Label" parent="."]
+[node name="Nombre" type="Label" parent="on_hand"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -59,7 +69,7 @@ text = "pipo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Coste" type="Label" parent="."]
+[node name="Coste" type="Label" parent="on_hand"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -74,7 +84,8 @@ text = "74"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Descripcion" type="Label" parent="."]
+[node name="Descripcion" type="Label" parent="on_hand"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -93,7 +104,7 @@ text = "Hago esto jeje"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Marea" type="Label" parent="."]
+[node name="Marea" type="Label" parent="on_hand"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -113,7 +124,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Vida" type="Label" parent="."]
+[node name="Vida" type="Label" parent="on_hand"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -127,6 +138,29 @@ theme = ExtResource("3_f5asn")
 theme_override_colors/font_color = Color(100, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "0"
+
+[node name="on_board" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 170.0
+offset_bottom = 238.0
+mouse_filter = 2
+
+[node name="on_board_tex" type="TextureRect" parent="on_board"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -76.0
+offset_right = 80.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_jt0cu")
 
 [node name="detectorColision" type="Area2D" parent="."]
 collision_layer = 2

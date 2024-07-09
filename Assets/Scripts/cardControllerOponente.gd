@@ -5,7 +5,7 @@ extends CardUI
 func _ready():
 	nombre.text = card_info.card_name
 	coste.text = str(card_info.card_cost)
-	texture_rect.texture = card_info.texture
+	on_hand_tex.texture = card_info.texture
 	descripcion.text = card_info.effect_text
 	
 	#Si la carta es activa o pasiva
@@ -27,15 +27,28 @@ func _ready():
 func _process(delta):
 	
 	#Hacer zoom en la carta solo cuando estén en la mano
-	if on_card and state_machine.current_state.name == "idleState" and not disabled_card and not is_dragged:
-		scale = scale.lerp(Vector2(1.2, 1.2), delta*30)
-		descripcion.show()
-	else:
-		scale = scale.lerp(Vector2(1, 1), delta*30)
-		descripcion.hide()
+	#if on_card and state_machine.current_state.name == "idleState" and not disabled_card and not is_dragged:
+		#scale = scale.lerp(Vector2(1.2, 1.2), delta*30)
+		#descripcion.show()
+	#else:
+		#scale = scale.lerp(Vector2(1, 1), delta*30)
+		#descripcion.hide()
+	pass
 
 func _on_area_2d_mouse_entered():
-	on_card = true
+	if state_machine.current_state.name == "idleState" and not disabled_card:
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.05)
+		position.y -= 90
+		z_index = 1
+		descripcion.show()
+	#on_card = true
 
 func _on_area_2d_mouse_exited():
-	on_card = false
+	if state_machine.current_state.name == "idleState" and not disabled_card:
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.05)
+		position.y += 90
+		z_index = 0
+		descripcion.hide()
+	#on_card = false

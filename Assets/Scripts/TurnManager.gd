@@ -63,6 +63,7 @@ func _ready():
 		#card.position.x = mano_provisional.position.x - destination.x - card.size.x/2
 		#card.position.y = mano_provisional.position.y - destination.y - card.size.y/2
 
+
 func determinarInicio():
 	
 	boton_pasar_turno.disabled = true
@@ -300,3 +301,8 @@ func reajustar_mano():
 		
 		card.position.x = mano_jugador.position.x - destination.x - card.size.x/2
 		card.position.y = mano_jugador.position.y - destination.y - card.size.y/2
+		card.temp_pos_in = Vector2(card.position.x, card.position.y - 90)
+		card.temp_pos_out = card.position
+		#print(card.card_info.card_name + " posiciones: " + str(card.temp_pos_out) + ", " + str(card.temp_pos_in))
+	#print("cartas reajustadas")
+	print(mano_jugador.get_children())

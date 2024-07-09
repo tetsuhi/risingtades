@@ -16,7 +16,6 @@ func on_enter():
 	var mano_jugador := get_tree().get_first_node_in_group("hand")
 	if mano_jugador:
 		card.reparent(mano_jugador)
-		
 	turn_manager.reajustar_mano()
 	
 func state_process(delta):
@@ -26,8 +25,8 @@ func state_input(event : InputEvent):
 	if event.is_action_pressed("LMB") and on_card and not card.disabled_card:
 		next_state = dragged_state
 
-func _on_detector_colision_mouse_entered():
+func _on_carta_ui_mouse_entered():
 	on_card = true
 
-func _on_detector_colision_mouse_exited():
+func _on_carta_ui_mouse_exited():
 	on_card = false

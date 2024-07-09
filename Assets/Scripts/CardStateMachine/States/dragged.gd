@@ -16,7 +16,9 @@ var on_board : bool = false
 var minimum_drag_time_elapsed = false
 
 func on_enter():
-	card.is_dragged = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "scale", Vector2(1.0, 1.0), 0.05)
+	card.descripcion.hide()
 	print(card)
 	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 	if ui_layer:

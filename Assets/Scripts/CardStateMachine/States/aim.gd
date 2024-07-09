@@ -58,7 +58,7 @@ func state_input(event : InputEvent):
 				card_objective.queue_free()
 				print(DeckBuild.cementerio_oponente)
 			card_objective.vida -= 1
-			card_objective.vida_label.text = str(card_objective.vida)
+			card_objective.vida_on_board.text = str(card_objective.vida)
 
 			enabling_cards()
 
@@ -98,8 +98,8 @@ func enabling_cards():
 	for i in campo_oponente.get_children():
 		i.disabled_card = true
 
-func _on_detector_colision_mouse_entered():
+func _on_carta_ui_mouse_entered():
 	on_card = true
 
-func _on_detector_colision_mouse_exited():
+func _on_carta_ui_mouse_exited():
 	on_card = false

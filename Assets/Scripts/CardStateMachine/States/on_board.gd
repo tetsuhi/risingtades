@@ -8,6 +8,8 @@ func on_enter():
 	var board := get_tree().get_first_node_in_group("board")
 	if board:
 		card.reparent(board)
+	card.on_hand.hide()
+	card.on_board.show()
 	
 func state_process(delta):
 	pass
@@ -21,8 +23,8 @@ func state_input(event : InputEvent):
 		#card.vida_label.text = str(card.vida)
 	pass
 
-func _on_detector_colision_mouse_entered():
+func _on_carta_ui_mouse_entered():
 	on_card = true
 
-func _on_detector_colision_mouse_exited():
+func _on_carta_ui_mouse_exited():
 	on_card = false

@@ -11,7 +11,8 @@ func on_enter():
 	var board := get_tree().get_first_node_in_group("board")
 	if board:
 		card.reparent(board)
-	#card.card_on_board = true
+	card.on_hand.hide()
+	card.on_board.show()
 	
 func state_process(delta):
 	pass
@@ -21,8 +22,8 @@ func state_input(event : InputEvent):
 	if event.is_action_pressed("LMB") and on_card and not card.has_attacked and not card.disabled_card and turn_manager.juegaTurno == "jugador":
 		next_state = aim_State
 
-func _on_detector_colision_mouse_entered():
+func _on_carta_ui_mouse_entered():
 	on_card = true
 
-func _on_detector_colision_mouse_exited():
+func _on_carta_ui_mouse_exited():
 	on_card = false

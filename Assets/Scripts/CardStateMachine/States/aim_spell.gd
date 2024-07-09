@@ -31,6 +31,8 @@ func on_enter():
 	boton_pasar_turno.set_disabled(true)
 	boton_pausa.set_disabled(true)
 	disabling_cards()
+	card.on_hand.hide()
+	card.on_board.show()
 
 func state_process(delta):
 	if puntero.points.size() == 0:
@@ -52,6 +54,8 @@ func state_input(event : InputEvent):
 		boton_pausa.set_disabled(false)
 		collision.disabled = false
 		enabling_cards()
+		card.on_hand.show()
+		card.on_board.hide()
 		next_state = idle_state
 	
 	if apuntando and event.is_action_pressed("RMB"):
@@ -71,7 +75,7 @@ func state_input(event : InputEvent):
 			print(card_objective.card_info.card_name)
 			
 			#*************************
-			#aquí pondría se efecto
+			#aquí pondría su efecto
 			#*************************
 			
 			card_objective.queue_free()
@@ -103,8 +107,8 @@ func enabling_cards():
 	for i in campo_oponente.get_children():
 		i.disabled_card = true
 
-func _on_detector_colision_mouse_entered():
+func _on_carta_ui_mouse_entered():
 	on_card = true
 
-func _on_detector_colision_mouse_exited():
+func _on_carta_ui_mouse_exited():
 	on_card = false
