@@ -11,6 +11,7 @@ extends Node
 @onready var mano_oponente = %ManoOponente
 @onready var collision_jugador = $"../Juego/Area2D/CollisionJugador"
 @onready var collision_oponente = $"../Juego/Area2D2/CollisionOponente"
+@onready var collision_mano_jugador = $"../Juego/zona_mano_jugador1/CollisionManoJugador"
 @onready var boton_pasar_turno = $"../Juego/botonPasarTurno"
 
 @onready var numTurno : int = 0
@@ -69,6 +70,7 @@ func determinarInicio():
 	boton_pasar_turno.disabled = true
 	collision_jugador.hide()
 	collision_oponente.hide()
+	collision_mano_jugador.hide()
 	
 	if DeckBuild.baraja_seleccionada == 0:
 		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
@@ -106,12 +108,14 @@ func esTurnoOponente():
 	collision_jugador.disabled = true
 	collision_oponente.show()
 	collision_jugador.hide()
+	collision_mano_jugador.hide()
 	#tide_manager.mareaOponente += 1
 	robaCartaOponente()
 	despertar_cartas(1)
 	activar_cartas_en_mesa(1, 1)
 	
 func esTurnoJugador():
+	print(mano_jugador.get_child_count())
 	
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
@@ -120,6 +124,7 @@ func esTurnoJugador():
 	leerCartasEnMesa(0,0)
 	collision_oponente.disabled = true
 	collision_jugador.disabled = false
+	collision_mano_jugador.show()
 	collision_jugador.show()
 	collision_oponente.hide()
 	#tide_manager.mareaJugador += 1
@@ -274,7 +279,6 @@ func activar_cartas_en_mesa(target : int, estado : int):
 			for i in campo.get_children():
 				i.disabled_card = false
 			for i in mano_jugador.get_children():
-				print("carta estado: " + i.state_machine.current_state.name)
 				i.disabled_card = false
 	else:
 		if estado == 0:
@@ -306,8 +310,11 @@ func reajustar_mano():
 		#print(card.card_info.card_name + " posiciones: " + str(card.temp_pos_out) + ", " + str(card.temp_pos_in))
 	#print("cartas reajustadas")
 
-func reordenar_mano(position):
-	print("Carta dejada en posición " + str(position))
-	#recorre las cartas en la mano y guarda la posición en el array de hijos si su posición x es menor que position.x
-	#cuando encuentre un valor mayor, mete la carta de position en i+1 y reestructura las demás
-	#llama a reajustar mano para que queden guay en pantalla :3
+func reordenar_mano(position) -> int:
+	var i : int = 0
+	while i < mano_jugador.get_child_count():
+		if position > mano_jugador.get_child(i).get_global_rect().position.x:
+			i += 1
+		else:
+			return i
+	return mano_jugador.get_child_count()

@@ -55,7 +55,7 @@ shape = SubResource("RectangleShape2D_kmtpe")
 [node name="zona_mano_jugador1" type="Area2D" parent="Juego" groups=["zona_mano_jugador1"]]
 position = Vector2(960, 960)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Juego/zona_mano_jugador1"]
+[node name="CollisionManoJugador" type="CollisionShape2D" parent="Juego/zona_mano_jugador1"]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_7qt4o")
 

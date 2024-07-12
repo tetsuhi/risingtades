@@ -40,6 +40,7 @@ var on_card : bool	#Cursor sobre la carta
 var is_dragged : bool = false	#Está siendo arrastrada, para que no haga zoom cuando se arrastra con el cursor
 var disabled_card : bool = false	#Carta desactivada, no se podrá interactuar con ella cuando true
 var has_attacked : bool = true	#Para cartas activas, default en true porque el primer turno de ponerlas no atacan
+var reorder_pos : int = -1
 
 @onready var finished_zooming : bool = false
 

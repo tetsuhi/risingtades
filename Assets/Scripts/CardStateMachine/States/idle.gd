@@ -16,6 +16,9 @@ func on_enter():
 	var mano_jugador := get_tree().get_first_node_in_group("hand")
 	if mano_jugador:
 		card.reparent(mano_jugador)
+		if card.reorder_pos != -1:
+			mano_jugador.move_child(card, card.reorder_pos)
+			card.reorder_pos = -1
 	turn_manager.reajustar_mano()
 	
 func state_process(delta):

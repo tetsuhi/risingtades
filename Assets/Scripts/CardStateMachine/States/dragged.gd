@@ -38,11 +38,16 @@ func on_enter():
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 	
 	turn_manager.reajustar_mano()
+	deactivate_cards_in_hand()
 
 func state_process(delta):
 	var mousePos: Vector2 = get_viewport().get_mouse_position()
 	
 	card.position = card.position.lerp(mousePos - card.size/2, delta * card.CARD_DELAY_SPEED)
+	
+	if reordering and not on_board:
+		#pull_apart_cards_in_hand(delta)
+		pass
 
 func state_input(event : InputEvent):
 	var confirm = event.is_action_released("LMB")
@@ -52,17 +57,22 @@ func state_input(event : InputEvent):
 			card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
 			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 			card.is_dragged = false
+			activate_cards_in_hand()
 			next_state = on_board_state
 		else:
 			card.is_dragged = false
+			activate_cards_in_hand()
 			next_state = idle_state
 	elif cancel:
 		card.is_dragged = false
+		activate_cards_in_hand()
 		next_state = idle_state
 	
 	if reordering and not on_board:
 		if event.is_action_released("LMB"):
-			turn_manager.reordenar_mano(card.position)
+			card.reorder_pos = turn_manager.reordenar_mano(card.get_global_rect().position.x)
+			activate_cards_in_hand()
+			next_state = idle_state
 
 func _on_detector_colision_area_entered(area):
 	if area == mesa_jugador1:
@@ -75,3 +85,32 @@ func _on_detector_colision_area_exited(area):
 		on_board = false
 	if area == zona_mano_jugador1:
 		reordering = false
+
+func pull_apart_cards_in_hand(delta):
+	
+	var reorder_tween = get_tree().create_tween()
+	reorder_tween.set_ease(Tween.EASE_IN)
+	reorder_tween.set_trans(Tween.TRANS_BACK)
+	var i : int
+	
+	while i < turn_manager.mano_jugador.get_child_count():
+		if card.get_global_rect().position.x > turn_manager.mano_jugador.get_child(i).get_global_rect().position.x:
+			var card_new_position = turn_manager.mano_jugador.get_child(i).position
+			print(card_new_position)
+			card_new_position = card_new_position.lerp(Vector2(card_new_position.x - 500, card_new_position.y), delta*30)
+			print(card_new_position)
+			#reorder_tween.tween_property(turn_manager.mano_jugador.get_child(i), "position", turn_manager.mano_jugador.get_child(i).position.x - 50, 0.1)
+			i += 1
+		else:
+			var card_new_position = turn_manager.mano_jugador.get_child(i).get_global_rect().position
+			card_new_position = card_new_position.lerp(Vector2(card_new_position.x + 500, card_new_position.y), delta*30)
+			#reorder_tween.tween_property(turn_manager.mano_jugador.get_child(i), "position", turn_manager.mano_jugador.get_child(i).position.x + 50, 0.1)
+			i += 1
+
+func deactivate_cards_in_hand():
+	for card in turn_manager.mano_jugador.get_children():
+		card.disabled_card = true
+
+func activate_cards_in_hand():
+	for card in turn_manager.mano_jugador.get_children():
+		card.disabled_card = false
