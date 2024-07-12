@@ -5,6 +5,8 @@ class_name DraggedState
 const DRAG_MINIMUM_THRESHOLD : float = 0.05
 
 @onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
+@onready var mesa_jugador1 := get_tree().get_first_node_in_group("mesa_jugador1")
+@onready var zona_mano_jugador1 := get_tree().get_first_node_in_group("zona_mano_jugador1")
 
 @export var idle_state : State
 @export var on_board_state : State
@@ -13,6 +15,7 @@ const DRAG_MINIMUM_THRESHOLD : float = 0.05
 #@onready var torch_manager = %TorchManager
 
 var on_board : bool = false
+var reordering : bool = false
 var minimum_drag_time_elapsed = false
 
 func on_enter():
@@ -56,9 +59,19 @@ func state_input(event : InputEvent):
 	elif cancel:
 		card.is_dragged = false
 		next_state = idle_state
+	
+	if reordering and not on_board:
+		if event.is_action_released("LMB"):
+			turn_manager.reordenar_mano(card.position)
 
 func _on_detector_colision_area_entered(area):
-	on_board = true
+	if area == mesa_jugador1:
+		on_board = true
+	if area == zona_mano_jugador1:
+		reordering = true
 
 func _on_detector_colision_area_exited(area):
-	on_board = false
+	if area == mesa_jugador1:
+		on_board = false
+	if area == zona_mano_jugador1:
+		reordering = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=17 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="2_a0jdj"]
@@ -14,6 +14,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
 size = Vector2(1152, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qt4o"]
+size = Vector2(896, 216)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3jj8"]
 bg_color = Color(0.241156, 0.241156, 0.241156, 1)
@@ -33,7 +36,7 @@ metadata/_snap_enabled = true
 
 [node name="Juego" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
-[node name="Area2D" type="Area2D" parent="Juego"]
+[node name="Area2D" type="Area2D" parent="Juego" groups=["mesa_jugador1"]]
 position = Vector2(0, 24)
 
 [node name="CollisionJugador" type="CollisionShape2D" parent="Juego/Area2D" groups=["collision_jugador"]]
@@ -48,6 +51,13 @@ collision_mask = 2
 [node name="CollisionOponente" type="CollisionShape2D" parent="Juego/Area2D2" groups=["collision_oponente"]]
 position = Vector2(960, 392)
 shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="zona_mano_jugador1" type="Area2D" parent="Juego" groups=["zona_mano_jugador1"]]
+position = Vector2(960, 960)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Juego/zona_mano_jugador1"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_7qt4o")
 
 [node name="barajaText" type="TextureRect" parent="Juego"]
 anchors_preset = 3

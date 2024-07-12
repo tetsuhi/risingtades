@@ -132,8 +132,6 @@ func zoom_out_card():
 
 func on_tween_in_finished():
 	finished_zooming = true
-	print("zoomed in!", "finished_zooming = ", finished_zooming)
 
 func on_tween_out_finished():
 	finished_zooming = false
-	print("zoomed out!", "finished_zooming = ", finished_zooming)

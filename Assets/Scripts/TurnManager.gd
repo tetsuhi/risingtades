@@ -305,4 +305,9 @@ func reajustar_mano():
 		card.temp_pos_out = card.position
 		#print(card.card_info.card_name + " posiciones: " + str(card.temp_pos_out) + ", " + str(card.temp_pos_in))
 	#print("cartas reajustadas")
-	print(mano_jugador.get_children())
+
+func reordenar_mano(position):
+	print("Carta dejada en posición " + str(position))
+	#recorre las cartas en la mano y guarda la posición en el array de hijos si su posición x es menor que position.x
+	#cuando encuentre un valor mayor, mete la carta de position en i+1 y reestructura las demás
+	#llama a reajustar mano para que queden guay en pantalla :3
