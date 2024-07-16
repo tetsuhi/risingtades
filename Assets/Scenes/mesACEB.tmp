@@ -1,0 +1,378 @@
+[gd_scene load_steps=17 format=3 uid="uid://bs615om7u3vog"]
+
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
+[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="2_a0jdj"]
+[ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="2_t0m6k"]
+[ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="3_2hdho"]
+[ext_resource type="Script" path="res://Assets/Scripts/PauseButtonHandler.gd" id="7_yvgv3"]
+[ext_resource type="Script" path="res://Assets/Scripts/PauseHandler.gd" id="8_niflv"]
+[ext_resource type="Script" path="res://Assets/Scripts/TurnManager.gd" id="9_1trl3"]
+[ext_resource type="Texture2D" uid="uid://c5k7q2peijevt" path="res://Assets/Textures/pause.png" id="9_qoctp"]
+[ext_resource type="Script" path="res://Assets/Scripts/TorchManager.gd" id="9_rvepi"]
+[ext_resource type="PackedScene" uid="uid://bxgf48eb41sdp" path="res://Assets/Scenes/pause_menu.tscn" id="12_24cjn"]
+[ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
+size = Vector2(1152, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qt4o"]
+size = Vector2(896, 216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3jj8"]
+bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="Curve" id="Curve_g282d"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xhv7g"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 9.59859, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), -9.599, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[node name="MesaJuego" type="Node2D"]
+
+[node name="Juego" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="Area2D" type="Area2D" parent="Juego" groups=["mesa_jugador1"]]
+position = Vector2(0, 24)
+
+[node name="CollisionJugador" type="CollisionShape2D" parent="Juego/Area2D" groups=["collision_jugador"]]
+position = Vector2(960, 644)
+shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="Area2D2" type="Area2D" parent="Juego"]
+position = Vector2(0, 24)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionOponente" type="CollisionShape2D" parent="Juego/Area2D2" groups=["collision_oponente"]]
+position = Vector2(960, 392)
+shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="zona_mano_jugador1" type="Area2D" parent="Juego" groups=["zona_mano_jugador1"]]
+position = Vector2(960, 960)
+
+[node name="CollisionManoJugador" type="CollisionShape2D" parent="Juego/zona_mano_jugador1"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_7qt4o")
+
+[node name="barajaText" type="TextureRect" parent="Juego"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -263.0
+offset_right = -70.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="barajaText5" type="TextureRect" parent="Juego"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -400.0
+offset_right = 100.0
+offset_bottom = -153.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 1.57079
+texture = ExtResource("2_a0jdj")
+
+[node name="barajaText6" type="TextureRect" parent="Juego"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -808.0
+offset_right = 100.0
+offset_bottom = -561.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 1.57079
+texture = ExtResource("2_a0jdj")
+
+[node name="barajaText3" type="TextureRect" parent="Juego"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1616.0
+offset_top = -96.0
+offset_right = -1446.0
+offset_bottom = 143.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="barajaText4" type="TextureRect" parent="Juego"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1616.0
+offset_top = -1224.0
+offset_right = -1446.0
+offset_bottom = -985.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="barajaText2" type="TextureRect" parent="Juego"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -1056.0
+offset_right = -70.0
+offset_bottom = -817.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="botonPasarTurno" type="Button" parent="Juego" groups=["boton_pasar_turno"]]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -20.0
+offset_right = -81.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_t0m6k")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
+text = "Pasar"
+
+[node name="turno" type="Label" parent="Juego"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -28.0
+offset_right = 80.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="mareaJugador" type="Label" parent="Juego"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 72.0
+offset_top = 508.0
+offset_right = 232.0
+offset_bottom = 564.0
+grow_vertical = 2
+rotation = -1.57079
+size_flags_horizontal = 0
+theme = ExtResource("3_2hdho")
+text = "ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mareaOponente" type="Label" parent="Juego"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = 508.0
+offset_right = 304.0
+offset_bottom = 564.0
+grow_vertical = 2
+rotation = -1.57079
+theme = ExtResource("3_2hdho")
+text = "ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="antorchasActualesJugador" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 36.0
+offset_right = -24.0001
+offset_bottom = 92.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "antorchas: "
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="antorchasMaxJugador" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 68.0
+offset_right = -112.0
+offset_bottom = 124.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "max.:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="antorchasActualesOponente" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -124.0
+offset_bottom = -68.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "antorchas:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="antorchasMaxOponente" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -92.0
+offset_right = -112.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "max.:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="mano_jugador1" type="Control" parent="Juego" groups=["hand"]]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -88.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ManoOponente" type="HBoxContainer" parent="Juego" groups=["hand_oponente"]]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -202.0
+offset_top = 40.0
+offset_right = 202.0
+offset_bottom = 225.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Campo" type="HBoxContainer" parent="Juego" groups=["board"]]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.53
+anchor_right = 0.8
+anchor_bottom = 0.704
+offset_top = 3.59998
+offset_bottom = 3.67993
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CampoOponente" type="HBoxContainer" parent="Juego" groups=["boardOponente"]]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.53
+anchor_right = 0.8
+anchor_bottom = 0.704
+offset_top = -252.4
+offset_bottom = -252.32
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RayCast2D" type="RayCast2D" parent="Juego" groups=["raycast"]]
+target_position = Vector2(0, 0)
+collision_mask = 3
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="mouse_pos" type="Control" parent="UI" groups=["mouse_pos"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="puntero" type="Line2D" parent="UI" groups=["puntero"]]
+visible = false
+default_color = Color(0.930177, 0, 0.13985, 1)
+
+[node name="pause_menu" parent="UI" instance=ExtResource("12_24cjn")]
+mouse_filter = 2
+script = ExtResource("8_niflv")
+
+[node name="pause_button" type="Button" parent="UI" groups=["boton_pausa"]]
+process_mode = 3
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 66.0
+icon = ExtResource("9_qoctp")
+flat = true
+script = ExtResource("7_yvgv3")
+
+[node name="TideManager" type="Node" parent="."]
+script = ExtResource("14_x3k5s")
+
+[node name="TorchManager" type="Node" parent="." groups=["torch"]]
+script = ExtResource("9_rvepi")
+
+[node name="TurnManager" type="Node" parent="." groups=["turn_manager"]]
+script = ExtResource("9_1trl3")
+curva_distancia_mano = SubResource("Curve_g282d")
+curva_arco_mano = SubResource("Curve_xhv7g")
+
+[connection signal="pressed" from="Juego/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
+[connection signal="pressed" from="UI/pause_button" to="UI/pause_button" method="_on_pressed"]

@@ -19,7 +19,9 @@ func on_enter():
 		if card.reorder_pos != -1:
 			mano_jugador.move_child(card, card.reorder_pos)
 			card.reorder_pos = -1
-	turn_manager.reajustar_mano()
+			activate_cards_in_hand()
+		turn_manager.reajustar_mano()
+	#print(card.position)
 	
 func state_process(delta):
 	pass
@@ -33,3 +35,7 @@ func _on_carta_ui_mouse_entered():
 
 func _on_carta_ui_mouse_exited():
 	on_card = false
+
+func activate_cards_in_hand():
+	for card in turn_manager.mano_jugador.get_children():
+		card.disabled_card = false

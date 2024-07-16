@@ -316,5 +316,7 @@ func reordenar_mano(position) -> int:
 		if position > mano_jugador.get_child(i).get_global_rect().position.x:
 			i += 1
 		else:
+			#reajustar_mano()
 			return i
+	#reajustar_mano()
 	return mano_jugador.get_child_count()

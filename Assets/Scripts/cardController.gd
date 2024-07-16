@@ -37,7 +37,6 @@ var marea : int
 var card_info : cardResource	#Al crear la carta se le añade su info
 
 var on_card : bool	#Cursor sobre la carta
-var is_dragged : bool = false	#Está siendo arrastrada, para que no haga zoom cuando se arrastra con el cursor
 var disabled_card : bool = false	#Carta desactivada, no se podrá interactuar con ella cuando true
 var has_attacked : bool = true	#Para cartas activas, default en true porque el primer turno de ponerlas no atacan
 var reorder_pos : int = -1
@@ -99,15 +98,20 @@ func _process(delta):
 		#descripcion.hide()
 
 func _on_mouse_entered():
-	if not finished_zooming and state_machine.current_state.name == "idleState" and not disabled_card and not is_dragged:
+	if not finished_zooming and state_machine.current_state.name == "idleState" and not disabled_card:
 		zoom_in_card()
+	on_card = true
 
 func _on_mouse_exited():
-	if finished_zooming and state_machine.current_state.name == "idleState" and not disabled_card and not is_dragged:
+	if finished_zooming and state_machine.current_state.name == "idleState" and not disabled_card and reorder_pos == -1:
 		zoom_out_card()
-		
+	on_card = false
 
 func zoom_in_card():
+	for card in turn_manager.mano_jugador.get_children():
+		if card != self:
+			card.disabled_card = true
+	pull_apart_cards_in_hand()
 	var tween_in : Tween = get_tree().create_tween()
 	tween_in.connect("finished", on_tween_in_finished)
 	tween_in.set_ease(Tween.EASE_IN)
@@ -116,10 +120,15 @@ func zoom_in_card():
 	tween_in.tween_property(self, "scale", Vector2(1.2, 1.2), 0.1)
 	tween_in.tween_property(self, "position", temp_pos_in, 0.1)
 	turn_manager.reajustar_mano()
-	z_index = 1
+	#z_index = 1
 	descripcion.show()
 
 func zoom_out_card():
+	#pull_in_cards_in_hand()
+	for card in turn_manager.mano_jugador.get_children():
+		if card != self:
+			card.disabled_card = false
+	turn_manager.reajustar_mano()
 	var tween_out : Tween = get_tree().create_tween()
 	tween_out.connect("finished", on_tween_out_finished)
 	tween_out.set_ease(Tween.EASE_OUT)
@@ -128,7 +137,7 @@ func zoom_out_card():
 	tween_out.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 	tween_out.tween_property(self, "position", temp_pos_out, 0.1)
 	turn_manager.reajustar_mano()
-	z_index = 0
+	#z_index = 0
 	descripcion.hide()
 
 func on_tween_in_finished():
@@ -136,3 +145,37 @@ func on_tween_in_finished():
 
 func on_tween_out_finished():
 	finished_zooming = false
+	
+func pull_apart_cards_in_hand():
+	for card in turn_manager.mano_jugador.get_children():
+		if card == self:
+			print("esta es la carta haciendo zoom")
+		elif self.get_global_rect().position.x > card.get_global_rect().position.x:
+			var reorder_left_tween : Tween = get_tree().create_tween()
+			reorder_left_tween.set_ease(Tween.EASE_OUT)
+			reorder_left_tween.set_trans(Tween.TRANS_EXPO)
+			reorder_left_tween.tween_property(card, "position", Vector2(card.position.x - size.x/2, card.position.y), 0.3)
+			print("carta a la izquierda")
+		else:
+			var reorder_right_tween : Tween = get_tree().create_tween()
+			reorder_right_tween.set_ease(Tween.EASE_OUT)
+			reorder_right_tween.set_trans(Tween.TRANS_EXPO)
+			reorder_right_tween.tween_property(card, "position", Vector2(card.position.x + size.x/2, card.position.y), 0.3)
+			print("carta a la derecha")
+
+#func pull_in_cards_in_hand():
+	#for card in turn_manager.mano_jugador.get_children():
+		#if card == self:
+			#print("esta es la carta haciendo zoom")
+		#elif self.get_global_rect().position.x > card.get_global_rect().position.x:
+			#var reorder_left_tween : Tween = get_tree().create_tween()
+			#reorder_left_tween.set_ease(Tween.EASE_OUT)
+			#reorder_left_tween.set_trans(Tween.TRANS_BACK)
+			#reorder_left_tween.tween_property(card, "position", Vector2(card.position.x + 75, card.position.y), 0.3)
+			#print("carta a la izquierda")
+		#else:
+			#var reorder_right_tween : Tween = get_tree().create_tween()
+			#reorder_right_tween.set_ease(Tween.EASE_OUT)
+			#reorder_right_tween.set_trans(Tween.TRANS_EXPO)
+			#reorder_right_tween.tween_property(card, "position", Vector2(card.position.x - 75, card.position.y), 0.3)
+			#print("carta a la derecha")
