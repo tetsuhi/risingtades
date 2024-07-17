@@ -329,3 +329,14 @@ func reordenar_mano(position) -> int:
 			return i
 	#reajustar_mano()
 	return mano_jugador.get_child_count()
+
+func reordenar_mesa(position) -> int:
+	var i : int = 0
+	while i < campo_jugador1.get_child_count():
+		if position > campo_jugador1.get_child(i).get_global_rect().position.x:
+			i += 1
+		else:
+			#reajustar_mano()
+			return i
+	#reajustar_mano()
+	return campo_jugador1.get_child_count()

@@ -18,6 +18,7 @@ var on_board : bool = false
 var reordering : bool = false
 var minimum_drag_time_elapsed = false
 @onready var finished_moving_cards : bool = true
+@onready var finished_moving_cards_on_board : bool = true
 #@onready var finished_restoring_cards : bool = true
 var posicion_original : int
 
@@ -55,6 +56,7 @@ func state_process(delta):
 		turn_manager.reajustar_mano()
 		finished_moving_cards = true
 	if reordering and not on_board:
+		turn_manager.reajustar_mesa()
 		var posicion_actual = turn_manager.reordenar_mano(card.get_global_rect().position.x)
 		if posicion_actual != posicion_original:
 			if finished_moving_cards:
@@ -64,6 +66,14 @@ func state_process(delta):
 				await pull_apart_cards_in_hand()
 	#if Input.is_action_pressed("LMB") and reordering and not on_board and finished_moving_cards:
 		#pull_apart_cards_in_hand()
+	
+	if on_board and not reordering:
+		turn_manager.reajustar_mano()
+		if finished_moving_cards_on_board:
+			pull_apart_cards_in_board()
+	if not on_board:
+		turn_manager.reajustar_mesa()
+		finished_moving_cards_on_board = true
 
 func state_input(event : InputEvent):
 	var confirm = event.is_action_released("LMB")
@@ -74,6 +84,7 @@ func state_input(event : InputEvent):
 			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 			card.disabled_card = false
 			activate_cards_in_hand()
+			card.reorder_pos = turn_manager.reordenar_mesa(card.get_global_rect().position.x)
 			next_state = on_board_state
 		else:
 			card.disabled_card = false
@@ -104,6 +115,22 @@ func _on_detector_colision_area_exited(area):
 func pull_apart_cards_in_hand():
 	finished_moving_cards = false
 	for i in turn_manager.mano_jugador.get_children():
+		if card.get_global_rect().position.x > i.get_global_rect().position.x:
+			var reorder_left_tween : Tween = get_tree().create_tween()
+			var new_pos = i.position + Vector2(-card.size.x/2, 0)
+			reorder_left_tween.set_ease(Tween.EASE_OUT)
+			reorder_left_tween.set_trans(Tween.TRANS_EXPO)
+			reorder_left_tween.tween_property(i, "position", new_pos, 0.3)
+		else:
+			var reorder_right_tween : Tween = get_tree().create_tween()
+			var new_pos = i.position + Vector2(card.size.x/2, 0)
+			reorder_right_tween.set_ease(Tween.EASE_OUT)
+			reorder_right_tween.set_trans(Tween.TRANS_EXPO)
+			reorder_right_tween.tween_property(i, "position", new_pos, 0.3)
+
+func pull_apart_cards_in_board():
+	finished_moving_cards_on_board = false
+	for i in turn_manager.campo_jugador1.get_children():
 		if card.get_global_rect().position.x > i.get_global_rect().position.x:
 			var reorder_left_tween : Tween = get_tree().create_tween()
 			var new_pos = i.position + Vector2(-card.size.x/2, 0)

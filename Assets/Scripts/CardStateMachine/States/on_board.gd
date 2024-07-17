@@ -9,6 +9,10 @@ func on_enter():
 	var board := get_tree().get_first_node_in_group("board")
 	if board:
 		card.reparent(board)
+		if card.reorder_pos != -1:
+			board.move_child(card, card.reorder_pos)
+			card.reorder_pos = -1
+			activate_cards_in_board()
 		turn_manager.reajustar_mesa()
 	card.on_hand.hide()
 	card.on_board.show()
@@ -30,3 +34,7 @@ func _on_carta_ui_mouse_entered():
 
 func _on_carta_ui_mouse_exited():
 	on_card = false
+
+func activate_cards_in_board():
+	for card in turn_manager.campo_jugador1.get_children():
+		card.disabled_card = false
