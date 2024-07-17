@@ -61,6 +61,8 @@ func state_process(delta):
 		else:
 			if finished_moving_cards:
 				await pull_apart_cards_in_hand()
+	if on_board:
+		turn_manager.reajustar_mano()
 
 func state_input(event : InputEvent):
 	var confirm = event.is_action_released("LMB")

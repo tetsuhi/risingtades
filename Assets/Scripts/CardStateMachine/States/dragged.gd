@@ -67,7 +67,7 @@ func state_process(delta):
 	#if Input.is_action_pressed("LMB") and reordering and not on_board and finished_moving_cards:
 		#pull_apart_cards_in_hand()
 	
-	if on_board and not reordering:
+	if on_board and not reordering and card.torch_manager.antorchasActualesJugador - card.card_info.card_cost >= 0:
 		turn_manager.reajustar_mano()
 		if finished_moving_cards_on_board:
 			pull_apart_cards_in_board()
@@ -89,10 +89,12 @@ func state_input(event : InputEvent):
 		else:
 			card.disabled_card = false
 			activate_cards_in_hand()
+			turn_manager.reajustar_mesa()
 			next_state = idle_state
 	elif cancel:
 		card.disabled_card = false
 		activate_cards_in_hand()
+		turn_manager.reajustar_mesa()
 		next_state = idle_state
 	
 	if reordering and not on_board:

@@ -27,6 +27,9 @@ func state_process(delta):
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("LMB") and on_card and not card.disabled_card:
+		for i in turn_manager.mano_jugador.get_child_count():
+			if card == turn_manager.mano_jugador.get_child(i):
+				card.reorder_pos = i
 		next_state = dragged_state
 
 func _on_carta_ui_mouse_entered():
