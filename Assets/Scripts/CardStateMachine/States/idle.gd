@@ -21,7 +21,6 @@ func on_enter():
 			card.reorder_pos = -1
 			activate_cards_in_hand()
 		turn_manager.reajustar_mano()
-	#print(card.position)
 	
 func state_process(delta):
 	pass

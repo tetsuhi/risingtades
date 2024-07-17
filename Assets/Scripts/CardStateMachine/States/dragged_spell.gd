@@ -27,7 +27,6 @@ func on_enter():
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "scale", Vector2(1.0, 1.0), 0.05)
 	card.descripcion.hide()
-	print(card)
 	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 	if ui_layer:
 		card.reparent(ui_layer)
@@ -57,9 +56,7 @@ func state_process(delta):
 	if reordering and not on_board:
 		var posicion_actual = turn_manager.reordenar_mano(card.get_global_rect().position.x)
 		if posicion_actual != posicion_original:
-			print("no estoy en la misma posición que cuando me cogiste")
 			if finished_moving_cards:
-				print("muevo cartas")
 				await pull_apart_cards_in_hand()
 		else:
 			if finished_moving_cards:

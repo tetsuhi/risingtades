@@ -18,7 +18,7 @@ extends Node
 @onready var juegaTurno : String
 @onready var turnosMareaVivaJugador : int = 0
 @onready var turnosMareaVivaOponente : int = 0
-@onready var campo = %Campo
+@onready var campo_jugador1 = %campo_jugador1
 @onready var campo_oponente = %CampoOponente
 @onready var turn_label = $"../Juego/turno"
 
@@ -26,7 +26,9 @@ var estadoJuego : String
 
 const MAX_CARTAS_MANO : int = 7
 const HAND_WIDTH : float = 50.0
+const BOARD_WIDTH : float = 75.0
 const HAND_HEIGHT : float = 5.0
+const CARD_WIDTH : float = 170.0
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 
 const criatura_activa_jugador = preload("res://Assets/Scenes/CartasJugador/criaturaActivaJugador.tscn")
@@ -115,7 +117,6 @@ func esTurnoOponente():
 	activar_cartas_en_mesa(1, 1)
 	
 func esTurnoJugador():
-	print(mano_jugador.get_child_count())
 	
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
@@ -213,7 +214,7 @@ func leerCartasEnMesa(moment, player):
 				tide_manager.update_tide(child.card_info.effect())
 
 func comprobar_estado_partida():
-	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo.get_child_count() == 0:
+	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo_jugador1.get_child_count() == 0:
 		turn_label.text = "Gana el oponente. Volviendo al menú"
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
@@ -256,7 +257,7 @@ func despertar_cartas(target : int):
 	#0 = jugador1 ; 1 = jugador2
 	
 	if target == 0:
-		for i in campo.get_children():
+		for i in campo_jugador1.get_children():
 			#i.first_turn_resting = false
 			i.has_attacked = false
 	else:
@@ -271,12 +272,12 @@ func activar_cartas_en_mesa(target : int, estado : int):
 	
 	if target == 0:
 		if estado == 0:
-			for i in campo.get_children():
+			for i in campo_jugador1.get_children():
 				i.disabled_card = true
 			for i in mano_jugador.get_children():
 				i.disabled_card = true
 		else:
-			for i in campo.get_children():
+			for i in campo_jugador1.get_children():
 				i.disabled_card = false
 			for i in mano_jugador.get_children():
 				i.disabled_card = false
@@ -310,6 +311,14 @@ func reajustar_mano():
 		#print(card.card_info.card_name + " posiciones: " + str(card.temp_pos_out) + ", " + str(card.temp_pos_in))
 	#print("cartas reajustadas")
 
+func reajustar_mesa():
+	var board_left_limit : float = -CARD_WIDTH/2 * campo_jugador1.get_child_count()
+	var new_position : float = board_left_limit
+	for card in campo_jugador1.get_children():
+		card.position.y = -card.size.y/2
+		card.position.x = new_position
+		new_position += card.size.x
+		
 func reordenar_mano(position) -> int:
 	var i : int = 0
 	while i < mano_jugador.get_child_count():

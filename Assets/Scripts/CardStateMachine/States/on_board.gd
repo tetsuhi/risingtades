@@ -3,11 +3,13 @@ extends State
 class_name BoardState
 
 var on_card : bool
+@onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
 
 func on_enter():
 	var board := get_tree().get_first_node_in_group("board")
 	if board:
 		card.reparent(board)
+		turn_manager.reajustar_mesa()
 	card.on_hand.hide()
 	card.on_board.show()
 	

@@ -304,28 +304,28 @@ offset_bottom = 225.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Campo" type="HBoxContainer" parent="Juego" groups=["board"]]
+[node name="campo_jugador1" type="Control" parent="Juego" groups=["board"]]
 unique_name_in_owner = true
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.53
-anchor_right = 0.8
-anchor_bottom = 0.704
-offset_top = 3.59998
-offset_bottom = 3.67993
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 132.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
 [node name="CampoOponente" type="HBoxContainer" parent="Juego" groups=["boardOponente"]]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.2
-anchor_top = 0.53
+anchor_top = 0.296
 anchor_right = 0.8
-anchor_bottom = 0.704
-offset_top = -252.4
-offset_bottom = -252.32
+anchor_bottom = 0.474
+offset_top = 0.320007
+offset_bottom = 0.0799561
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1

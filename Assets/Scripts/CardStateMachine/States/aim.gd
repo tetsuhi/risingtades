@@ -35,7 +35,6 @@ func state_process(delta):
 	#raycast.target_position = mouse_pos.get_global_mouse_position()
 	
 	collider = raycast.get_collider()
-	print(collider)
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("RMB"):
@@ -56,7 +55,6 @@ func state_input(event : InputEvent):
 			if card_objective.vida - card.ataque <= 0:
 				DeckBuild.cementerio_oponente.append(card_objective.card_info.card_id)
 				card_objective.queue_free()
-				print(DeckBuild.cementerio_oponente)
 			card_objective.vida -= 1
 			card_objective.vida_on_board.text = str(card_objective.vida)
 

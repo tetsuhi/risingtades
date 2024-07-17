@@ -11,6 +11,7 @@ func on_enter():
 	var board := get_tree().get_first_node_in_group("board")
 	if board:
 		card.reparent(board)
+		turn_manager.reajustar_mesa()
 	card.on_hand.hide()
 	card.on_board.show()
 	

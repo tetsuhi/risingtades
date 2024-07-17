@@ -149,19 +149,17 @@ func on_tween_out_finished():
 func pull_apart_cards_in_hand():
 	for card in turn_manager.mano_jugador.get_children():
 		if card == self:
-			print("esta es la carta haciendo zoom")
+			pass
 		elif self.get_global_rect().position.x > card.get_global_rect().position.x:
 			var reorder_left_tween : Tween = get_tree().create_tween()
 			reorder_left_tween.set_ease(Tween.EASE_OUT)
 			reorder_left_tween.set_trans(Tween.TRANS_EXPO)
 			reorder_left_tween.tween_property(card, "position", Vector2(card.position.x - size.x/2, card.position.y), 0.3)
-			print("carta a la izquierda")
 		else:
 			var reorder_right_tween : Tween = get_tree().create_tween()
 			reorder_right_tween.set_ease(Tween.EASE_OUT)
 			reorder_right_tween.set_trans(Tween.TRANS_EXPO)
 			reorder_right_tween.tween_property(card, "position", Vector2(card.position.x + size.x/2, card.position.y), 0.3)
-			print("carta a la derecha")
 
 #func pull_in_cards_in_hand():
 	#for card in turn_manager.mano_jugador.get_children():
