@@ -10,7 +10,10 @@ extends Control
 @onready var mazo_descripcion_coleccion = $confirmar_mazo_coleccion/Panel/mazo_descripcion_coleccion
 @onready var personaliza = $personaliza
 @onready var baraja_seleccionada = $personaliza/baraja_seleccionada
+@onready var menu_info_mazo = $menu_info_mazo
 
+@onready var cardData = preload("res://Assets/Scripts/cardDataBase.gd")
+@onready var carta_ui = preload("res://Assets/Scenes/cartaPreview.tscn")
 
 func _ready():
 	pass
@@ -134,6 +137,10 @@ func _on_baraja_seleccion_item_selected(index):
 		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
 		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
 
+func _on_boton_info_mazo_pressed():
+	mostrar_cartas_baraja()
+	menu_info_mazo.show()
+
 
 #*********************************************************
 #confirmar mazo menu
@@ -192,6 +199,37 @@ func _on_boton_atras_coleccion_pressed():
 	confirmar_mazo_coleccion.hide()
 
 
+#*********************************************************
+#menu info mazo
+#*********************************************************
+
+func _on_boton_volver_info_mazo_pressed():
+	limpiar_vista_baraja()
+	menu_info_mazo.hide()
+
+
+func mostrar_cartas_baraja():
+	var container_info_mazo = $menu_info_mazo/Panel/ScrollContainer/container_info_mazo
+	var nombre_cartas_mostrar = []
+	for i in DeckBuild.baraja_temp.size():
+		print(nombre_cartas_mostrar)
+		var resourcePath = cardData.DATA[DeckBuild.baraja_temp[i]]
+		var cardInfo = load(resourcePath)
+		if nombre_cartas_mostrar.find(cardInfo.card_name) == -1:
+			nombre_cartas_mostrar.append(cardInfo.card_name)
+			var _card = cardInfo.duplicate()
+			var nueva_carta = carta_ui.instantiate()
+			nueva_carta.card_info = _card
+			container_info_mazo.add_child(nueva_carta)
+	for i in container_info_mazo.get_children():
+		var index_name = DeckBuild.nombre_temp.find(i.card_info.card_name)
+		i.cantidad.text = "x" + str(DeckBuild.cantidad_temp[index_name])
+
+func limpiar_vista_baraja():
+	var container_info_mazo = $menu_info_mazo/Panel/ScrollContainer/container_info_mazo
+	for i in container_info_mazo.get_children():
+		container_info_mazo.remove_child(i)
+	
 func menu_transition(old, new):
 	old.hide()
 	new.show()

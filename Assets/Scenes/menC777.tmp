@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=8 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
@@ -28,9 +28,6 @@ func _ready():
 	for i in get_children():
 		i.cantidad.hide()
 "
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x65uh"]
-bg_color = Color(0.0687983, 0.0687983, 0.0687982, 0.882353)
 
 [node name="MenuNuevo" type="Control"]
 layout_mode = 3
@@ -560,7 +557,6 @@ offset_right = 832.0
 offset_bottom = 356.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x65uh")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="menu_info_mazo/Panel"]
 layout_mode = 1
