@@ -44,14 +44,11 @@ func state_input(event : InputEvent):
 			print("On Board")
 			card.torch_manager.antorchasActualesOponente -= card.card_info.card_cost
 			card.torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(card.torch_manager.antorchasActualesOponente)
-			card.is_dragged = false
 			next_state = onBoard_state
 		else:
 			print("No hay suficientes antorchas")
-			card.is_dragged = false
 			next_state = idle_state
 	elif cancel:
-		card.is_dragged = false
 		next_state = idle_state
 
 func _on_detector_colision_area_entered(area):

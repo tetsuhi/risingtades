@@ -210,8 +210,10 @@ func leerCartasEnMesa(moment, player):
 			#if child.card_info.has_method("effect") and child.card_info.execution == "Start"
 			pass
 		else:
-			if child.card_info.has_method("effect") and child.card_info.execution == child.card_info.Execution.End:
-				tide_manager.update_tide(child.card_info.effect())
+			#if child.card_info.has_method("effect") and child.card_info.execution == child.card_info.Execution.End:
+				#tide_manager.update_tide(child.card_info.effect())
+			if child.card_info.card_type == 1:
+				tide_manager.update_tide(child.marea)
 
 func comprobar_estado_partida():
 	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo_jugador1.get_child_count() == 0:

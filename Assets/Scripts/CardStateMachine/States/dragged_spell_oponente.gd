@@ -14,7 +14,6 @@ var on_board : bool = false
 var minimum_drag_time_elapsed = false
 
 func on_enter():
-	card.is_dragged = true
 	print(card)
 	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 	if ui_layer:
@@ -44,13 +43,10 @@ func state_input(event : InputEvent):
 		if on_board and card.torch_manager.antorchasActualesOponente - card.card_info.card_cost >= 0:
 			card.torch_manager.antorchasActualesOponente -= card.card_info.card_cost
 			card.torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(card.torch_manager.antorchasActualesOponente)
-			card.is_dragged = false
 			next_state = aim_state
 		else:
-			card.is_dragged = false
 			next_state = idle_state
 	elif cancel:
-		card.is_dragged = false
 		next_state = idle_state
 
 func _on_detector_colision_area_entered(area):

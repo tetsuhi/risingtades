@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dfuaqs76isac4"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_increase_tide_ally.gd" id="1_xkh0x"]
+[ext_resource type="Texture2D" uid="uid://c2juu2pbcyuyv" path="res://Assets/Textures/moon.jpg" id="2_stj2p"]
+
+[resource]
+script = ExtResource("1_xkh0x")
+effect_text = "Incrementa la marea de una carta en 1"
+tide_increase = 1
+card_id = "3"
+card_name = "Torrente lunar"
+card_type = 2
+card_target = 6
+card_cost = 1
+texture = ExtResource("2_stj2p")
