@@ -9,6 +9,7 @@ const CARD_DELAY_SPEED = 12.0	#Delay al arrastrar la carta con el cursor
 @onready var state_machine : CardStateMachine = $CardStateMachine
 @onready var torch_manager = $TorchManager
 @onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
+@onready var tide_manager := get_tree().get_first_node_in_group("tide_manager")
 
 @onready var nombre = $on_hand/Nombre
 @onready var descripcion = $on_hand/Descripcion

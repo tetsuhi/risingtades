@@ -207,11 +207,49 @@ func leerCartasEnMesa(moment, player):
 
 	for child in board.get_children():
 		if moment == 0:
-			#if child.card_info.has_method("effect") and child.card_info.execution == "Start"
-			pass
+			if child.card_info.has_method("effect") and child.card_info.execution == child.card_info.Execution.Start:
+				match child.card_info.card_target:
+					0:
+						child.card_info.effect(child)
+					1:	#tide
+						#tide_manager.marea_seleccionada == card.card_info.marea
+						#tide_manager.update_tide(card.card_info.tide_sum)
+						#card.queue_free()
+						pass
+					2: #hand
+						pass
+					3: #oponent hand
+						pass
+					4: #deck
+						pass
+					5: #graveyard
+						pass 
+					6: #allycreatures
+						child.card_info.effect(board.get_children())
+					7: #enemycreatures
+						pass
 		else:
-			#if child.card_info.has_method("effect") and child.card_info.execution == child.card_info.Execution.End:
-				#tide_manager.update_tide(child.card_info.effect())
+			if child.card_info.has_method("effect") and child.card_info.execution == child.card_info.Execution.End:
+				match child.card_info.card_target:
+					0:
+						child.card_info.effect(child)
+					1:	#tide
+						#tide_manager.marea_seleccionada == card.card_info.marea
+						#tide_manager.update_tide(card.card_info.tide_sum)
+						#card.queue_free()
+						pass
+					2: #hand
+						pass
+					3: #oponent hand
+						pass
+					4: #deck
+						pass
+					5: #graveyard
+						pass 
+					6: #allycreatures
+						child.card_info.effect(board.get_children())
+					7: #enemycreatures
+						pass
 			if child.card_info.card_type == 1:
 				tide_manager.update_tide(child.marea)
 

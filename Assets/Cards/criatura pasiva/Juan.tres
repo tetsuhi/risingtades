@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_fmd1o")
-execution = 1
+execution = 0
 effect_text = "Modifica la marea en self.tide_amount puntos"
 tide_amount = 5
 life = 2

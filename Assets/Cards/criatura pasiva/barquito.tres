@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cqjftntyb5ar5"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_double_tide.gd" id="1_bvew6"]
+[ext_resource type="Texture2D" uid="uid://2m46g4h3mnko" path="res://Assets/Textures/9e4a767d81b236eb92739c9db0eb96aa.jpg" id="2_egsrd"]
+
+[resource]
+script = ExtResource("1_bvew6")
+effect_text = "Maldito seas estado de israel"
+execution = 2
+tide_amount = 2
+life = 1
+card_id = "5"
+card_name = "Barquito"
+card_type = 1
+card_target = 0
+card_cost = 1
+texture = ExtResource("2_egsrd")

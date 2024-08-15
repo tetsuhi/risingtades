@@ -8,5 +8,7 @@ const DATA = {
 	'3' :
 		"res://Assets/Cards/conjuros/torrente_lunar.tres",
 	'4' :
-		"res://Assets/Cards/conjuros/arroyo_escondido.tres"
+		"res://Assets/Cards/conjuros/arroyo_escondido.tres",
+	'5' :
+		"res://Assets/Cards/criatura pasiva/barquito.tres"
 }
