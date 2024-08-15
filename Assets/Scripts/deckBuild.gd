@@ -42,3 +42,5 @@ func _ready():
 		barajaOponente.append("0")
 		barajaOponente.append("1")
 		barajaOponente.append("2")
+		barajaOponente.append("3")
+		barajaOponente.append("4")

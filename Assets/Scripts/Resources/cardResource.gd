@@ -2,7 +2,7 @@ extends Resource
 
 class_name cardResource
 
-enum CardType {Active, Pasive, Spell}
+enum CardType {Active, Pasive, Spell, Instant}
 enum CardTarget {None, Tide, Hand, OponentHand, Deck, Graveyard, AllyCreatures, OponentCreatures}
 
 @export_group("Card Attributes")

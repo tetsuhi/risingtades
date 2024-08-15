@@ -5,8 +5,10 @@ class_name SpellDraggedState
 const DRAG_MINIMUM_THRESHOLD : float = 0.05
 
 @onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
+@onready var tide_manager := get_tree().get_first_node_in_group("tide_manager")
 @onready var mesa_jugador1 := get_tree().get_first_node_in_group("mesa_jugador1")
 @onready var zona_mano_jugador1 := get_tree().get_first_node_in_group("zona_mano_jugador1")
+@onready var mano_jugador := get_tree().get_first_node_in_group("hand")
 
 @export var idle_state : State
 @export var aim_state : State
@@ -69,10 +71,29 @@ func state_input(event : InputEvent):
 	var cancel = event.is_action_pressed("RMB")
 	if confirm and minimum_drag_time_elapsed:
 		if on_board and card.torch_manager.antorchasActualesJugador - card.card_info.card_cost >= 0:
-			card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
-			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
-			card.disabled_card = false
-			next_state = aim_state
+			if card.card_info.card_type == 2:
+				card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
+				card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
+				card.disabled_card = false
+				next_state = aim_state
+			elif card.card_info.card_type == 3:
+				match card.card_info.card_target:
+					1:	#tide
+						tide_manager.marea_seleccionada == card.card_info.marea
+						tide_manager.update_tide(card.card_info.tide_sum)
+						card.queue_free()
+					2: #hand
+						pass
+					3: #oponent hand
+						pass
+					4: #deck
+						pass
+					5: #graveyard
+						pass 
+					6: #allycreatures
+						pass 
+					7: #enemycreatures
+						pass 
 		else:
 			card.disabled_card = false
 			next_state = idle_state

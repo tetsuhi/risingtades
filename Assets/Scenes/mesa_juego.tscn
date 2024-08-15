@@ -43,7 +43,7 @@ position = Vector2(0, 24)
 position = Vector2(960, 644)
 shape = SubResource("RectangleShape2D_kmtpe")
 
-[node name="Area2D2" type="Area2D" parent="Juego"]
+[node name="Area2D2" type="Area2D" parent="Juego" groups=["mesa_oponente"]]
 position = Vector2(0, 24)
 collision_layer = 2
 collision_mask = 2
@@ -363,7 +363,7 @@ icon = ExtResource("9_qoctp")
 flat = true
 script = ExtResource("7_yvgv3")
 
-[node name="TideManager" type="Node" parent="."]
+[node name="TideManager" type="Node" parent="." groups=["tide_manager"]]
 script = ExtResource("14_x3k5s")
 
 [node name="TorchManager" type="Node" parent="." groups=["torch"]]
