@@ -87,7 +87,7 @@ func determinarInicio():
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
 	turn_label.text = juegaTurno
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	boton_pasar_turno.disabled = false
 	var rng = RandomNumberGenerator.new()
 	if rng.randi_range(0, 1) == 0:
@@ -104,6 +104,7 @@ func esTurnoOponente():
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
+	tide_manager.change_bar_color(1)
 	torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(torch_manager.maxAntorchas)
 	leerCartasEnMesa(0, 1)
 	collision_oponente.disabled = false
@@ -121,6 +122,7 @@ func esTurnoJugador():
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
 	tide_manager.estadoMareaJugador = tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador)	
+	tide_manager.change_bar_color(0)
 	torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(torch_manager.maxAntorchas)
 	leerCartasEnMesa(0,0)
 	collision_oponente.disabled = true

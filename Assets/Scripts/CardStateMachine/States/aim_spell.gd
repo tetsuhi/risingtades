@@ -72,12 +72,12 @@ func state_input(event : InputEvent):
 	if apuntando and event.is_action_released("LMB") and collider != null:
 		var card_objective = collider.get_owner()
 		if not card_objective.disabled_card and card_objective != card:
-			
-			card.card_info.effect(card_objective)
-			
+			if card.card_info.effect(card_objective) == null:
+				next_state = idle_state
+			else:
+				DeckBuild.cementerio_jugador.append(card.card_info.card_id)
+				card.queue_free()
 			enabling_cards()
-			DeckBuild.cementerio_jugador.append(card.card_info.card_id)
-			card.queue_free()
 			boton_pasar_turno.set_disabled(false)
 			boton_pausa.set_disabled(false)
 			collision.disabled = false

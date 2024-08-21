@@ -1,10 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=14 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
 [ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="2_namtc"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="4_e1nl7"]
 [ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="7_0fh4u"]
+
+[sub_resource type="Theme" id="Theme_ri73g"]
+default_font = ExtResource("2_namtc")
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_2b8vt"]
+default_font = ExtResource("2_namtc")
+default_font_size = 180
 
 [sub_resource type="Theme" id="Theme_md8ar"]
 default_font = ExtResource("2_namtc")
@@ -32,6 +40,139 @@ func _ready():
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x65uh"]
 bg_color = Color(0.0687983, 0.0687983, 0.0687982, 0.882353)
 
+[sub_resource type="Animation" id="Animation_1yj3y"]
+resource_name = "pulsar_empezar"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menu_inicio/titulo_menu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 0.7, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(267, 443.5), Vector2(267, 456), Vector2(267, 293), Vector2(267, 307)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menu_inicio/creditos:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("menu_inicio/pulsa_empezar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("menu/VBoxContainer:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8, 1.36667, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(845.5, 1170), Vector2(845.5, 591), Vector2(845.5, 640)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("menu/VBoxContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_41wvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menu_inicio/titulo_menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(267, 443.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menu_inicio/creditos:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("menu_inicio/pulsa_empezar:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("menu/VBoxContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(845.5, 640)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("menu/VBoxContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2xkpg"]
+_data = {
+"RESET": SubResource("Animation_41wvt"),
+"pulsar_empezar": SubResource("Animation_1yj3y")
+}
+
 [node name="MenuNuevo" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +181,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lny0i")
+
+[node name="menu_inicio" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pulsa_empezar" type="RichTextLabel" parent="menu_inicio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -414.5
+offset_top = 142.406
+offset_right = 414.5
+offset_bottom = 207.406
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(414, 32)
+theme = SubResource("Theme_ri73g")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 15
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][wave amp=40.0 freq=4.0 connected=1][center]Pulsa espacio para empezar[/center][/wave][/pulse]"
+
+[node name="creditos" type="RichTextLabel" parent="menu_inicio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -570.5
+offset_top = -149.371
+offset_right = 570.5
+offset_bottom = -78.3713
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(570, 35)
+theme = SubResource("Theme_ri73g")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 15
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]Santiago Llamas y Miguel Martinez presentan[/center][/wave]"
+
+[node name="titulo_menu" type="RichTextLabel" parent="menu_inicio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -693.0
+offset_top = -96.5
+offset_right = 693.0
+offset_bottom = 96.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(693, 96)
+theme = SubResource("Theme_2b8vt")
+theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_constants/shadow_offset_y = 30
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
 
 [node name="menu" type="Control" parent="."]
 layout_mode = 1
@@ -50,6 +262,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="titulo_menu" type="RichTextLabel" parent="menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,6 +284,7 @@ bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,9 +343,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_e1nl7")
 theme_override_font_sizes/font_size = 27
+current_tab = 0
 
 [node name="Video" type="TabBar" parent="opciones/TabContainer"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="opciones/TabContainer/Video"]
 layout_mode = 1
@@ -169,10 +385,9 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
-item_count = 2
 selected = 1
+item_count = 2
 popup/item_0/text = "Ventana"
-popup/item_0/id = 0
 popup/item_1/text = "Completa"
 popup/item_1/id = 1
 
@@ -180,10 +395,9 @@ popup/item_1/id = 1
 layout_mode = 2
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
-item_count = 2
 selected = 1
+item_count = 2
 popup/item_0/text = "Desactivado"
-popup/item_0/id = 0
 popup/item_1/text = "Activado"
 popup/item_1/id = 1
 
@@ -207,6 +421,7 @@ text = "Volver"
 [node name="Guardado" type="TabBar" parent="opciones/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="personaliza" type="Control" parent="."]
 visible = false
@@ -307,10 +522,9 @@ offset_right = 286.0
 offset_bottom = 44.0
 grow_vertical = 2
 theme = ExtResource("1_ty4a6")
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "Baraja 1"
-popup/item_0/id = 0
 popup/item_1/text = "Baraja 2"
 popup/item_1/id = 1
 
@@ -597,6 +811,11 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_ty4a6")
 text = "Okay"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2xkpg")
+}
 
 [connection signal="pressed" from="menu/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="pressed" from="menu/VBoxContainer/boton_opciones" to="." method="_on_boton_opciones_pressed"]

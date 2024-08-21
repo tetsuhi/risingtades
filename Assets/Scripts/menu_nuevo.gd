@@ -11,13 +11,22 @@ extends Control
 @onready var personaliza = $personaliza
 @onready var baraja_seleccionada = $personaliza/baraja_seleccionada
 @onready var menu_info_mazo = $menu_info_mazo
+@onready var _animator: AnimationPlayer = $transition/AnimationPlayer
+
 
 @onready var cardData = preload("res://Assets/Scripts/cardDataBase.gd")
 @onready var carta_ui = preload("res://Assets/Scenes/cartaPreview.tscn")
 
-func _ready():
-	pass
+@onready var empezado : bool = false
 
+func _input(event: InputEvent) -> void:
+	#Pulsa cualquier botón para empezar
+	if Input.is_key_pressed(KEY_SPACE) and not empezado:
+		if event.pressed:
+			#get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+			$AnimationPlayer.play("pulsar_empezar")
+			empezado = true
+			await $AnimationPlayer.animation_finished
 
 #*********************************************************
 #menu principal
@@ -147,7 +156,7 @@ func _on_boton_info_mazo_pressed():
 #*********************************************************
 
 func _on_boton_proceder_pressed():
-	get_tree().change_scene_to_file("res://Assets/Scenes/mesa_juego.tscn")
+	SceneTransition.change_scene_to_file("res://Assets/Scenes/mesa_juego.tscn")
 
 func _on_boton_atras_pressed():
 	menu_transition(confirmar_mazo, menu)

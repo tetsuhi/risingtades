@@ -29,6 +29,7 @@ const CARD_DELAY_SPEED = 12.0	#Delay al arrastrar la carta con el cursor
 
 @onready var on_hand = $on_hand
 @onready var on_board = $on_board
+@onready var _animator = $AnimationPlayer
 
 #Parámetros de la carta, pueden cambiar en el transcurso de la partida
 var vida : int
@@ -48,6 +49,7 @@ var temp_pos_in : Vector2
 var temp_pos_out : Vector2
 
 func _ready():
+	_animator.play("turn_card_around")
 	nombre.text = card_info.card_name
 	coste.text = str(card_info.card_cost)
 	on_hand_tex.texture = card_info.texture

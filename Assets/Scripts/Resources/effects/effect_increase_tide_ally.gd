@@ -12,5 +12,8 @@ class_name effect_increase_tide_ally
 
 
 func effect(card_objective):
-	card_objective.marea += tide_increase
-	card_objective.marea_on_board.text = str(card_objective.marea)
+	if card_objective.card_info.card_type == 1:
+		card_objective.marea += tide_increase
+		card_objective.marea_on_board.text = str(card_objective.marea)
+	else:
+		return null

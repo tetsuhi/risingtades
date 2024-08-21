@@ -9,6 +9,6 @@ effect_text = "Destruye la carta objetivo"
 card_id = "1"
 card_name = "Arpón"
 card_type = 2
-card_target = 3
+card_target = 7
 card_cost = 1
 texture = ExtResource("2_o53bo")
