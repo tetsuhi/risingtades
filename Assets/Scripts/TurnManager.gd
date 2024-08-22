@@ -13,6 +13,8 @@ extends Node
 @onready var collision_oponente = $"../Juego/Area2D2/CollisionOponente"
 @onready var collision_mano_jugador = $"../Juego/zona_mano_jugador1/CollisionManoJugador"
 @onready var boton_pasar_turno = $"../Juego/botonPasarTurno"
+@onready var pause_button: Button = $"../UI/pause_button"
+
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -260,30 +262,37 @@ func comprobar_estado_partida():
 		turn_label.text = "Gana el oponente. Volviendo al menú"
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
-		await get_tree().create_timer(3.0).timeout
-		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		boton_pasar_turno.disabled = true
+		pause_button.disabled = true
+		await get_tree().create_timer(1.0).timeout
+		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 	
 	if DeckBuild.baraja_oponente_partida.size() + mano_oponente.get_child_count() == 0 and campo_oponente.get_child_count() == 0:
 		turn_label.text = "Gana el jugador. Volviendo al menú"
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
-		print(turn_label.text)
-		await get_tree().create_timer(3.0).timeout
-		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		boton_pasar_turno.disabled = true
+		pause_button.disabled = true
+		await get_tree().create_timer(1.0).timeout
+		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 		
 	if turnosMareaVivaJugador == 3:
 		turn_label.text = "Gana el jugador. Volviendo al menú"
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
-		await get_tree().create_timer(3.0).timeout
-		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		boton_pasar_turno.disabled = true
+		pause_button.disabled = true
+		await get_tree().create_timer(1.0).timeout
+		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 		
 	if turnosMareaVivaOponente == 3:
 		turn_label.text = "Gana el oponente. Volviendo al menú"
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
-		await get_tree().create_timer(3.0).timeout
-		get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		boton_pasar_turno.disabled = true
+		pause_button.disabled = true
+		await get_tree().create_timer(1.0).timeout
+		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 
 func _on_boton_pasar_turno_pressed():
 	finalizaTurno()

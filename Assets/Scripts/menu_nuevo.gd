@@ -17,15 +17,18 @@ extends Control
 @onready var cardData = preload("res://Assets/Scripts/cardDataBase.gd")
 @onready var carta_ui = preload("res://Assets/Scenes/cartaPreview.tscn")
 
-@onready var empezado : bool = false
+func _ready() -> void:
+	if SceneTransition.empezado:
+		$AnimationPlayer.play("pulsar_empezar")
+		$AnimationPlayer.seek(3, false)
 
 func _input(event: InputEvent) -> void:
 	#Pulsa cualquier botón para empezar
-	if Input.is_key_pressed(KEY_SPACE) and not empezado:
+	if Input.is_key_pressed(KEY_SPACE) and not SceneTransition.empezado:
 		if event.pressed:
 			#get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 			$AnimationPlayer.play("pulsar_empezar")
-			empezado = true
+			SceneTransition.empezado = true
 			await $AnimationPlayer.animation_finished
 
 #*********************************************************
@@ -47,16 +50,20 @@ func _on_boton_jugar_pressed():
 				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
 		else:
 			mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
-	menu_transition(menu, confirmar_mazo)
+	$AnimationPlayer.play("ir_confirmar_mazo_jugar")
 
 func _on_boton_opciones_pressed():
-	menu_transition(menu, opciones)
+	$AnimationPlayer.play("ir_opciones")
 
 func _on_boton_coleccion_pressed():
-	menu_transition(menu, coleccion)
+	$AnimationPlayer.play("ir_baraja")
 
 func _on_boton_salir_pressed():
 	get_tree().quit()
+
+func _on_itch_button_pressed() -> void:
+	OS.shell_open("https://tetsuhi.itch.io/")
+
 
 
 #*********************************************************
@@ -64,7 +71,7 @@ func _on_boton_salir_pressed():
 #*********************************************************
 
 func _on_volver_button_pressed():
-	menu_transition(opciones, menu)
+	$AnimationPlayer.play_backwards("ir_opciones")
 
 func _on_screen_mode_item_selected(index):
 
@@ -81,7 +88,7 @@ func _on_v_sync_item_selected(index):
 #coleccion
 #*********************************************************
 func _on_boton_volver_coleccion_pressed():
-	menu_transition(coleccion, menu)
+	$AnimationPlayer.play_backwards("ir_baraja")
 
 func _on_boton_editar_mazo_pressed():
 	if DeckBuild.baraja_seleccionada == 0: 
@@ -94,7 +101,7 @@ func _on_boton_editar_mazo_pressed():
 		DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
 		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
 		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
-	menu_transition(coleccion, personaliza)
+	$AnimationPlayer.play("ir_personaliza")
 
 
 #*********************************************************
@@ -124,13 +131,13 @@ func _on_boton_guardar_cambios_pressed():
 				mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
 		else:
 			mazo_descripcion_coleccion.text = "No tienes cartas en el mazo"
-	confirmar_mazo_coleccion.show()
+	$AnimationPlayer.play("ir_confimar_mazo_personalizar")
 
 func _on_boton_volver_personaliza_pressed():
 	DeckBuild.baraja_temp = []
 	DeckBuild.cantidad_temp = []
 	DeckBuild.nombre_temp = []
-	menu_transition(personaliza, coleccion)
+	$AnimationPlayer.play_backwards("ir_personaliza")
 
 func _on_baraja_seleccion_item_selected(index):
 	if index == 0:
@@ -148,7 +155,7 @@ func _on_baraja_seleccion_item_selected(index):
 
 func _on_boton_info_mazo_pressed():
 	mostrar_cartas_baraja()
-	menu_info_mazo.show()
+	$AnimationPlayer.play("ir_menu_info_mazo")
 
 
 #*********************************************************
@@ -159,7 +166,7 @@ func _on_boton_proceder_pressed():
 	SceneTransition.change_scene_to_file("res://Assets/Scenes/mesa_juego.tscn")
 
 func _on_boton_atras_pressed():
-	menu_transition(confirmar_mazo, menu)
+	$AnimationPlayer.play_backwards("ir_confirmar_mazo_jugar")
 
 func _on_boton_seleccionar_mazo_1_pressed():
 	DeckBuild.baraja_seleccionada = 0
@@ -205,7 +212,7 @@ func _on_boton_guardar_mazo_pressed():
 	coleccion.show()
 
 func _on_boton_atras_coleccion_pressed():
-	confirmar_mazo_coleccion.hide()
+	$AnimationPlayer.play_backwards("ir_confimar_mazo_personalizar")
 
 
 #*********************************************************
@@ -213,8 +220,9 @@ func _on_boton_atras_coleccion_pressed():
 #*********************************************************
 
 func _on_boton_volver_info_mazo_pressed():
+	$AnimationPlayer.play_backwards("ir_menu_info_mazo")
+	await $AnimationPlayer.animation_finished
 	limpiar_vista_baraja()
-	menu_info_mazo.hide()
 
 
 func mostrar_cartas_baraja():

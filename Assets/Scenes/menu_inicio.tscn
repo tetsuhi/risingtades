@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c15iws6obbeys"]
+[gd_scene load_steps=5 format=3 uid="uid://b80svwc2a84q5"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_inicio.gd" id="1_3esmr"]
 [ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="2_ajyec"]
