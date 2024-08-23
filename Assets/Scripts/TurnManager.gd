@@ -16,7 +16,7 @@ extends Node
 @onready var pause_button: Button = $"../UI/pause_button"
 @onready var end_game_menu: Control = $"../UI/end_game_menu"
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
-
+@onready var background_animator: AnimationPlayer = $"../background_animator"
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -46,6 +46,7 @@ const criatura_pasiva_oponente = preload("res://Assets/Scenes/CartasOponente/cri
 const conjuro_oponente = preload("res://Assets/Scenes/CartasOponente/conjuroOponente.tscn")
 
 func _ready():
+	background_animator.play("background_loop")
 	estadoJuego = "decide"
 	determinarInicio()
 	estadoJuego = "jugando"
@@ -344,11 +345,15 @@ func activar_cartas_en_mesa(target : int, estado : int):
 				i.disabled_card = true
 			for i in mano_jugador.get_children():
 				i.disabled_card = true
+				i._animator.play("hide_card")
+				reajustar_mano()
 		else:
 			for i in campo_jugador1.get_children():
 				i.disabled_card = false
 			for i in mano_jugador.get_children():
 				i.disabled_card = false
+				i._animator.play("turn_card_around")
+				reajustar_mano()
 	else:
 		if estado == 0:
 			for i in campo_oponente.get_children():

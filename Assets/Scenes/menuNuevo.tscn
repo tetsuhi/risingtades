@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=25 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
@@ -6,6 +6,28 @@
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="3_on26h"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="4_e1nl7"]
 [ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="7_0fh4u"]
+
+[sub_resource type="Animation" id="Animation_bauv7"]
+resource_name = "background_loop"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-85, -20), Vector2(-85, -100), Vector2(-85, -100), Vector2(-85, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cucy4"]
+_data = {
+"background_loop": SubResource("Animation_bauv7")
+}
 
 [sub_resource type="Theme" id="Theme_ri73g"]
 default_font = ExtResource("2_namtc")
@@ -370,6 +392,18 @@ tracks/26/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.0313726, 0.129412, 0.137255, 0)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("background:position")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-85, -6)]
 }
 
 [sub_resource type="Animation" id="Animation_m05em"]
@@ -796,9 +830,13 @@ tracks/8/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_kqeq6"]
+resource_name = "fondo"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2xkpg"]
 _data = {
 "RESET": SubResource("Animation_41wvt"),
+"fondo": SubResource("Animation_kqeq6"),
 "ir_baraja": SubResource("Animation_m05em"),
 "ir_confimar_mazo_personalizar": SubResource("Animation_lkfet"),
 "ir_confirmar_mazo_jugar": SubResource("Animation_jneuj"),
@@ -816,6 +854,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lny0i")
+
+[node name="background_animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cucy4")
+}
+
+[node name="background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.247059)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -6.0
+offset_right = 104.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_on26h")
 
 [node name="menu" type="Control" parent="."]
 layout_mode = 1
@@ -915,6 +972,7 @@ offset_top = -112.0
 offset_right = 704.0
 offset_bottom = -56.0
 grow_vertical = 0
+focus_mode = 0
 icon = ExtResource("3_on26h")
 flat = true
 expand_icon = true
@@ -937,21 +995,25 @@ theme_override_constants/separation = 20
 
 [node name="boton_jugar" type="Button" parent="menu/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "JUGAR"
 
 [node name="boton_opciones" type="Button" parent="menu/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "OPCIONES"
 
 [node name="boton_coleccion" type="Button" parent="menu/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "BARAJA"
 
 [node name="boton_salir" type="Button" parent="menu/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "SALIR"
 
@@ -1021,6 +1083,7 @@ layout_mode = 2
 
 [node name="screen_mode" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 selected = 1
@@ -1031,6 +1094,7 @@ popup/item_1/id = 1
 
 [node name="v_sync" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 selected = 0
@@ -1052,6 +1116,7 @@ offset_right = 48.0
 offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 24
 text = "Volver"
@@ -1136,17 +1201,20 @@ alignment = 1
 
 [node name="boton_info_mazo" type="Button" parent="personaliza/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "Ver mazo"
 
 [node name="boton_guardar_cambios" type="Button" parent="personaliza/VBoxContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "Guardar cambios"
 
 [node name="boton_volver_personaliza" type="Button" parent="personaliza/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "Cancelar"
 
@@ -1161,6 +1229,7 @@ offset_top = -12.0
 offset_right = 286.0
 offset_bottom = 44.0
 grow_vertical = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 selected = 0
 item_count = 2
@@ -1231,6 +1300,7 @@ alignment = 1
 [node name="boton_editar_mazo" type="Button" parent="coleccion/VBoxContainer"]
 custom_minimum_size = Vector2(230, 50)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 36
 text = "Editar mazo"
@@ -1238,6 +1308,7 @@ text = "Editar mazo"
 [node name="boton_volver_coleccion" type="Button" parent="coleccion/VBoxContainer"]
 custom_minimum_size = Vector2(230, 50)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 36
 text = "Volver"
@@ -1305,12 +1376,14 @@ theme_override_constants/separation = 20
 
 [node name="boton_seleccionar_mazo1" type="Button" parent="confirmar_mazo/Panel/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 text = "Mazo 1"
 
 [node name="boton_seleccionar_mazo2" type="Button" parent="confirmar_mazo/Panel/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 text = "Mazo 2"
@@ -1326,6 +1399,7 @@ theme_override_constants/separation = 150
 [node name="boton_proceder" type="Button" parent="confirmar_mazo/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 text = "Jugar"
@@ -1333,6 +1407,7 @@ text = "Jugar"
 [node name="boton_atras_confirmar" type="Button" parent="confirmar_mazo/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 text = "Cancelar"
@@ -1397,12 +1472,14 @@ alignment = 1
 
 [node name="boton_guardar_mazo" type="Button" parent="confirmar_mazo_coleccion/Panel/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 18
 text = "Guardar mazo"
 
 [node name="boton_atras_coleccion" type="Button" parent="confirmar_mazo_coleccion/Panel/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 18
 text = "Seguir editando"
@@ -1467,6 +1544,7 @@ offset_right = 68.0
 offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "Okay"
 

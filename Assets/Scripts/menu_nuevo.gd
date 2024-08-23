@@ -11,7 +11,6 @@ extends Control
 @onready var personaliza = $personaliza
 @onready var baraja_seleccionada = $personaliza/baraja_seleccionada
 @onready var menu_info_mazo = $menu_info_mazo
-@onready var _animator: AnimationPlayer = $transition/AnimationPlayer
 
 
 @onready var cardData = preload("res://Assets/Scripts/cardDataBase.gd")
@@ -21,6 +20,7 @@ func _ready() -> void:
 	if SceneTransition.empezado:
 		$AnimationPlayer.play("pulsar_empezar")
 		$AnimationPlayer.seek(3, false)
+	$background_animator.play("background_loop")
 
 func _input(event: InputEvent) -> void:
 	#Pulsa cualquier botón para empezar
@@ -63,6 +63,7 @@ func _on_boton_salir_pressed():
 
 func _on_itch_button_pressed() -> void:
 	OS.shell_open("https://tetsuhi.itch.io/")
+	
 
 
 
@@ -115,7 +116,6 @@ func _on_boton_guardar_cambios_pressed():
 		DeckBuild.cantidad_cartas1 = DeckBuild.cantidad_temp
 		DeckBuild.nombre_cartas1 = DeckBuild.nombre_temp
 		if DeckBuild.nombre_cartas1.size() != 0:
-			print("tengo cartas")
 			mazo_descripcion_coleccion.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
 			for i in DeckBuild.nombre_cartas1.size():
 				mazo_descripcion_coleccion.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
@@ -207,9 +207,9 @@ func _on_boton_guardar_mazo_pressed():
 	DeckBuild.baraja_temp = []
 	DeckBuild.cantidad_temp = []
 	DeckBuild.nombre_temp = []
-	confirmar_mazo_coleccion.hide()
-	personaliza.hide()
-	coleccion.show()
+	$AnimationPlayer.play_backwards("ir_confimar_mazo_personalizar")
+	await $AnimationPlayer.animation_finished
+	$AnimationPlayer.play_backwards("ir_personaliza")
 
 func _on_boton_atras_coleccion_pressed():
 	$AnimationPlayer.play_backwards("ir_confimar_mazo_personalizar")

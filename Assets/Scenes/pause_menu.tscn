@@ -194,6 +194,7 @@ theme_override_constants/separation = 80
 [node name="reanudar_boton" type="Button" parent="pause_panel/HBoxContainer"]
 process_mode = 2
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_u1p7p")
 theme_override_font_sizes/font_size = 32
 text = "Reanudar"
@@ -201,6 +202,7 @@ text = "Reanudar"
 [node name="menu_boton" type="Button" parent="pause_panel/HBoxContainer"]
 process_mode = 2
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_u1p7p")
 theme_override_font_sizes/font_size = 32
 text = "Salir"

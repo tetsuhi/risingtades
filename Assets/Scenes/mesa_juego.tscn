@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=27 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="2_t0m6k"]
@@ -143,9 +143,44 @@ _data = {
 "primer_turno_jugador2": SubResource("Animation_wqooh")
 }
 
+[sub_resource type="Animation" id="Animation_uckah"]
+resource_name = "background_loop"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/background:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-85, -20), Vector2(-85, -100), Vector2(-85, -100), Vector2(-85, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p646r"]
+_data = {
+"background_loop": SubResource("Animation_uckah")
+}
+
 [node name="MesaJuego" type="Node2D"]
 
 [node name="Juego" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="background" type="TextureRect" parent="Juego"]
+modulate = Color(1, 1, 1, 0.247059)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -20.0
+offset_right = 104.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_x4o7f")
 
 [node name="Area2D" type="Area2D" parent="Juego" groups=["mesa_jugador1"]]
 position = Vector2(0, 24)
@@ -256,12 +291,14 @@ offset_right = -81.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+focus_mode = 0
 theme = ExtResource("2_t0m6k")
 theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
 text = "Pasar"
 
 [node name="turno" type="Label" parent="Juego"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -474,6 +511,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 66.0
 offset_bottom = 66.0
+focus_mode = 0
 icon = ExtResource("9_qoctp")
 flat = true
 script = ExtResource("7_yvgv3")
@@ -494,6 +532,11 @@ curva_arco_mano = SubResource("Curve_xhv7g")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_r6gbt")
+}
+
+[node name="background_animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p646r")
 }
 
 [connection signal="pressed" from="Juego/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
