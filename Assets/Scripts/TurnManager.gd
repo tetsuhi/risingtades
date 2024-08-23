@@ -14,6 +14,8 @@ extends Node
 @onready var collision_mano_jugador = $"../Juego/zona_mano_jugador1/CollisionManoJugador"
 @onready var boton_pasar_turno = $"../Juego/botonPasarTurno"
 @onready var pause_button: Button = $"../UI/pause_button"
+@onready var end_game_menu: Control = $"../UI/end_game_menu"
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 
 @onready var numTurno : int = 0
@@ -23,6 +25,8 @@ extends Node
 @onready var campo_jugador1 = %campo_jugador1
 @onready var campo_oponente = %CampoOponente
 @onready var turn_label = $"../Juego/turno"
+@onready var win_label: Label = $"../UI/end_game_menu/Panel/Label"
+
 
 var estadoJuego : String
 
@@ -89,13 +93,16 @@ func determinarInicio():
 	numTurno = 1
 	juegaTurno = "Decidiendo..."
 	turn_label.text = juegaTurno
-	await get_tree().create_timer(3.0).timeout
 	boton_pasar_turno.disabled = false
+	animation_player.play("decidiendo_turno")
+	await animation_player.animation_finished
 	var rng = RandomNumberGenerator.new()
 	if rng.randi_range(0, 1) == 0:
+		animation_player.play("primer_turno_jugador1")
 		juegaTurno = "jugador"
 		esTurnoJugador()
 	else:
+		animation_player.play("primer_turno_jugador2")
 		juegaTurno = "oponente"
 		esTurnoOponente()
 		
@@ -139,6 +146,7 @@ func esTurnoJugador():
 
 func finalizaTurno():
 	if juegaTurno == "jugador":
+		animation_player.play("cambio_turno_jugador2")
 		activar_cartas_en_mesa(0, 0)
 		leerCartasEnMesa(1,0)
 		numTurno += 1
@@ -149,6 +157,7 @@ func finalizaTurno():
 		esTurnoOponente()
 
 	elif juegaTurno == "oponente":
+		animation_player.play("cambio_turno_jugador1")
 		activar_cartas_en_mesa(1, 0)
 		leerCartasEnMesa(1,1)
 		numTurno += 1
@@ -260,39 +269,47 @@ func leerCartasEnMesa(moment, player):
 func comprobar_estado_partida():
 	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo_jugador1.get_child_count() == 0:
 		turn_label.text = "Gana el oponente. Volviendo al menú"
+		win_label.text = "¡Ha ganado el jugador 2!"
+		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
 		boton_pasar_turno.disabled = true
 		pause_button.disabled = true
-		await get_tree().create_timer(1.0).timeout
-		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		#await get_tree().create_timer(1.0).timeout
+		#SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 	
 	if DeckBuild.baraja_oponente_partida.size() + mano_oponente.get_child_count() == 0 and campo_oponente.get_child_count() == 0:
 		turn_label.text = "Gana el jugador. Volviendo al menú"
+		win_label.text = "¡Ha ganado el jugador 1!"
+		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
 		boton_pasar_turno.disabled = true
 		pause_button.disabled = true
-		await get_tree().create_timer(1.0).timeout
-		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		#await get_tree().create_timer(1.0).timeout
+		#SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 		
 	if turnosMareaVivaJugador == 3:
 		turn_label.text = "Gana el jugador. Volviendo al menú"
+		win_label.text = "¡Ha ganado el jugador 1!"
+		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
 		boton_pasar_turno.disabled = true
 		pause_button.disabled = true
-		await get_tree().create_timer(1.0).timeout
-		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		#await get_tree().create_timer(1.0).timeout
+		#SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 		
 	if turnosMareaVivaOponente == 3:
 		turn_label.text = "Gana el oponente. Volviendo al menú"
+		win_label.text = "¡Ha ganado el jugador 2!"
+		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
 		boton_pasar_turno.disabled = true
 		pause_button.disabled = true
-		await get_tree().create_timer(1.0).timeout
-		SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
+		#await get_tree().create_timer(1.0).timeout
+		#SceneTransition.change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 
 func _on_boton_pasar_turno_pressed():
 	finalizaTurno()

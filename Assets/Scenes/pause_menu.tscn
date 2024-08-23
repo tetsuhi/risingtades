@@ -1,8 +1,117 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxgf48eb41sdp"]
+[gd_scene load_steps=7 format=3 uid="uid://bxgf48eb41sdp"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/PauseButtonHandler.gd" id="1_41e7q"]
 [ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="1_sxn1t"]
 [ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="2_u1p7p"]
+
+[sub_resource type="Animation" id="Animation_bvixt"]
+resource_name = "menu_pausa"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pause_panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pause_panel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause_panel:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0313726, 0.129412, 0.137255, 0), Color(0.0313726, 0.129412, 0.137255, 0.498039)]
+}
+
+[sub_resource type="Animation" id="Animation_1l0eb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pause_panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pause_panel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause_panel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9, 0.9)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0313726, 0.129412, 0.137255, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hf3jc"]
+_data = {
+"RESET": SubResource("Animation_1l0eb"),
+"menu_pausa": SubResource("Animation_bvixt")
+}
 
 [node name="pause_menu" type="Control"]
 process_mode = 3
@@ -12,10 +121,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(960, 540)
 script = ExtResource("1_41e7q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0313726, 0.129412, 0.137255, 0)
 
 [node name="pause_panel" type="Panel" parent="."]
 visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,6 +149,8 @@ offset_right = 160.0
 offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(160, 72)
 theme = ExtResource("1_sxn1t")
 
 [node name="pause_text" type="RichTextLabel" parent="pause_panel"]
@@ -81,6 +204,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_u1p7p")
 theme_override_font_sizes/font_size = 32
 text = "Salir"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hf3jc")
+}
 
 [connection signal="pressed" from="pause_panel/HBoxContainer/reanudar_boton" to="." method="_on_reanudar_boton_pressed"]
 [connection signal="pressed" from="pause_panel/HBoxContainer/menu_boton" to="." method="_on_menu_boton_pressed"]
