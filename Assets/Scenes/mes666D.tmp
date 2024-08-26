@@ -211,8 +211,6 @@ shape = SubResource("RectangleShape2D_7qt4o")
 
 [node name="zona_mano_jugador2" type="Area2D" parent="Juego" groups=["zona_mano_jugador2"]]
 position = Vector2(960, 96)
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionManoJugador2" type="CollisionShape2D" parent="Juego/zona_mano_jugador2"]
 position = Vector2(0, 12)
@@ -476,8 +474,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 100.0
-offset_bottom = 100.0
+offset_top = 132.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -489,8 +487,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -100.0
-offset_bottom = -100.0
+offset_top = -132.0
+offset_bottom = -132.0
 grow_horizontal = 2
 grow_vertical = 2
 

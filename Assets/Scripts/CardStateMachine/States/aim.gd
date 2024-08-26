@@ -10,9 +10,10 @@ class_name AimState
 @onready var mano := get_tree().get_first_node_in_group("hand")
 @onready var manoOpo := get_tree().get_first_node_in_group("hand_oponente")
 @onready var raycast := get_tree().get_first_node_in_group("raycast")
-#@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var boton_pasar_turno := get_tree().get_first_node_in_group("boton_pasar_turno")
 @onready var boton_pausa := get_tree().get_first_node_in_group("boton_pausa")
+@onready var cementerio_jugador2 := get_tree().get_first_node_in_group("cementerio_jugador2")
 
 var card_pos : Vector2
 var on_card : bool
@@ -51,8 +52,10 @@ func state_input(event : InputEvent):
 	if event.is_action_released("LMB") and collider != null:
 		var card_objective = collider.get_owner()
 		if not card_objective.disabled_card and card_objective != card:
-			
 			if card_objective.vida - card.ataque <= 0:
+				card_objective.reparent(ui_layer)
+				var tween = get_tree().create_tween()
+				tween.tween_property(card_objective, "position", cementerio_jugador2.position, 1)
 				DeckBuild.cementerio_oponente.append(card_objective.card_info.card_id)
 				card_objective.queue_free()
 			card_objective.vida -= 1
@@ -68,7 +71,7 @@ func state_input(event : InputEvent):
 			next_state = on_board_state
 		else:
 			enabling_cards()
-
+			
 			boton_pasar_turno.set_disabled(false)
 			boton_pausa.set_disabled(false)
 			collision.disabled = false

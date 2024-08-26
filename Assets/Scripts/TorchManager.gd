@@ -34,4 +34,3 @@ func restauraAntorchasJugador():
 func restauraAntorchasOponente():
 	antorchasActualesOponente = maxAntorchas
 	
-

@@ -406,6 +406,9 @@ tracks/27/keys = {
 "values": [Vector2(-85, -6)]
 }
 
+[sub_resource type="Animation" id="Animation_kqeq6"]
+resource_name = "fondo"
+
 [sub_resource type="Animation" id="Animation_m05em"]
 resource_name = "ir_baraja"
 length = 1.5
@@ -829,9 +832,6 @@ tracks/8/keys = {
 "update": 1,
 "values": [false, true]
 }
-
-[sub_resource type="Animation" id="Animation_kqeq6"]
-resource_name = "fondo"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2xkpg"]
 _data = {

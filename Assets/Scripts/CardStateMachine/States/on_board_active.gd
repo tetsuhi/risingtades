@@ -15,7 +15,7 @@ func on_enter():
 			board.move_child(card, card.reorder_pos)
 			card.reorder_pos = -1
 			activate_cards_in_board()
-		turn_manager.reajustar_mesa()
+		turn_manager.reajustar_mesa(0)
 	card.on_hand.hide()
 	card.on_board.show()
 	

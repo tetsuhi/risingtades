@@ -44,7 +44,7 @@ func on_enter():
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD,false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 	
-	turn_manager.reajustar_mano()
+	turn_manager.reajustar_mano(0)
 	deactivate_cards_in_hand()
 	posicion_original = turn_manager.reordenar_mano(card.get_global_rect().position.x)
 
@@ -54,10 +54,10 @@ func state_process(delta):
 	card.position = card.position.lerp(mousePos - card.size/2, delta * card.CARD_DELAY_SPEED)
 	
 	if not reordering:
-		turn_manager.reajustar_mano()
+		turn_manager.reajustar_mano(0)
 		finished_moving_cards = true
 	if reordering and not on_board:
-		turn_manager.reajustar_mesa()
+		turn_manager.reajustar_mesa(0)
 		var posicion_actual = turn_manager.reordenar_mano(card.get_global_rect().position.x)
 		if posicion_actual != posicion_original:
 			if finished_moving_cards:
@@ -69,11 +69,11 @@ func state_process(delta):
 		#pull_apart_cards_in_hand()
 	
 	if on_board and not reordering and card.torch_manager.antorchasActualesJugador - card.card_info.card_cost >= 0:
-		turn_manager.reajustar_mano()
+		turn_manager.reajustar_mano(0)
 		if finished_moving_cards_on_board:
 			pull_apart_cards_in_board()
 	if not on_board:
-		turn_manager.reajustar_mesa()
+		turn_manager.reajustar_mesa(0)
 		finished_moving_cards_on_board = true
 
 func state_input(event : InputEvent):
@@ -111,12 +111,12 @@ func state_input(event : InputEvent):
 		else:
 			card.disabled_card = false
 			activate_cards_in_hand()
-			turn_manager.reajustar_mesa()
+			turn_manager.reajustar_mesa(0)
 			next_state = idle_state
 	elif cancel:
 		card.disabled_card = false
 		activate_cards_in_hand()
-		turn_manager.reajustar_mesa()
+		turn_manager.reajustar_mesa(0)
 		next_state = idle_state
 	
 	if reordering and not on_board:

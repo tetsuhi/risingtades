@@ -3,11 +3,19 @@ extends State
 class_name BoardStateOponente
 
 var on_card : bool
+@onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
 
 func on_enter():
 	var board := get_tree().get_first_node_in_group("boardOponente")
 	if board:
 		card.reparent(board)
+		if card.reorder_pos != -1:
+			board.move_child(card, card.reorder_pos)
+			card.reorder_pos = -1
+			activate_cards_in_board()
+		turn_manager.reajustar_mesa(1)
+	card.on_hand.hide()
+	card.on_board.show()
 	
 func state_process(delta):
 	pass
@@ -26,3 +34,7 @@ func _on_detector_colision_mouse_entered():
 
 func _on_detector_colision_mouse_exited():
 	on_card = false
+
+func activate_cards_in_board():
+	for card in turn_manager.campo_oponente.get_children():
+		card.disabled_card = false

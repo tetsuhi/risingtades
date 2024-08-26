@@ -43,7 +43,7 @@ func on_enter():
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD,false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 	
-	turn_manager.reajustar_mano()
+	turn_manager.reajustar_mano(0)
 	deactivate_cards_in_hand()
 	posicion_original = turn_manager.reordenar_mano(card.get_global_rect().position.x)
 
@@ -53,7 +53,7 @@ func state_process(delta):
 	card.position = card.position.lerp(mousePos - card.size/2, delta * card.CARD_DELAY_SPEED)
 	
 	if not reordering:
-		turn_manager.reajustar_mano()
+		turn_manager.reajustar_mano(0)
 		finished_moving_cards = true
 	if reordering and not on_board:
 		var posicion_actual = turn_manager.reordenar_mano(card.get_global_rect().position.x)
@@ -64,7 +64,7 @@ func state_process(delta):
 			if finished_moving_cards:
 				await pull_apart_cards_in_hand()
 	if on_board:
-		turn_manager.reajustar_mano()
+		turn_manager.reajustar_mano(0)
 
 func state_input(event : InputEvent):
 	var confirm = event.is_action_released("LMB")

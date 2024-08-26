@@ -30,6 +30,8 @@ const CARD_DELAY_SPEED = 12.0	#Delay al arrastrar la carta con el cursor
 @onready var on_hand = $on_hand
 @onready var on_board = $on_board
 @onready var _animator = $AnimationPlayer
+enum player_owner {player1, player2}
+@onready var card_owner : player_owner
 
 #Parámetros de la carta, pueden cambiar en el transcurso de la partida
 var vida : int
@@ -49,12 +51,12 @@ var temp_pos_in : Vector2
 var temp_pos_out : Vector2
 
 func _ready():
-	_animator.play("turn_card_around")
 	nombre.text = card_info.card_name
 	coste.text = str(card_info.card_cost)
 	on_hand_tex.texture = card_info.texture
 	on_board_tex.texture = card_info.texture
 	descripcion.text = card_info.effect_text
+	card_owner = 0
 	
 	#Si la carta es activa o pasiva
 	if card_info.card_type == 0 or card_info.card_type == 1:
@@ -73,6 +75,8 @@ func _ready():
 		marea_label.text = str(card_info.tide_amount)
 		marea = card_info.tide_amount
 		marea_on_board.text = marea_label.text
+	
+	_animator.play("turn_card_around")
 
 func _process(delta):
 	
@@ -111,9 +115,14 @@ func _on_mouse_exited():
 	on_card = false
 
 func zoom_in_card():
-	for card in turn_manager.mano_jugador.get_children():
-		if card != self:
-			card.disabled_card = true
+	if card_owner == 0:
+		for card in turn_manager.mano_jugador.get_children():
+			if card != self:
+				card.disabled_card = true
+	else:
+		for card in turn_manager.mano_jugador2.get_children():
+			if card != self:
+				card.disabled_card = true
 	pull_apart_cards_in_hand()
 	var tween_in : Tween = get_tree().create_tween()
 	tween_in.connect("finished", on_tween_in_finished)
@@ -122,16 +131,20 @@ func zoom_in_card():
 	tween_in.set_parallel(true)
 	tween_in.tween_property(self, "scale", Vector2(1.2, 1.2), 0.1)
 	tween_in.tween_property(self, "position", temp_pos_in, 0.1)
-	turn_manager.reajustar_mano()
+	turn_manager.reajustar_mano(card_owner)
 	#z_index = 1
 	descripcion.show()
 
 func zoom_out_card():
-	#pull_in_cards_in_hand()
-	for card in turn_manager.mano_jugador.get_children():
-		if card != self:
-			card.disabled_card = false
-	turn_manager.reajustar_mano()
+	if card_owner == 0:
+		for card in turn_manager.mano_jugador.get_children():
+			if card != self:
+				card.disabled_card = false
+	else:
+		for card in turn_manager.mano_jugador2.get_children():
+			if card != self:
+				card.disabled_card = false
+	#turn_manager.reajustar_mano(card_owner)
 	var tween_out : Tween = get_tree().create_tween()
 	tween_out.connect("finished", on_tween_out_finished)
 	tween_out.set_ease(Tween.EASE_OUT)
@@ -139,7 +152,7 @@ func zoom_out_card():
 	tween_out.set_parallel(true)
 	tween_out.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 	tween_out.tween_property(self, "position", temp_pos_out, 0.1)
-	turn_manager.reajustar_mano()
+	turn_manager.reajustar_mano(card_owner)
 	#z_index = 0
 	descripcion.hide()
 
@@ -150,19 +163,34 @@ func on_tween_out_finished():
 	finished_zooming = false
 	
 func pull_apart_cards_in_hand():
-	for card in turn_manager.mano_jugador.get_children():
-		if card == self:
-			pass
-		elif self.get_global_rect().position.x > card.get_global_rect().position.x:
-			var reorder_left_tween : Tween = get_tree().create_tween()
-			reorder_left_tween.set_ease(Tween.EASE_OUT)
-			reorder_left_tween.set_trans(Tween.TRANS_EXPO)
-			reorder_left_tween.tween_property(card, "position", Vector2(card.position.x - size.x/2, card.position.y), 0.3)
-		else:
-			var reorder_right_tween : Tween = get_tree().create_tween()
-			reorder_right_tween.set_ease(Tween.EASE_OUT)
-			reorder_right_tween.set_trans(Tween.TRANS_EXPO)
-			reorder_right_tween.tween_property(card, "position", Vector2(card.position.x + size.x/2, card.position.y), 0.3)
+	if card_owner == 0:
+		for card in turn_manager.mano_jugador.get_children():
+			if card == self:
+				pass
+			elif self.get_global_rect().position.x > card.get_global_rect().position.x:
+				var reorder_left_tween : Tween = get_tree().create_tween()
+				reorder_left_tween.set_ease(Tween.EASE_OUT)
+				reorder_left_tween.set_trans(Tween.TRANS_EXPO)
+				reorder_left_tween.tween_property(card, "position", Vector2(card.position.x - size.x/2, card.position.y), 0.3)
+			else:
+				var reorder_right_tween : Tween = get_tree().create_tween()
+				reorder_right_tween.set_ease(Tween.EASE_OUT)
+				reorder_right_tween.set_trans(Tween.TRANS_EXPO)
+				reorder_right_tween.tween_property(card, "position", Vector2(card.position.x + size.x/2, card.position.y), 0.3)
+	else:
+		for card in turn_manager.mano_jugador2.get_children():
+			if card == self:
+				pass
+			elif self.get_global_rect().position.x > card.get_global_rect().position.x:
+				var reorder_left_tween : Tween = get_tree().create_tween()
+				reorder_left_tween.set_ease(Tween.EASE_OUT)
+				reorder_left_tween.set_trans(Tween.TRANS_EXPO)
+				reorder_left_tween.tween_property(card, "position", Vector2(card.position.x - size.x/2, card.position.y), 0.3)
+			else:
+				var reorder_right_tween : Tween = get_tree().create_tween()
+				reorder_right_tween.set_ease(Tween.EASE_OUT)
+				reorder_right_tween.set_trans(Tween.TRANS_EXPO)
+				reorder_right_tween.tween_property(card, "position", Vector2(card.position.x + size.x/2, card.position.y), 0.3)
 
 #func pull_in_cards_in_hand():
 	#for card in turn_manager.mano_jugador.get_children():

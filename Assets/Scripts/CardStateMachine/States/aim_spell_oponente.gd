@@ -65,20 +65,14 @@ func state_input(event : InputEvent):
 	
 	if apuntando and event.is_action_released("LMB") and collider != null:
 		var card_objective = collider.get_owner()
-		if not card_objective.disabled_card  and card_objective != card:
-		
-			print(card_objective.card_info.card_name)
-			
-			#*************************
-			#aquí pondría se efecto
-			#*************************
-			
-			card_objective.queue_free()
+		if not card_objective.disabled_card and card_objective != card:
+			if card.card_info.effect(card_objective) == null:
+				next_state = idle_state
+			else:
+				DeckBuild.cementerio_jugador.append(card.card_info.card_id)
+				card.queue_free()
 
 			enabling_cards()
-
-			DeckBuild.cementerio_oponente.append(card.card_info.card_id)
-			card.queue_free()
 			boton_pasar_turno.set_disabled(false)
 			boton_pausa.set_disabled(false)
 			collision.disabled = false
@@ -93,14 +87,22 @@ func state_input(event : InputEvent):
 func disabling_cards():
 	for i in mano_opo.get_children():
 		i.disabled_card = true
-	for i in campo_jugador.get_children():
-		i.disabled_card = false
+	if card.card_info.card_target == 7:				#6 es cartas aliadas, 7 es cartas oponentes
+		for i in campo_jugador.get_children():
+			i.disabled_card = false
+	elif card.card_info.card_target == 6:
+		for i in campo_oponente.get_children():
+			i.disabled_card = false
 
 func enabling_cards():
 	for i in mano_opo.get_children():
 		i.disabled_card = false
-	for i in campo_jugador.get_children():
-		i.disabled_card = true
+	if card.card_info.card_target == 7:				#6 es cartas aliadas, 7 es cartas oponentes
+		for i in campo_jugador.get_children():
+			i.disabled_card = true
+	elif card.card_info.card_target == 6:
+		for i in campo_oponente.get_children():
+			i.disabled_card = true
 
 func _on_detector_colision_mouse_entered():
 	on_card = true

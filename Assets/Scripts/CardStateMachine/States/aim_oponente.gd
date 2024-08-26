@@ -7,9 +7,9 @@ class_name AimStateOponente
 @onready var puntero := get_tree().get_first_node_in_group("puntero")
 @onready var mouse_pos := get_tree().get_first_node_in_group("mouse_pos")
 @onready var campo_jugador := get_tree().get_first_node_in_group("board")
-@onready var mano_oponente := get_tree().get_first_node_in_group("hand_oponente")
+@onready var mano_jugador2 := get_tree().get_first_node_in_group("hand_oponente")
 @onready var raycast := get_tree().get_first_node_in_group("raycast")
-#@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var boton_pasar_turno := get_tree().get_first_node_in_group("boton_pasar_turno")
 @onready var boton_pausa := get_tree().get_first_node_in_group("boton_pausa")
 
@@ -41,16 +41,17 @@ func state_input(event : InputEvent):
 		boton_pasar_turno.set_disabled(false)
 		boton_pausa.set_disabled(false)
 		collision.disabled = false
-		enabling_cards()
+		for i in mano_jugador2.get_children():
+			i.disabled_card = false
+		for i in campo_jugador.get_children():
+			i.disabled_card = true
 		next_state = on_board_state
 
 	if event.is_action_released("LMB") and collider != null:
 		var card_objective = collider.get_owner()
 		if not card_objective.disabled_card and card_objective != card:
-			
 			if card_objective.vida - card.ataque <= 0:
 				DeckBuild.cementerio_jugador.append(card_objective.card_info.card_id)
-				print(DeckBuild.cementerio_jugador)
 				card_objective.queue_free()
 			card_objective.vida -= 1
 			card_objective.vida_label.text = str(card_objective.vida)
@@ -82,13 +83,13 @@ func state_input(event : InputEvent):
 		next_state = on_board_state
 
 func disabling_cards():
-	for i in mano_oponente.get_children():
+	for i in mano_jugador2.get_children():
 		i.disabled_card = true
 	for i in campo_jugador.get_children():
 		i.disabled_card = false
 
 func enabling_cards():
-	for i in mano_oponente.get_children():
+	for i in mano_jugador2.get_children():
 		i.disabled_card = false
 	for i in campo_jugador.get_children():
 		i.disabled_card = true
