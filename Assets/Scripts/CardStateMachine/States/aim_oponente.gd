@@ -12,6 +12,7 @@ class_name AimStateOponente
 @onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var boton_pasar_turno := get_tree().get_first_node_in_group("boton_pasar_turno")
 @onready var boton_pausa := get_tree().get_first_node_in_group("boton_pausa")
+@onready var cementerio_jugador1 := get_tree().get_first_node_in_group("cementerio_jugador1")
 
 var card_pos : Vector2
 var on_card : bool
@@ -51,8 +52,8 @@ func state_input(event : InputEvent):
 		var card_objective = collider.get_owner()
 		if not card_objective.disabled_card and card_objective != card:
 			if card_objective.vida - card.ataque <= 0:
-				DeckBuild.cementerio_jugador.append(card_objective.card_info.card_id)
-				card_objective.queue_free()
+				puntero.hide()
+				card_objective.card_death()
 			card_objective.vida -= 1
 			card_objective.vida_label.text = str(card_objective.vida)
 
@@ -62,7 +63,6 @@ func state_input(event : InputEvent):
 			boton_pasar_turno.set_disabled(false)
 			boton_pausa.set_disabled(false)
 			collision.disabled = false
-			puntero.hide()
 			next_state = on_board_state
 		else:
 			enabling_cards()

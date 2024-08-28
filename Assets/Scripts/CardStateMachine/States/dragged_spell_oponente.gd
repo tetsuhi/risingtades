@@ -81,7 +81,6 @@ func state_input(event : InputEvent):
 					1:	#tide
 						tide_manager.marea_seleccionada == card.card_info.marea
 						tide_manager.update_tide(card.card_info.tide_sum)
-						card.queue_free()
 					2: #hand
 						pass
 					3: #oponent hand
@@ -94,10 +93,14 @@ func state_input(event : InputEvent):
 						pass 
 					7: #enemycreatures
 						pass
+				activate_cards_in_hand()
+				card.card_death()
 		else:
+			activate_cards_in_hand()
 			card.disabled_card = false
 			next_state = idle_state
 	elif cancel:
+		activate_cards_in_hand()
 		card.disabled_card = false
 		next_state = idle_state
 	
@@ -105,6 +108,7 @@ func state_input(event : InputEvent):
 		if event.is_action_released("LMB"):
 			card.reorder_pos = turn_manager.reordenar_mano_oponente(card.get_global_rect().position.x)
 			next_state = idle_state
+		activate_cards_in_hand()
 
 func _on_detector_colision_area_entered(area):
 	if area == mesa_oponente:
@@ -138,3 +142,7 @@ func pull_apart_cards_in_hand():
 func deactivate_cards_in_hand():
 	for card in turn_manager.mano_jugador2.get_children():
 		card.disabled_card = true
+
+func activate_cards_in_hand():
+	for card in turn_manager.mano_jugador2.get_children():
+		card.disabled_card = false

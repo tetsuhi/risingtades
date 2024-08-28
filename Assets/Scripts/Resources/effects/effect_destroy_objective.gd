@@ -11,4 +11,4 @@ class_name effect_destroy_objective
 
 
 func effect(card_objective):
-	card_objective.queue_free()
+	card_objective.card_death()

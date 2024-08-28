@@ -53,11 +53,8 @@ func state_input(event : InputEvent):
 		var card_objective = collider.get_owner()
 		if not card_objective.disabled_card and card_objective != card:
 			if card_objective.vida - card.ataque <= 0:
-				card_objective.reparent(ui_layer)
-				var tween = get_tree().create_tween()
-				tween.tween_property(card_objective, "position", cementerio_jugador2.position, 1)
-				DeckBuild.cementerio_oponente.append(card_objective.card_info.card_id)
-				card_objective.queue_free()
+				puntero.hide()
+				card_objective.card_death()
 			card_objective.vida -= 1
 			card_objective.vida_on_board.text = str(card_objective.vida)
 
@@ -67,7 +64,6 @@ func state_input(event : InputEvent):
 			boton_pasar_turno.set_disabled(false)
 			boton_pausa.set_disabled(false)
 			collision.disabled = false
-			puntero.hide()
 			next_state = on_board_state
 		else:
 			enabling_cards()

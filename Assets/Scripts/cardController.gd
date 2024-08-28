@@ -10,6 +10,10 @@ const CARD_DELAY_SPEED = 12.0	#Delay al arrastrar la carta con el cursor
 @onready var torch_manager = $TorchManager
 @onready var turn_manager := get_tree().get_first_node_in_group("turn_manager")
 @onready var tide_manager := get_tree().get_first_node_in_group("tide_manager")
+@onready var cementerio_jugador1 := get_tree().get_first_node_in_group("cementerio_jugador1")
+@onready var cementerio_jugador2 := get_tree().get_first_node_in_group("cementerio_jugador2")
+@onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
+@onready var detector_colision: Area2D = $detectorColision
 
 @onready var nombre = $on_hand/Nombre
 @onready var descripcion = $on_hand/Descripcion
@@ -191,6 +195,38 @@ func pull_apart_cards_in_hand():
 				reorder_right_tween.set_ease(Tween.EASE_OUT)
 				reorder_right_tween.set_trans(Tween.TRANS_EXPO)
 				reorder_right_tween.tween_property(card, "position", Vector2(card.position.x + size.x/2, card.position.y), 0.3)
+
+func card_death():
+	self.detector_colision.monitoring = false
+	self.reparent(ui_layer)
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_QUART)
+	tween.set_ease(Tween.EASE_OUT)
+	if card_owner == 0:
+		if card_info.card_type == 0 or card_info.card_type == 1:
+			tween.tween_property(self, "position", cementerio_jugador1.position, 0.75)
+			await tween.finished
+			DeckBuild.cementerio_jugador.append(self.card_info.card_id)
+			cementerio_jugador1.texture = self.on_hand_tex.texture
+		else:
+			tween.tween_property(self, "position", Vector2(get_viewport().size.x/2 - self.size.x/2, get_viewport().size.y/2 - self.size.y/2), 0.75)
+			tween.tween_property(self, "position", cementerio_jugador1.position, 0.75)
+			await tween.finished
+			DeckBuild.cementerio_jugador.append(self.card_info.card_id)
+			cementerio_jugador1.texture = self.on_hand_tex.texture
+	else:
+		if card_info.card_type == 0 or card_info.card_type == 1:
+			tween.tween_property(self, "position", cementerio_jugador2.position, 0.75)
+			await tween.finished
+			DeckBuild.cementerio_oponente.append(self.card_info.card_id)
+			cementerio_jugador2.texture = self.on_hand_tex.texture
+		else:
+			tween.tween_property(self, "position", Vector2(get_viewport().size.x/2 - self.size.x/2, get_viewport().size.y/2 - self.size.y/2), 0.75)
+			tween.tween_property(self, "position", cementerio_jugador2.position, 0.75)
+			await tween.finished
+			DeckBuild.cementerio_oponente.append(self.card_info.card_id)
+			cementerio_jugador2.texture = self.on_hand_tex.texture
+	self.queue_free()
 
 #func pull_in_cards_in_hand():
 	#for card in turn_manager.mano_jugador.get_children():

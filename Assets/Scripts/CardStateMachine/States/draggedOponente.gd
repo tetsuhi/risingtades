@@ -123,6 +123,7 @@ func state_input(event : InputEvent):
 		if event.is_action_released("LMB"):
 			card.reorder_pos = turn_manager.reordenar_mano_oponente(card.get_global_rect().position.x)
 			next_state = idle_state
+		activate_cards_in_hand()
 
 func _on_detector_colision_area_entered(area):
 	if area == mesa_jugador2:

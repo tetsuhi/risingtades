@@ -179,6 +179,7 @@ size = Vector2(169, 238)
 [node name="CartaUI" type="Control"]
 custom_minimum_size = Vector2(170, 238)
 layout_mode = 3
+anchors_preset = 0
 offset_left = -85.0
 offset_top = -119.0
 offset_right = 85.0
