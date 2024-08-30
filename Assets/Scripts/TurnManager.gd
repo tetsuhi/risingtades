@@ -19,8 +19,11 @@ extends Node
 @onready var end_game_menu: Control = $"../UI/end_game_menu"
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var background_animator: AnimationPlayer = $"../background_animator"
+@onready var tide_animator: AnimationPlayer = $"../tide_animator"
 @onready var baraja_jugador_1: TextureRect = $"../Juego/baraja_jugador1"
 @onready var baraja_jugador_2: TextureRect = $"../Juego/baraja_jugador2"
+@onready var turno_marea_viva_jugador_1: Label = $"../Juego/turno_marea_viva_jugador1"
+@onready var turno_marea_viva_jugador_2: Label = $"../Juego/turno_marea_viva_jugador2"
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -52,6 +55,8 @@ const criatura_pasiva_oponente = preload("res://Assets/Scenes/CartasOponente/cri
 const conjuro_oponente = preload("res://Assets/Scenes/CartasOponente/conjuroOponente.tscn")
 
 func _ready():
+	turno_marea_viva_jugador_1.visible = false
+	turno_marea_viva_jugador_2.visible = false
 	background_animator.play("background_loop")
 	estadoJuego = "decide"
 	determinarInicio()
@@ -114,12 +119,20 @@ func determinarInicio():
 		juegaTurno = "oponente"
 		esTurnoOponente()
 		
-	change_turn_label()
+	#change_turn_label()
+	tide_animator.play("player1_initial_tide")
+	await tide_animator.animation_finished
+	tide_animator.play("player2_initial_tide")
 
 func esTurnoOponente():
 	
 	if tide_manager.estadoMareaOponente == "viva":
 		turnosMareaVivaOponente += 1
+		turno_marea_viva_jugador_2.text = str(turnosMareaVivaOponente)
+		tide_animator.play("player2_tide_contador_update")
+	else:
+		turnosMareaVivaOponente = 0
+		tide_animator.play_backwards("player2_tide_contador")
 	tide_manager.estadoMareaOponente = tide_manager.comprobarMarea(tide_manager.mareaOponente, tide_manager.estadoMareaOponente)
 	tide_manager.change_bar_color(1)
 	torch_manager.antorchas_actuales_oponente.text = "Antorchas: " + str(torch_manager.maxAntorchas)
@@ -139,6 +152,11 @@ func esTurnoJugador():
 	
 	if tide_manager.estadoMareaJugador == "viva":
 		turnosMareaVivaJugador += 1
+		turno_marea_viva_jugador_1.text = str(turnosMareaVivaJugador)
+		tide_animator.play("player1_tide_contador_update")
+	else:
+		turnosMareaVivaJugador = 0
+		tide_animator.play_backwards("player1_tide_contador")
 	tide_manager.estadoMareaJugador = tide_manager.comprobarMarea(tide_manager.mareaJugador, tide_manager.estadoMareaJugador)	
 	tide_manager.change_bar_color(0)
 	torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(torch_manager.maxAntorchas)

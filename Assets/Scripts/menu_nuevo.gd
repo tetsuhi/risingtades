@@ -20,6 +20,7 @@ func _ready() -> void:
 	if SceneTransition.empezado:
 		$AnimationPlayer.play("pulsar_empezar")
 		$AnimationPlayer.seek(3, false)
+		
 	$background_animator.play("background_loop")
 
 func _input(event: InputEvent) -> void:

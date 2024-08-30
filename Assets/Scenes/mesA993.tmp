@@ -1,0 +1,700 @@
+[gd_scene load_steps=32 format=3 uid="uid://bs615om7u3vog"]
+
+[ext_resource type="Texture2D" uid="uid://cbrral28m3rse" path="res://Assets/Textures/cardPlaceholder.jpg" id="2_7r7ex"]
+[ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="2_t0m6k"]
+[ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="3_2hdho"]
+[ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="3_t5cda"]
+[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="4_x4o7f"]
+[ext_resource type="Script" path="res://Assets/Scripts/PauseButtonHandler.gd" id="7_yvgv3"]
+[ext_resource type="Script" path="res://Assets/Scripts/PauseHandler.gd" id="8_niflv"]
+[ext_resource type="PackedScene" uid="uid://cawp2u43xx6mu" path="res://Assets/Scenes/end_game_menu.tscn" id="8_qwh8y"]
+[ext_resource type="Script" path="res://Assets/Scripts/TurnManager.gd" id="9_1trl3"]
+[ext_resource type="Texture2D" uid="uid://c5k7q2peijevt" path="res://Assets/Textures/pause.png" id="9_qoctp"]
+[ext_resource type="Script" path="res://Assets/Scripts/TorchManager.gd" id="9_rvepi"]
+[ext_resource type="PackedScene" uid="uid://bxgf48eb41sdp" path="res://Assets/Scenes/pause_menu.tscn" id="12_24cjn"]
+[ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
+size = Vector2(1152, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qt4o"]
+size = Vector2(896, 216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3jj8"]
+bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="Curve" id="Curve_g282d"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xhv7g"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 9.59859, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), -9.599, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_phhao"]
+_data = [Vector2(0, 1), 0.0, -4.16812, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 4.18963, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_lx4he"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/turno_texture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.57079]
+}
+
+[sub_resource type="Animation" id="Animation_4ojrb"]
+resource_name = "cambio_turno_jugador1"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/turno_texture:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [3.14159, 2.96706, 6.45772, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_oodv7"]
+resource_name = "cambio_turno_jugador2"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/turno_texture:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 2.96706, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_wgesu"]
+resource_name = "decidiendo_turno"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/turno_texture:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.57079, -3.14159, 1.5708, 0.0, -1.57079, -3.14159, 1.5708, 0.0, -1.57079]
+}
+
+[sub_resource type="Animation" id="Animation_2c3v1"]
+resource_name = "primer_turno_jugador1"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/turno_texture:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [4.71239, 4.53786, 6.45772, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_wqooh"]
+resource_name = "primer_turno_jugador2"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/turno_texture:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [4.71239, 4.88692, 2.96706, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6gbt"]
+_data = {
+"RESET": SubResource("Animation_lx4he"),
+"cambio_turno_jugador1": SubResource("Animation_4ojrb"),
+"cambio_turno_jugador2": SubResource("Animation_oodv7"),
+"decidiendo_turno": SubResource("Animation_wgesu"),
+"primer_turno_jugador1": SubResource("Animation_2c3v1"),
+"primer_turno_jugador2": SubResource("Animation_wqooh")
+}
+
+[sub_resource type="Animation" id="Animation_uckah"]
+resource_name = "background_loop"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/background:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-85, -20), Vector2(-85, -100), Vector2(-85, -100), Vector2(-85, -20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p646r"]
+_data = {
+"background_loop": SubResource("Animation_uckah")
+}
+
+[sub_resource type="Animation" id="Animation_cxmye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/marea_text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, 528)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Juego/marea_text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Juego/marea_text:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]marea alta!"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Juego/marea_text:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w85xp"]
+resource_name = "player1_initial_tide"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Juego/marea_text:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1, 1.33333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(14, 567.526), Vector2(14, 527.832), Vector2(14, 527.832), Vector2(14, 520.835), Vector2(14, 567.526)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Juego/marea_text:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Juego/marea_text:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea inicial"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Juego/marea_text:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 1.46667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0glyu"]
+_data = {
+"RESET": SubResource("Animation_cxmye"),
+"player1_initial_tide": SubResource("Animation_w85xp")
+}
+
+[node name="MesaJuego" type="Node2D"]
+
+[node name="Juego" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="background" type="TextureRect" parent="Juego"]
+modulate = Color(1, 1, 1, 0.247059)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -20.0
+offset_right = 104.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_x4o7f")
+
+[node name="Area2D" type="Area2D" parent="Juego" groups=["mesa_jugador1"]]
+position = Vector2(0, 24)
+
+[node name="CollisionJugador" type="CollisionShape2D" parent="Juego/Area2D" groups=["collision_jugador"]]
+position = Vector2(960, 616.114)
+shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="Area2D2" type="Area2D" parent="Juego" groups=["mesa_jugador2"]]
+position = Vector2(0, 24)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionOponente" type="CollisionShape2D" parent="Juego/Area2D2" groups=["collision_oponente"]]
+position = Vector2(960, 416.114)
+shape = SubResource("RectangleShape2D_kmtpe")
+
+[node name="zona_mano_jugador1" type="Area2D" parent="Juego" groups=["zona_mano_jugador1"]]
+position = Vector2(960, 960)
+
+[node name="CollisionManoJugador1" type="CollisionShape2D" parent="Juego/zona_mano_jugador1"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_7qt4o")
+
+[node name="zona_mano_jugador2" type="Area2D" parent="Juego" groups=["zona_mano_jugador2"]]
+position = Vector2(960, 96)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionManoJugador2" type="CollisionShape2D" parent="Juego/zona_mano_jugador2"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_7qt4o")
+
+[node name="baraja_jugador1" type="TextureRect" parent="Juego" groups=["baraja_jugador1"]]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -272.0
+offset_top = -272.0
+offset_right = -102.0
+offset_bottom = -33.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="baraja_jugador2" type="TextureRect" parent="Juego" groups=["baraja_jugador2"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_top = 40.0
+offset_right = -102.0
+offset_bottom = 279.0
+grow_horizontal = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="cementerio_jugador1" type="TextureRect" parent="Juego" groups=["cementerio_jugador1"]]
+modulate = Color(0.498039, 0.498039, 0.498039, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 299.0
+offset_top = -160.0
+offset_right = 469.0
+offset_bottom = 79.0
+grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="cementerio_jugador2" type="TextureRect" parent="Juego" groups=["cementerio_jugador2"]]
+modulate = Color(0.498039, 0.498039, 0.498039, 1)
+offset_left = 299.0
+offset_top = -80.0
+offset_right = 469.0
+offset_bottom = 159.0
+texture = ExtResource("2_7r7ex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="barra_marea_jugador1" type="ProgressBar" parent="Juego"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = 445.0
+offset_right = 980.0
+offset_bottom = 472.0
+grow_vertical = 2
+rotation = -1.5708
+min_value = -20.0
+max_value = 20.0
+step = 1.0
+show_percentage = false
+
+[node name="barra_marea_jugador2" type="ProgressBar" parent="Juego"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 162.0
+offset_top = 445.0
+offset_right = 1054.0
+offset_bottom = 472.0
+grow_vertical = 2
+rotation = -1.5708
+min_value = -20.0
+max_value = 20.0
+step = 1.0
+fill_mode = 1
+show_percentage = false
+
+[node name="marea_text" type="RichTextLabel" parent="Juego"]
+visible = false
+offset_left = 30.0
+offset_top = 528.0
+offset_right = 206.0
+offset_bottom = 572.0
+theme_override_fonts/normal_font = ExtResource("3_t5cda")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1][center]marea alta!"
+fit_content = true
+
+[node name="marea_text2" type="RichTextLabel" parent="Juego"]
+visible = false
+offset_left = 104.0
+offset_top = 528.0
+offset_right = 248.0
+offset_bottom = 552.0
+theme_override_fonts/normal_font = ExtResource("3_t5cda")
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1][center]marea alta!"
+fit_content = true
+
+[node name="botonPasarTurno" type="Button" parent="Juego" groups=["boton_pasar_turno"]]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -20.0
+offset_right = -81.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("2_t0m6k")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
+text = "Pasar"
+
+[node name="turno" type="Label" parent="Juego"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -28.0
+offset_right = 80.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="turno_texture" type="TextureRect" parent="Juego"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 244.0
+offset_top = -45.0
+offset_right = 334.0
+offset_bottom = 45.0
+grow_vertical = 2
+rotation = -1.57079
+pivot_offset = Vector2(44, 44)
+texture = ExtResource("4_x4o7f")
+expand_mode = 1
+
+[node name="mareaJugador" type="Label" parent="Juego"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 72.0
+offset_top = 508.0
+offset_right = 232.0
+offset_bottom = 564.0
+grow_vertical = 2
+rotation = -1.57079
+size_flags_horizontal = 0
+theme = ExtResource("3_2hdho")
+text = "ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mareaOponente" type="Label" parent="Juego"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = 508.0
+offset_right = 304.0
+offset_bottom = 564.0
+grow_vertical = 2
+rotation = -1.57079
+theme = ExtResource("3_2hdho")
+text = "ejemplo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="antorchasActualesJugador" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 36.0
+offset_right = -24.0001
+offset_bottom = 92.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "antorchas: "
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="antorchasMaxJugador" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 68.0
+offset_right = -112.0
+offset_bottom = 124.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "max.:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="antorchasActualesOponente" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -124.0
+offset_bottom = -68.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "antorchas:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="antorchasMaxOponente" type="Label" parent="Juego"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -92.0
+offset_right = -112.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_2hdho")
+text = "max.:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="mano_jugador1" type="Control" parent="Juego" groups=["hand"]]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -88.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="mano_jugador2" type="Control" parent="Juego" groups=["hand_oponente"]]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 91.0
+offset_bottom = 91.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="campo_jugador1" type="Control" parent="Juego" groups=["board"]]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="campo_jugador2" type="Control" parent="Juego" groups=["boardOponente"]]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="Juego" groups=["raycast"]]
+target_position = Vector2(0, 0)
+collision_mask = 3
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="mouse_pos" type="Control" parent="UI" groups=["mouse_pos"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="puntero" type="Line2D" parent="UI" groups=["puntero"]]
+visible = false
+default_color = Color(0.930177, 0, 0.13985, 1)
+
+[node name="pause_menu" parent="UI" instance=ExtResource("12_24cjn")]
+mouse_filter = 2
+script = ExtResource("8_niflv")
+
+[node name="pause_button" type="Button" parent="UI" groups=["boton_pausa"]]
+process_mode = 3
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 66.0
+focus_mode = 0
+icon = ExtResource("9_qoctp")
+flat = true
+script = ExtResource("7_yvgv3")
+
+[node name="end_game_menu" parent="UI" instance=ExtResource("8_qwh8y")]
+
+[node name="TideManager" type="Node" parent="." groups=["tide_manager"]]
+script = ExtResource("14_x3k5s")
+
+[node name="TorchManager" type="Node" parent="." groups=["torch"]]
+script = ExtResource("9_rvepi")
+
+[node name="TurnManager" type="Node" parent="." groups=["turn_manager"]]
+script = ExtResource("9_1trl3")
+curva_distancia_mano = SubResource("Curve_g282d")
+curva_arco_mano = SubResource("Curve_xhv7g")
+curva_arco_mano_player2 = SubResource("Curve_phhao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r6gbt")
+}
+
+[node name="background_animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p646r")
+}
+
+[node name="tide_animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0glyu")
+}
+
+[connection signal="pressed" from="Juego/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
+[connection signal="pressed" from="UI/pause_button" to="UI/pause_button" method="_on_pressed"]

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cgqyorv04avt0"]
+
+[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="1_y5t7o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rakf4"]
+texture = ExtResource("1_y5t7o")
+
+[resource]
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_rakf4")

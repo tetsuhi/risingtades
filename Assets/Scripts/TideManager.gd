@@ -10,7 +10,9 @@ var marea_seleccionada : int 	#Sirve para la función update_tide, permite hacer
 
 #Estados de marea
 var estadoMareaJugador : String
+#var estado_marea_jugador1_anterior : String = estadoMareaJugador
 var estadoMareaOponente : String
+#var estado_marea_jugador2_anterior : String = estadoMareaOponente
 var color_jugador1 : Color = Color.MEDIUM_TURQUOISE
 var color_jugador2 : Color = Color.MEDIUM_TURQUOISE
 @onready var marea_jugador = $"../Juego/mareaJugador"
@@ -18,6 +20,9 @@ var color_jugador2 : Color = Color.MEDIUM_TURQUOISE
 @onready var turn_manager = $"../TurnManager"
 @onready var barra_marea_jugador_1: ProgressBar = $"../Juego/barra_marea_jugador1"
 @onready var barra_marea_jugador_2: ProgressBar = $"../Juego/barra_marea_jugador2"
+@onready var turno_marea_viva_jugador_1: Label = $"../Juego/turno_marea_viva_jugador1"
+@onready var turno_marea_viva_jugador_2: Label = $"../Juego/turno_marea_viva_jugador2"
+@onready var tide_animator: AnimationPlayer = $"../tide_animator"
 
 func iniciarMareas():
 	estadoMareaJugador = comprobarMarea(mareaJugador, estadoMareaJugador)
@@ -66,31 +71,53 @@ func update_tide(amount):
 		barra_marea_jugador_2.value = mareaOponente
 
 func change_bar_color(marea):
+	var tide_animation : String = ""
 	if marea == 0:
 		match estadoMareaJugador:
 				"muerta":
 					color_jugador1 = Color.DARK_RED
+					turno_marea_viva_jugador_1.visible = false
 				"baja":
 					color_jugador1 = Color.DARK_ORANGE
+					turno_marea_viva_jugador_1.visible = false
 				"inicial":
 					color_jugador1 = Color.MEDIUM_TURQUOISE
+					tide_animation = "player1_initial_tide"
+					turno_marea_viva_jugador_1.visible = false
 				"alta":
 					color_jugador1 = Color.TURQUOISE
+					tide_animation = "player1_alta_tide"
+					turno_marea_viva_jugador_1.visible = false
 				"viva":
 					color_jugador1 = Color.LIGHT_CYAN
+					tide_animation = "player1_viva_tide"
+		if barra_marea_jugador_1.modulate != color_jugador1 and tide_animation != "":
+			tide_animator.play(tide_animation)
+			#await tide_animator.animation_finished
 		barra_marea_jugador_1.modulate = color_jugador1
 	if marea == 1:
 		match estadoMareaOponente:
 				"muerta":
 					color_jugador2 = Color.DARK_RED
+					turno_marea_viva_jugador_2.visible = false
 				"baja":
 					color_jugador2 = Color.DARK_ORANGE
+					turno_marea_viva_jugador_2.visible = false
 				"inicial":
 					color_jugador2 = Color.MEDIUM_TURQUOISE
+					tide_animation = "player2_initial_tide"
+					turno_marea_viva_jugador_2.visible = false
 				"alta":
 					color_jugador2 = Color.TURQUOISE
+					tide_animation = "player2_alta_tide"
+					turno_marea_viva_jugador_2.visible = false
 				"viva":
 					color_jugador2 = Color.LIGHT_CYAN
+					tide_animation = "player2_viva_tide"
+					turno_marea_viva_jugador_2.visible = true
+		if barra_marea_jugador_2.modulate != color_jugador2 and tide_animation != "":
+			tide_animator.play(tide_animation)
+			#await tide_animator.animation_finished
 		barra_marea_jugador_2.modulate = color_jugador2
 
 #func _process(delta):
