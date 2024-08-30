@@ -218,7 +218,7 @@ collision_mask = 2
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_7qt4o")
 
-[node name="baraja_jugador1" type="TextureRect" parent="Juego"]
+[node name="baraja_jugador1" type="TextureRect" parent="Juego" groups=["baraja_jugador1"]]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -230,6 +230,17 @@ offset_right = -102.0
 offset_bottom = -33.0
 grow_horizontal = 0
 grow_vertical = 0
+texture = ExtResource("2_7r7ex")
+
+[node name="baraja_jugador2" type="TextureRect" parent="Juego" groups=["baraja_jugador2"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_top = 40.0
+offset_right = -102.0
+offset_bottom = 279.0
+grow_horizontal = 0
 texture = ExtResource("2_7r7ex")
 
 [node name="cementerio_jugador1" type="TextureRect" parent="Juego" groups=["cementerio_jugador1"]]
@@ -255,17 +266,6 @@ offset_bottom = 159.0
 texture = ExtResource("2_7r7ex")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="baraja_jugador2" type="TextureRect" parent="Juego"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -272.0
-offset_top = 40.0
-offset_right = -102.0
-offset_bottom = 279.0
-grow_horizontal = 0
-texture = ExtResource("2_7r7ex")
 
 [node name="barra_marea_jugador1" type="ProgressBar" parent="Juego"]
 anchors_preset = 4
@@ -297,6 +297,15 @@ max_value = 20.0
 step = 1.0
 fill_mode = 1
 show_percentage = false
+
+[node name="marea_text" type="RichTextLabel" parent="Juego"]
+offset_left = 32.0
+offset_top = 528.0
+offset_right = 176.0
+offset_bottom = 552.0
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=1][center]marea alta!"
+fit_content = true
 
 [node name="botonPasarTurno" type="Button" parent="Juego" groups=["boton_pasar_turno"]]
 anchors_preset = 6

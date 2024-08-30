@@ -314,6 +314,8 @@ offset_left = -85.0
 offset_top = -119.0
 offset_right = 85.0
 offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(85, 119)
 mouse_filter = 2
 

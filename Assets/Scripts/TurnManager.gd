@@ -19,6 +19,8 @@ extends Node
 @onready var end_game_menu: Control = $"../UI/end_game_menu"
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var background_animator: AnimationPlayer = $"../background_animator"
+@onready var baraja_jugador_1: TextureRect = $"../Juego/baraja_jugador1"
+@onready var baraja_jugador_2: TextureRect = $"../Juego/baraja_jugador2"
 
 @onready var numTurno : int = 0
 @onready var juegaTurno : String
@@ -29,6 +31,8 @@ extends Node
 @onready var turn_label = $"../Juego/turno"
 @onready var win_label: Label = $"../UI/end_game_menu/Panel/Label"
 
+var posiciones_cartas_jugador1 : Array
+var posiciones_cartas_jugador2 : Array
 
 var estadoJuego : String
 
@@ -95,11 +99,11 @@ func determinarInicio():
 	DeckBuild.baraja_oponente_partida.shuffle()
 	
 	numTurno = 1
-	juegaTurno = "Decidiendo..."
-	turn_label.text = juegaTurno
-	boton_pasar_turno.disabled = false
+	#juegaTurno = "Decidiendo..."
+	#turn_label.text = juegaTurno
 	animation_player.play("decidiendo_turno")
 	await animation_player.animation_finished
+	boton_pasar_turno.disabled = false
 	var rng = RandomNumberGenerator.new()
 	if rng.randi_range(0, 1) == 0:
 		animation_player.play("primer_turno_jugador1")
@@ -178,38 +182,44 @@ func finalizaTurno():
 
 func robaCartaJugador():
 	
-	if mano_jugador.get_child_count() < 7:
-		if DeckBuild.baraja_jugador_partida.size() != 0:
-			var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()
-			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
-			var nueva_carta
-			if nueva_carta_info.card_type == 0:
-				nueva_carta = criatura_activa_jugador.instantiate()
-			elif nueva_carta_info.card_type == 1:
-				nueva_carta = criatura_pasiva_jugador.instantiate()
-			else:
-				nueva_carta = conjuro_jugador.instantiate()
-			nueva_carta.card_info = nueva_carta_info
-			#nueva_carta.card_info.effect_text = "Modifica la marea en " + str(nueva_carta.card_info.tide_amount) + " puntos"
-			mano_jugador.add_child(nueva_carta)
-	
-	reajustar_mano(0)
+	if mano_jugador.get_child_count() < 7 and DeckBuild.baraja_jugador_partida.size() != 0:
+		boton_pasar_turno.disabled = true
+		var nueva_carta_id = DeckBuild.baraja_jugador_partida.pop_back()
+		var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
+		var nueva_carta
+		if nueva_carta_info.card_type == 0:
+			nueva_carta = criatura_activa_jugador.instantiate()
+		elif nueva_carta_info.card_type == 1:
+			nueva_carta = criatura_pasiva_jugador.instantiate()
+		else:
+			nueva_carta = conjuro_jugador.instantiate()
+		nueva_carta.card_info = nueva_carta_info
+		mano_jugador.add_child(nueva_carta)
+
+		obtener_posiciones_cartas_en_mano(0)
+		await mano_jugador.get_child(mano_jugador.get_child_count() - 1).card_draw()
+		reajustar_mano(0)
+		boton_pasar_turno.disabled = false
 
 func robaCartaOponente():
-	if mano_jugador2.get_child_count() < 7:
-		if DeckBuild.baraja_oponente_partida.size() != 0:
-			var nueva_carta_id = DeckBuild.baraja_oponente_partida.pop_back()
-			var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
-			var nueva_carta
-			if nueva_carta_info.card_type == 0:
-				nueva_carta = criatura_activa_oponente.instantiate()
-			elif nueva_carta_info.card_type == 1:
-				nueva_carta = criatura_pasiva_oponente.instantiate()
-			else:
-				nueva_carta = conjuro_oponente.instantiate()
-			nueva_carta.card_info = nueva_carta_info
-			mano_jugador2.add_child(nueva_carta)
-	reajustar_mano(1)
+	if mano_jugador2.get_child_count() < 7 and DeckBuild.baraja_oponente_partida.size() != 0:
+		boton_pasar_turno.disabled = true
+		var nueva_carta_id = DeckBuild.baraja_oponente_partida.pop_back()
+		var nueva_carta_info = load(card_database.DATA[nueva_carta_id])
+		var nueva_carta
+		if nueva_carta_info.card_type == 0:
+			nueva_carta = criatura_activa_oponente.instantiate()
+		elif nueva_carta_info.card_type == 1:
+			nueva_carta = criatura_pasiva_oponente.instantiate()
+		else:
+			nueva_carta = conjuro_oponente.instantiate()
+		nueva_carta.card_info = nueva_carta_info
+		mano_jugador2.add_child(nueva_carta)
+		
+		obtener_posiciones_cartas_en_mano(1)
+		await mano_jugador2.get_child(mano_jugador2.get_child_count() - 1).card_draw()
+		reajustar_mano(1)
+		boton_pasar_turno.disabled = false
 
 func leerCartasEnMesa(moment, player):
 	#moment -> 0 - Inicio del turno
@@ -376,8 +386,9 @@ func activar_cartas_en_mesa(target : int, estado : int):
 				i._animator.play("turn_card_around")
 				reajustar_mano(1)
 
-func reajustar_mano(jugador : int):
+func obtener_posiciones_cartas_en_mano(jugador : int):
 	if jugador == 0:
+		posiciones_cartas_jugador1 = []
 		for card in mano_jugador.get_children():
 			var hand_ratio = 0.5
 			
@@ -387,12 +398,11 @@ func reajustar_mano(jugador : int):
 			var destination = mano_jugador.position
 			destination.x += - 1 * curva_distancia_mano.sample(hand_ratio) * (HAND_WIDTH * mano_jugador.get_child_count())
 			destination.y += curva_arco_mano.sample(hand_ratio) * HAND_HEIGHT
-			
-			card.position.x = mano_jugador.position.x - destination.x - card.size.x/2
-			card.position.y = mano_jugador.position.y - destination.y - card.size.y/2
-			card.temp_pos_in = Vector2(card.position.x, card.position.y - 90)
-			card.temp_pos_out = card.position
+			posiciones_cartas_jugador1.append(Vector2(mano_jugador.position.x - destination.x - card.size.x/2, mano_jugador.position.y - destination.y - card.size.y/2))
+			card.temp_pos_in = Vector2(posiciones_cartas_jugador1[card.get_index()].x, posiciones_cartas_jugador1[card.get_index()].y - 90)
+			card.temp_pos_out = posiciones_cartas_jugador1[card.get_index()]
 	else:
+		posiciones_cartas_jugador2 = []
 		for card in mano_jugador2.get_children():
 			var hand_ratio = 0.5
 			
@@ -402,11 +412,45 @@ func reajustar_mano(jugador : int):
 			var destination = mano_jugador2.position
 			destination.x += - 1 * curva_distancia_mano.sample(hand_ratio) * (HAND_WIDTH * mano_jugador2.get_child_count())
 			destination.y += curva_arco_mano_player2.sample(hand_ratio) * HAND_HEIGHT
+			posiciones_cartas_jugador2.append(Vector2(mano_jugador2.position.x - destination.x - card.size.x/2, mano_jugador2.position.y - destination.y - card.size.y/2))
+			card.temp_pos_in = Vector2(posiciones_cartas_jugador2[card.get_index()].x, posiciones_cartas_jugador2[card.get_index()].y + 90)
+			card.temp_pos_out = posiciones_cartas_jugador2[card.get_index()]
+
+func reajustar_mano(jugador : int):
+	if jugador == 0:
+		for card in mano_jugador.get_children():
+			#var hand_ratio = 0.5
+			#
+			#if mano_jugador.get_child_count() > 1:
+				#hand_ratio = float(card.get_index())/float(mano_jugador.get_child_count() - 1)
+				#
+			#var destination = mano_jugador.position
+			#destination.x += - 1 * curva_distancia_mano.sample(hand_ratio) * (HAND_WIDTH * mano_jugador.get_child_count())
+			#destination.y += curva_arco_mano.sample(hand_ratio) * HAND_HEIGHT
 			
-			card.position.x = mano_jugador2.position.x - destination.x - card.size.x/2
-			card.position.y = mano_jugador2.position.y - destination.y - card.size.y/2
-			card.temp_pos_in = Vector2(card.position.x, card.position.y + 90)
-			card.temp_pos_out = card.position
+			var tween = get_tree().create_tween()
+			tween.set_trans(Tween.TRANS_QUART)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(card, "position", posiciones_cartas_jugador1[card.get_index()], 0.3)
+			#card.position.x = mano_jugador.position.x - destination.x - card.size.x/2
+			#card.position.y = mano_jugador.position.y - destination.y - card.size.y/2
+	else:
+		for card in mano_jugador2.get_children():
+			#var hand_ratio = 0.5
+			#
+			#if mano_jugador2.get_child_count() > 1:
+				#hand_ratio = float(card.get_index())/float(mano_jugador2.get_child_count() - 1)
+				#
+			#var destination = mano_jugador2.position
+			#destination.x += - 1 * curva_distancia_mano.sample(hand_ratio) * (HAND_WIDTH * mano_jugador2.get_child_count())
+			#destination.y += curva_arco_mano_player2.sample(hand_ratio) * HAND_HEIGHT
+			
+			var tween = get_tree().create_tween()
+			tween.set_trans(Tween.TRANS_QUART)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(card, "position", posiciones_cartas_jugador2[card.get_index()], 0.3)
+			#card.position.x = mano_jugador2.position.x - destination.x - card.size.x/2
+			#card.position.y = mano_jugador2.position.y - destination.y - card.size.y/2
 
 func reajustar_mesa(jugador : int):
 	if jugador == 0:

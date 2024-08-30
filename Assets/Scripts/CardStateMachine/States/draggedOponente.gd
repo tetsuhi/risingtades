@@ -44,6 +44,7 @@ func on_enter():
 	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD,false)
 	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
 	
+	turn_manager.obtener_posiciones_cartas_en_mano(1)
 	turn_manager.reajustar_mano(1)
 	deactivate_cards_in_hand()
 	posicion_original = turn_manager.reordenar_mano_oponente(card.get_global_rect().position.x)
