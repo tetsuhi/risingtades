@@ -103,6 +103,7 @@ func state_input(event : InputEvent):
 						card.card_info.effect(board.get_children())
 					7: #enemycreatures
 						pass
+			card.torch_manager.apagar_antorchas(card.torch_manager.antorchasActualesJugador - card.card_info.card_cost, 0)
 			card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
 			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 			card.disabled_card = false

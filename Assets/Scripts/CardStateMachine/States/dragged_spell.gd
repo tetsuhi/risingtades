@@ -72,8 +72,8 @@ func state_input(event : InputEvent):
 	if confirm and minimum_drag_time_elapsed:
 		if on_board and card.torch_manager.antorchasActualesJugador - card.card_info.card_cost >= 0:
 			if card.card_info.card_type == 2:
-				card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
-				card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
+				#card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
+				#card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 				card.disabled_card = false
 				next_state = aim_state
 			elif card.card_info.card_type == 3:
@@ -95,7 +95,9 @@ func state_input(event : InputEvent):
 						pass 
 				activate_cards_in_hand()
 				card.card_death()
-				
+			card.torch_manager.apagar_antorchas(card.torch_manager.antorchasActualesJugador - card.card_info.card_cost, 0)
+			card.torch_manager.antorchasActualesJugador -= card.card_info.card_cost
+			card.torch_manager.antorchas_actuales_jugador.text = "Antorchas: " + str(card.torch_manager.antorchasActualesJugador)
 		else:
 			activate_cards_in_hand()
 			card.disabled_card = false

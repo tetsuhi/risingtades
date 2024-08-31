@@ -77,9 +77,11 @@ func change_bar_color(marea):
 				"muerta":
 					color_jugador1 = Color.DARK_RED
 					turno_marea_viva_jugador_1.visible = false
+					tide_animation = "player1_muerta_tide"
 				"baja":
 					color_jugador1 = Color.DARK_ORANGE
 					turno_marea_viva_jugador_1.visible = false
+					tide_animation = "player1_baja_tide"
 				"inicial":
 					color_jugador1 = Color.MEDIUM_TURQUOISE
 					tide_animation = "player1_initial_tide"
@@ -100,9 +102,11 @@ func change_bar_color(marea):
 				"muerta":
 					color_jugador2 = Color.DARK_RED
 					turno_marea_viva_jugador_2.visible = false
+					tide_animation = "player2_muerta_tide"
 				"baja":
 					color_jugador2 = Color.DARK_ORANGE
 					turno_marea_viva_jugador_2.visible = false
+					tide_animation = "player2_baja_tide"
 				"inicial":
 					color_jugador2 = Color.MEDIUM_TURQUOISE
 					tide_animation = "player2_initial_tide"

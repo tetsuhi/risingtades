@@ -243,26 +243,32 @@ func card_death():
 		if card_info.card_type == 0 or card_info.card_type == 1:
 			tween.tween_property(self, "position", cementerio_jugador1.position, 0.75)
 			await tween.finished
-			DeckBuild.cementerio_jugador.append(self.card_info.card_id)
-			cementerio_jugador1.texture = self.on_hand_tex.texture
+			#DeckBuild.cementerio_jugador.append(self.card_info.card_id)
+			#cementerio_jugador1.texture = self.on_hand_tex.texture
+		elif card_info.card_type == 2:
+			tween.tween_property(self, "position", cementerio_jugador1.position, 0.75)
+			await tween.finished
 		else:
 			tween.tween_property(self, "position", Vector2(get_viewport().size.x/2 - self.size.x/2, get_viewport().size.y/2 - self.size.y/2), 0.75)
 			tween.tween_property(self, "position", cementerio_jugador1.position, 0.75)
 			await tween.finished
-			DeckBuild.cementerio_jugador.append(self.card_info.card_id)
-			cementerio_jugador1.texture = self.on_hand_tex.texture
+		DeckBuild.cementerio_jugador.append(self.card_info.card_id)
+		cementerio_jugador1.texture = self.on_hand_tex.texture
 	else:
 		if card_info.card_type == 0 or card_info.card_type == 1:
 			tween.tween_property(self, "position", cementerio_jugador2.position, 0.75)
 			await tween.finished
-			DeckBuild.cementerio_oponente.append(self.card_info.card_id)
-			cementerio_jugador2.texture = self.on_hand_tex.texture
+			#DeckBuild.cementerio_oponente.append(self.card_info.card_id)
+			#cementerio_jugador2.texture = self.on_hand_tex.texture
+		elif card_info.card_type == 2:
+			tween.tween_property(self, "position", cementerio_jugador2.position, 0.75)
+			await tween.finished
 		else:
 			tween.tween_property(self, "position", Vector2(get_viewport().size.x/2 - self.size.x/2, get_viewport().size.y/2 - self.size.y/2), 0.75)
 			tween.tween_property(self, "position", cementerio_jugador2.position, 0.75)
 			await tween.finished
-			DeckBuild.cementerio_oponente.append(self.card_info.card_id)
-			cementerio_jugador2.texture = self.on_hand_tex.texture
+		DeckBuild.cementerio_oponente.append(self.card_info.card_id)
+		cementerio_jugador2.texture = self.on_hand_tex.texture
 	self.queue_free()
 
 func card_draw():

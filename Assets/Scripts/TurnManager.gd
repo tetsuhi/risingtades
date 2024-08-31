@@ -14,7 +14,7 @@ extends Node
 @onready var collision_oponente = $"../Juego/Area2D2/CollisionOponente"
 @onready var collision_mano_jugador1 = $"../Juego/zona_mano_jugador1/CollisionManoJugador1"
 @onready var collision_mano_jugador_2 = $"../Juego/zona_mano_jugador2/CollisionManoJugador2"
-@onready var boton_pasar_turno = $"../Juego/botonPasarTurno"
+@onready var boton_pasar_turno = $"../UI/botonPasarTurno"
 @onready var pause_button: Button = $"../UI/pause_button"
 @onready var end_game_menu: Control = $"../UI/end_game_menu"
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
@@ -113,10 +113,12 @@ func determinarInicio():
 	if rng.randi_range(0, 1) == 0:
 		animation_player.play("primer_turno_jugador1")
 		juegaTurno = "jugador"
+		torch_manager.restauraAntorchasJugador()
 		esTurnoJugador()
 	else:
 		animation_player.play("primer_turno_jugador2")
 		juegaTurno = "oponente"
+		torch_manager.restauraAntorchasOponente()
 		esTurnoOponente()
 		
 	#change_turn_label()

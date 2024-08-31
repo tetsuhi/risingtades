@@ -15,5 +15,6 @@ func effect(card_objective):
 	if card_objective.card_info.card_type == 1:
 		card_objective.marea += tide_increase
 		card_objective.marea_on_board.text = str(card_objective.marea)
+		return not null
 	else:
 		return null

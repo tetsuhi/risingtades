@@ -1267,6 +1267,24 @@ text = "0"
 label_settings = SubResource("LabelSettings_tt3nv")
 horizontal_alignment = 1
 
+[node name="botonPasarTurno" type="Button" parent="Juego" groups=["boton_pasar_turno"]]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -20.0
+offset_right = -81.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme = ExtResource("2_t0m6k")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
+text = "Pasar"
+
 [node name="mareaJugador" type="Label" parent="Juego"]
 visible = false
 anchors_preset = 4
@@ -1302,9 +1320,9 @@ vertical_alignment = 1
 
 [node name="antorchas_jugador1" type="VBoxContainer" parent="Juego"]
 offset_left = 1595.0
-offset_top = 592.0
+offset_top = 657.0
 offset_right = 1861.0
-offset_bottom = 696.0
+offset_bottom = 761.0
 alignment = 1
 
 [node name="primera_fila" type="HBoxContainer" parent="Juego/antorchas_jugador1"]
@@ -1389,97 +1407,7 @@ texture = ExtResource("4_x4o7f")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="antorchas_jugador2" type="VBoxContainer" parent="Juego"]
-offset_left = 1595.0
-offset_top = 384.0
-offset_right = 1861.0
-offset_bottom = 488.0
-alignment = 1
-
-[node name="primera_fila" type="HBoxContainer" parent="Juego/antorchas_jugador2"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Juego/antorchas_jugador2/primera_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="Juego/antorchas_jugador2/primera_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect3" type="TextureRect" parent="Juego/antorchas_jugador2/primera_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect4" type="TextureRect" parent="Juego/antorchas_jugador2/primera_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect5" type="TextureRect" parent="Juego/antorchas_jugador2/primera_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="segunda_fila" type="HBoxContainer" parent="Juego/antorchas_jugador2"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="TextureRect6" type="TextureRect" parent="Juego/antorchas_jugador2/segunda_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect7" type="TextureRect" parent="Juego/antorchas_jugador2/segunda_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect8" type="TextureRect" parent="Juego/antorchas_jugador2/segunda_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect9" type="TextureRect" parent="Juego/antorchas_jugador2/segunda_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureRect10" type="TextureRect" parent="Juego/antorchas_jugador2/segunda_fila"]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_x4o7f")
-expand_mode = 2
-stretch_mode = 4
-
 [node name="antorchasActualesJugador" type="Label" parent="Juego"]
-visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -1497,7 +1425,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="antorchasMaxJugador" type="Label" parent="Juego"]
-visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -1515,7 +1442,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="antorchasActualesOponente" type="Label" parent="Juego"]
-visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -1532,7 +1458,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="antorchasMaxOponente" type="Label" parent="Juego"]
-visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -1634,24 +1559,6 @@ icon = ExtResource("9_qoctp")
 flat = true
 script = ExtResource("7_yvgv3")
 
-[node name="botonPasarTurno" type="Button" parent="UI" groups=["boton_pasar_turno"]]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -271.0
-offset_top = -20.0
-offset_right = -112.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-focus_mode = 0
-theme = ExtResource("2_t0m6k")
-theme_override_font_sizes/font_size = 27
-theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
-text = "Pasar"
-
 [node name="end_game_menu" parent="UI" instance=ExtResource("8_qwh8y")]
 
 [node name="TideManager" type="Node" parent="." groups=["tide_manager"]]
@@ -1681,5 +1588,5 @@ libraries = {
 "": SubResource("AnimationLibrary_0glyu")
 }
 
+[connection signal="pressed" from="Juego/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
 [connection signal="pressed" from="UI/pause_button" to="UI/pause_button" method="_on_pressed"]
-[connection signal="pressed" from="UI/botonPasarTurno" to="TurnManager" method="_on_boton_pasar_turno_pressed"]
