@@ -44,6 +44,7 @@ const HAND_WIDTH : float = 50.0
 const BOARD_WIDTH : float = 75.0
 const HAND_HEIGHT : float = 5.0
 const CARD_WIDTH : float = 170.0
+const CARD_OFFSET_SEPARATION : float = 25.0
 const card_database = preload("res://Assets/Scripts/cardDataBase.gd")
 
 const criatura_activa_jugador = preload("res://Assets/Scenes/CartasJugador/criaturaActivaJugador.tscn")
@@ -479,14 +480,14 @@ func reajustar_mesa(jugador : int):
 		for card in campo_jugador1.get_children():
 			card.position.y = -card.size.y/2
 			card.position.x = new_position
-			new_position += card.size.x
+			new_position += card.size.x + CARD_OFFSET_SEPARATION
 	else:
 		var board_left_limit : float = -CARD_WIDTH/2 * campo_oponente.get_child_count()
 		var new_position : float = board_left_limit
 		for card in campo_oponente.get_children():
 			card.position.y = -card.size.y/2
 			card.position.x = new_position
-			new_position += card.size.x
+			new_position += card.size.x + CARD_OFFSET_SEPARATION
 		
 func reordenar_mano(position) -> int:
 	var i : int = 0

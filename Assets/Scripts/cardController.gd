@@ -16,17 +16,21 @@ const CARD_DELAY_SPEED = 12.0	#Delay al arrastrar la carta con el cursor
 @onready var baraja_jugador2 := get_tree().get_first_node_in_group("baraja_jugador2")
 @onready var cementerio_jugador1 := get_tree().get_first_node_in_group("cementerio_jugador1")
 @onready var cementerio_jugador2 := get_tree().get_first_node_in_group("cementerio_jugador2")
+@onready var cementerio_base_jugador1 := get_tree().get_first_node_in_group("cementerio_base_jugador1")
+@onready var cementerio_base_jugador2 := get_tree().get_first_node_in_group("cementerio_base_jugador2")
 @onready var ui_layer := get_tree().get_first_node_in_group("ui_layer")
 @onready var detector_colision: Area2D = $detectorColision
 
 @onready var nombre = $on_hand/Nombre
 @onready var descripcion = $on_hand/Descripcion
+@onready var tipo: TextureRect = $on_hand/Tipo
 
 @onready var ataque_label = $on_hand/Ataque
 @onready var marea_label = $on_hand/Marea
 @onready var vida_label = $on_hand/Vida
 
 @onready var coste = $on_hand/Coste
+@onready var coste_antorchas: HBoxContainer = $on_hand/Coste_Antorchas
 
 @onready var on_hand_tex = $on_hand/on_hand_tex
 @onready var on_board_tex = $on_board/on_board_tex
@@ -60,11 +64,23 @@ var temp_pos_out : Vector2
 
 func _ready():
 	nombre.text = card_info.card_name
-	coste.text = str(card_info.card_cost)
 	on_hand_tex.texture = card_info.texture
 	on_board_tex.texture = card_info.texture
 	descripcion.text = card_info.effect_text
 	card_owner = 0
+	if card_info.card_cost < 5:
+		coste.hide()
+		for i in card_info.card_cost:
+			var icon = TextureRect.new()
+			icon.custom_minimum_size = Vector2(25, 25)
+			icon.texture = load("res://Assets/Textures/antorcha_encendida.png")
+			coste_antorchas.add_child(icon)
+	else:
+		coste.text = str(card_info.card_cost)
+		var icon = TextureRect.new()
+		icon.custom_minimum_size = Vector2(25, 25)
+		icon.texture = load("res://Assets/Textures/antorcha_encendida.png")
+		coste_antorchas.add_child(icon)
 	
 	#Si la carta es activa o pasiva
 	if card_info.card_type == 0 or card_info.card_type == 1:
@@ -77,12 +93,20 @@ func _ready():
 		ataque_label.text = str(card_info.damage)
 		ataque = card_info.damage
 		ataque_on_board.text = ataque_label.text
+		tipo.texture = load("res://Assets/Textures/active_card_icon.png")
 	
 	#Si la carta es pasiva
 	if card_info.card_type == 1:
 		marea_label.text = str(card_info.tide_amount)
 		marea = card_info.tide_amount
 		marea_on_board.text = marea_label.text
+		tipo.texture = load("res://Assets/Textures/pasive_card_icon.png")
+	
+	if card_info.card_type == 2:
+		tipo.texture = load("res://Assets/Textures/spell_card_icon.png")
+	
+	if card_info.card_type == 3:
+		tipo.texture = load("res://Assets/Textures/instant_card_icon.png")
 	
 	_animator.play("turn_card_around")
 
@@ -236,6 +260,7 @@ func pull_in_cards_in_hand():
 func card_death():
 	self.detector_colision.monitoring = false
 	self.reparent(ui_layer)
+	var modulate_color : Color = Color(127, 127, 127, 255)
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.set_ease(Tween.EASE_OUT)
@@ -254,6 +279,8 @@ func card_death():
 			await tween.finished
 		DeckBuild.cementerio_jugador.append(self.card_info.card_id)
 		cementerio_jugador1.texture = self.on_hand_tex.texture
+		if DeckBuild.cementerio_jugador.size() == 1:
+			cementerio_base_jugador1.visible = true
 	else:
 		if card_info.card_type == 0 or card_info.card_type == 1:
 			tween.tween_property(self, "position", cementerio_jugador2.position, 0.75)
@@ -269,6 +296,8 @@ func card_death():
 			await tween.finished
 		DeckBuild.cementerio_oponente.append(self.card_info.card_id)
 		cementerio_jugador2.texture = self.on_hand_tex.texture
+		if DeckBuild.cementerio_oponente.size() == 1:
+			cementerio_base_jugador2.visible = true
 	self.queue_free()
 
 func card_draw():

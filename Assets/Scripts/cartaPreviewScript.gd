@@ -2,9 +2,15 @@ extends Control
 
 #Este script se usa para las cartas mostradas en los menús 'colección' y 'personaliza baraja'
 
-@onready var texture_rect = $TextureRect
+@onready var on_hand_tex: TextureRect = $on_hand_tex
 @onready var nombre = $Nombre
 @onready var cantidad = $Cantidad
+@onready var coste: Label = $Coste
+@onready var coste_antorchas: HBoxContainer = $Coste_Antorchas
+@onready var descripcion: Label = $Descripcion
+@onready var vida: Label = $Vida
+@onready var label_derecha: Label = $label_derecha
+@onready var tipo: TextureRect = $Tipo
 
 var card_info : cardResource
 
@@ -13,7 +19,47 @@ var on_card : bool
 func _ready():
 	nombre.text = card_info.card_name
 	cantidad.text = "0"
-	texture_rect.texture = card_info.texture
+	on_hand_tex.texture = card_info.texture
+	descripcion.text = card_info.effect_text
+	
+	if card_info.card_cost < 5:
+		coste.hide()
+		for i in card_info.card_cost:
+			var icon = TextureRect.new()
+			icon.custom_minimum_size = Vector2(25, 25)
+			icon.texture = load("res://Assets/Textures/antorcha_encendida.png")
+			coste_antorchas.add_child(icon)
+	else:
+		coste.text = str(card_info.card_cost)
+		var icon = TextureRect.new()
+		icon.custom_minimum_size = Vector2(25, 25)
+		icon.texture = load("res://Assets/Textures/antorcha_encendida.png")
+		coste_antorchas.add_child(icon)
+	
+	#Si la carta es activa o pasiva
+	if card_info.card_type == 0 or card_info.card_type == 1:
+		vida.text = str(card_info.life)
+	
+	#Si la carta es activa
+	if card_info.card_type == 0:
+		label_derecha.text = str(card_info.damage)
+		tipo.texture = load("res://Assets/Textures/active_card_icon.png")
+	
+	#Si la carta es pasiva
+	if card_info.card_type == 1:
+		label_derecha.set("theme_override_colors/font_color", Color(0.37, 0.54, 1.0, 1.0))
+		label_derecha.text = str(card_info.tide_amount)
+		tipo.texture = load("res://Assets/Textures/pasive_card_icon.png")
+	
+	if card_info.card_type == 2:
+		vida.hide()
+		label_derecha.hide()
+		tipo.texture = load("res://Assets/Textures/spell_card_icon.png")
+	
+	if card_info.card_type == 3:
+		vida.hide()
+		label_derecha.hide()
+		tipo.texture = load("res://Assets/Textures/instant_card_icon.png")
 
 func _input(event : InputEvent):
 	

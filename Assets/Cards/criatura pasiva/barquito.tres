@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_bvew6")
-effect_text = "Maldito seas estado de israel"
+effect_text = "x2 marea si se juega en Marea Alta"
 execution = 2
 tide_amount = 2
 life = 1

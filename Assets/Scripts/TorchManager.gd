@@ -40,13 +40,13 @@ func restauraAntorchasJugador():
 	antorchasActualesJugador = maxAntorchas
 	for child in antorchas_jugador_1_primera_fila.get_children():
 		if child.visible:
-			child.texture = load("res://icon.svg")
+			child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 		else:
 			break
 	if maxAntorchas > 5:
 		for child in antorchas_jugador_1_segunda_fila.get_children():
 			if child.visible:
-				child.texture = load("res://icon.svg")
+				child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 			else:
 				break
 
@@ -54,13 +54,13 @@ func restauraAntorchasOponente():
 	antorchasActualesOponente = maxAntorchas
 	for child in antorchas_jugador_2_primera_fila.get_children():
 		if child.visible:
-			child.texture = load("res://icon.svg")
+			child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 		else:
 			break
 	if maxAntorchas > 5:
 		for child in antorchas_jugador_2_segunda_fila.get_children():
 			if child.visible:
-				child.texture = load("res://icon.svg")
+				child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 			else:
 				break
 
@@ -69,50 +69,50 @@ func max_antorchas(jugador: int):
 	if jugador == 0:
 		if maxAntorchas <= 5:
 			antorchas_jugador_1_primera_fila.get_child(maxAntorchas - 1).visible = true
-			antorchas_jugador_1_primera_fila.get_child(maxAntorchas - 1).texture = load("res://Assets/Textures/godot_icon.png")
+			antorchas_jugador_1_primera_fila.get_child(maxAntorchas - 1).texture = load("res://Assets/Textures/antorcha_apagada.png")
 		else:
 			antorchas_jugador_1_segunda_fila.get_child(maxAntorchas - 6).visible = true
-			antorchas_jugador_1_segunda_fila.get_child(maxAntorchas - 6).texture = load("res://Assets/Textures/godot_icon.png")
+			antorchas_jugador_1_segunda_fila.get_child(maxAntorchas - 6).texture = load("res://Assets/Textures/antorcha_apagada.png")
 	else:
 		if maxAntorchas <= 5:
 			antorchas_jugador_2_primera_fila.get_child(maxAntorchas - 1).visible = true
-			antorchas_jugador_2_primera_fila.get_child(maxAntorchas - 1).texture = load("res://Assets/Textures/godot_icon.png")
+			antorchas_jugador_2_primera_fila.get_child(maxAntorchas - 1).texture = load("res://Assets/Textures/antorcha_apagada.png")
 		else:
 			antorchas_jugador_2_segunda_fila.get_child(maxAntorchas - 6).visible = true
-			antorchas_jugador_2_segunda_fila.get_child(maxAntorchas - 6).texture = load("res://Assets/Textures/godot_icon.png")
+			antorchas_jugador_2_segunda_fila.get_child(maxAntorchas - 6).texture = load("res://Assets/Textures/antorcha_apagada.png")
 
 func apagar_antorchas(antorchas_restantes : int, jugador : int):
 	if jugador == 0:
 		for child in antorchas_jugador_1_primera_fila.get_children():
 			if antorchas_restantes == 0:
-				child.texture = load("res://Assets/Textures/godot_icon.png")
+				child.texture = load("res://Assets/Textures/antorcha_apagada.png")
 			else:
-				child.texture = load("res://icon.svg")
+				child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 				antorchas_restantes -= 1
 		if antorchas_restantes > 0:
 			for child in antorchas_jugador_1_segunda_fila.get_children():
 				if antorchas_restantes == 0:
-					child.texture = load("res://Assets/Textures/godot_icon.png")
+					child.texture = load("res://Assets/Textures/antorcha_apagada.png")
 				else:
-					child.texture = load("res://icon.svg")
+					child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 					antorchas_restantes -= 1
 		else:
 			for child in antorchas_jugador_1_segunda_fila.get_children():
-				child.texture = load("res://Assets/Textures/godot_icon.png")
+				child.texture = load("res://Assets/Textures/antorcha_apagada.png")
 	else:
 		for child in antorchas_jugador_2_primera_fila.get_children():
 			if antorchas_restantes == 0:
-				child.texture = load("res://Assets/Textures/godot_icon.png")
+				child.texture = load("res://Assets/Textures/antorcha_apagada.png")
 			else:
-				child.texture = load("res://icon.svg")
+				child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 				antorchas_restantes -= 1
 		if antorchas_restantes > 0:
 			for child in antorchas_jugador_2_segunda_fila.get_children():
 				if antorchas_restantes == 0:
-					child.texture = load("res://Assets/Textures/godot_icon.png")
+					child.texture = load("res://Assets/Textures/antorcha_apagada.png")
 				else:
-					child.texture = load("res://icon.svg")
+					child.texture = load("res://Assets/Textures/antorcha_encendida.png")
 					antorchas_restantes -= 1
 		else:
 			for child in antorchas_jugador_2_segunda_fila.get_children():
-				child.texture = load("res://Assets/Textures/godot_icon.png")
+				child.texture = load("res://Assets/Textures/antorcha_apagada.png")

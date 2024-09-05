@@ -1,18 +1,33 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dw1hiod4ykxab"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dw1hiod4ykxab"]
 
+[ext_resource type="Texture2D" uid="uid://da8uoegjrigxw" path="res://Assets/Textures/boton_sprite_disabled.png" id="1_012of"]
 [ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="1_bhhe5"]
+[ext_resource type="Texture2D" uid="uid://bbxvwety7uog7" path="res://Assets/Textures/boton_sprite.png" id="1_h74p2"]
+[ext_resource type="Texture2D" uid="uid://cr6oqftqnw3ri" path="res://Assets/Textures/boton_sprite_hover.png" id="1_lfduk"]
+[ext_resource type="Texture2D" uid="uid://cqcv8jc386343" path="res://Assets/Textures/boton_sprite_pulsado.png" id="2_sod1m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmge6"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 0.0980392)
-corner_detail = 20
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73x55"]
+texture = ExtResource("1_012of")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2nos"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 0.0980392)
-border_blend = true
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6orxj"]
+texture = ExtResource("1_lfduk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y7qxn"]
+texture = ExtResource("1_h74p2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qeml"]
+texture = ExtResource("2_sod1m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f3fqm"]
+texture = ExtResource("1_h74p2")
 
 [resource]
 default_font = ExtResource("1_bhhe5")
 default_font_size = 36
-Button/styles/normal = SubResource("StyleBoxFlat_vmge6")
+Button/font_sizes/font_size = 36
+Button/styles/disabled = SubResource("StyleBoxTexture_73x55")
+Button/styles/hover = SubResource("StyleBoxTexture_6orxj")
+Button/styles/normal = SubResource("StyleBoxTexture_y7qxn")
+Button/styles/pressed = SubResource("StyleBoxTexture_7qeml")
 OptionButton/font_sizes/font_size = 36
-OptionButton/styles/normal = SubResource("StyleBoxFlat_u2nos")
+OptionButton/styles/normal = SubResource("StyleBoxTexture_f3fqm")

@@ -4,11 +4,25 @@ extends CardUI
 
 func _ready():
 	nombre.text = card_info.card_name
-	coste.text = str(card_info.card_cost)
+	#coste.text = str(card_info.card_cost)
 	on_hand_tex.texture = card_info.texture
 	on_board_tex.texture = card_info.texture
 	descripcion.text = card_info.effect_text
 	card_owner = 1
+	
+	if card_info.card_cost < 5:
+		coste.hide()
+		for i in card_info.card_cost:
+			var icon = TextureRect.new()
+			icon.custom_minimum_size = Vector2(25, 25)
+			icon.texture = load("res://Assets/Textures/antorcha_encendida.png")
+			coste_antorchas.add_child(icon)
+	else:
+		coste.text = str(card_info.card_cost)
+		var icon = TextureRect.new()
+		icon.custom_minimum_size = Vector2(25, 25)
+		icon.texture = load("res://Assets/Textures/antorcha_encendida.png")
+		coste_antorchas.add_child(icon)
 	
 	#Si la carta es activa o pasiva
 	if card_info.card_type == 0 or card_info.card_type == 1:
@@ -21,12 +35,20 @@ func _ready():
 		ataque_label.text = str(card_info.damage)
 		ataque = card_info.damage
 		ataque_on_board.text = ataque_label.text
+		tipo.texture = load("res://Assets/Textures/active_card_icon.png")
 	
 	#Si la carta es pasiva
 	if card_info.card_type == 1:
 		marea_label.text = str(card_info.tide_amount)
 		marea = card_info.tide_amount
 		marea_on_board.text = marea_label.text
+		tipo.texture = load("res://Assets/Textures/pasive_card_icon.png")
+	
+	if card_info.card_type == 2:
+		tipo.texture = load("res://Assets/Textures/spell_card_icon.png")
+	
+	if card_info.card_type == 3:
+		tipo.texture = load("res://Assets/Textures/instant_card_icon.png")
 	
 	_animator.play("turn_card_around")
 

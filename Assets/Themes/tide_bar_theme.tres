@@ -1,9 +1,10 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://cgqyorv04avt0"]
 
-[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="1_y5t7o"]
+[ext_resource type="Texture2D" uid="uid://cbr5h6all5m8f" path="res://Assets/Textures/mareas_sprite.png" id="1_ns2px"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rakf4"]
-texture = ExtResource("1_y5t7o")
+texture = ExtResource("1_ns2px")
+axis_stretch_horizontal = 1
 
 [resource]
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_rakf4")

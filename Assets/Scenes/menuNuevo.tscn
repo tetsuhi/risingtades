@@ -1,11 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=24 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
+[ext_resource type="Texture2D" uid="uid://clnimho3lpkni" path="res://Assets/Textures/FONDO_TILE.png" id="2_0u8lr"]
 [ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="2_namtc"]
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="3_on26h"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="4_e1nl7"]
-[ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="7_0fh4u"]
 
 [sub_resource type="Animation" id="Animation_bauv7"]
 resource_name = "background_loop"
@@ -63,9 +63,6 @@ func _ready():
 	for i in get_children():
 		i.cantidad.hide()
 "
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x65uh"]
-bg_color = Color(0.0687983, 0.0687983, 0.0687982, 0.882353)
 
 [sub_resource type="Animation" id="Animation_41wvt"]
 length = 0.001
@@ -921,7 +918,7 @@ libraries = {
 }
 
 [node name="background" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.247059)
+modulate = Color(1, 1, 1, 0.117647)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -932,7 +929,8 @@ offset_right = 104.0
 offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_on26h")
+texture = ExtResource("2_0u8lr")
+stretch_mode = 1
 
 [node name="menu" type="Control" parent="."]
 layout_mode = 1
@@ -1226,10 +1224,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="personaliza/ScrollContainer"]
+custom_minimum_size = Vector2(132, 185)
 layout_mode = 2
 theme_override_constants/h_separation = 65
 theme_override_constants/v_separation = 25
-columns = 4
+columns = 7
 script = SubResource("GDScript_41dab")
 
 [node name="baraja_seleccionada" type="Label" parent="personaliza"]
@@ -1338,10 +1337,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="coleccion/ScrollContainer"]
+custom_minimum_size = Vector2(132, 185)
 layout_mode = 2
 theme_override_constants/h_separation = 65
 theme_override_constants/v_separation = 25
-columns = 4
+columns = 7
 script = SubResource("GDScript_41dab")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="coleccion"]
@@ -1406,7 +1406,7 @@ offset_right = 323.0
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("7_0fh4u")
+theme = ExtResource("4_e1nl7")
 
 [node name="mazo_descripcion_confirmar" type="Label" parent="confirmar_mazo/Panel"]
 layout_mode = 1
@@ -1496,7 +1496,7 @@ offset_right = 266.5
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("7_0fh4u")
+theme = ExtResource("4_e1nl7")
 
 [node name="mazo_descripcion_coleccion" type="Label" parent="confirmar_mazo_coleccion/Panel"]
 layout_mode = 1
@@ -1569,7 +1569,7 @@ offset_right = 832.0
 offset_bottom = 356.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x65uh")
+theme = ExtResource("4_e1nl7")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="menu_info_mazo/Panel"]
 layout_mode = 1
@@ -1587,7 +1587,7 @@ grow_vertical = 2
 
 [node name="container_info_mazo" type="GridContainer" parent="menu_info_mazo/Panel/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 25
+theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 10
 columns = 10
 
