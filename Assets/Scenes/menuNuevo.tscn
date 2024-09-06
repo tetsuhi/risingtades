@@ -1,11 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=27 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
 [ext_resource type="Texture2D" uid="uid://clnimho3lpkni" path="res://Assets/Textures/FONDO_TILE.png" id="2_0u8lr"]
 [ext_resource type="FontFile" uid="uid://bqmk678mgclqb" path="res://Assets/Fonts/NotJamScrawl12.ttf" id="2_namtc"]
-[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="3_on26h"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="4_e1nl7"]
+[ext_resource type="Texture2D" uid="uid://by7no1luwqnb2" path="res://Assets/Textures/itchio_icon.png" id="4_vah0m"]
+[ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="6_bi1ym"]
 
 [sub_resource type="Animation" id="Animation_bauv7"]
 resource_name = "background_loop"
@@ -63,6 +64,10 @@ func _ready():
 	for i in get_children():
 		i.cantidad.hide()
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_wcq87"]
+font = ExtResource("2_namtc")
+font_size = 21
 
 [sub_resource type="Animation" id="Animation_41wvt"]
 length = 0.001
@@ -413,6 +418,90 @@ tracks/28/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("menu/RichTextLabel:position")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 64)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("menu/RichTextLabel2:modulate")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("menu/RichTextLabel:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("menu/tutorial_area:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("menu/tutorial_area:mouse_filter")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("tutorial:position")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1080)]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("tutorial:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_kqeq6"]
@@ -803,7 +892,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(1.63333, 2.2, 2.83333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 1080), Vector2(0, 952), Vector2(0, 992)]
+"values": [Vector2(25, 1080), Vector2(25, 952), Vector2(25, 992)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -827,7 +916,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(1.73333, 2.3, 2.93333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(648, 1080), Vector2(648, 960), Vector2(648, 1000)]
+"values": [Vector2(592, 1080), Vector2(592, 960), Vector2(592, 990)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -889,6 +978,118 @@ tracks/12/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("menu/RichTextLabel:position")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.8, 1.36667, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, -32), Vector2(640, 80), Vector2(640, 64)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("menu/RichTextLabel2:modulate")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1.26667, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("menu/RichTextLabel:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("menu/tutorial_area:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(2.96667, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("menu/tutorial_area:mouse_filter")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(2.96667, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_vtss4"]
+resource_name = "ir_tutorial"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.46667, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tutorial:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1080), Vector2(0, 30), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("tutorial:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2xkpg"]
 _data = {
@@ -900,6 +1101,7 @@ _data = {
 "ir_menu_info_mazo": SubResource("Animation_1sphw"),
 "ir_opciones": SubResource("Animation_tormy"),
 "ir_personaliza": SubResource("Animation_wlehm"),
+"ir_tutorial": SubResource("Animation_vtss4"),
 "pulsar_empezar": SubResource("Animation_1yj3y")
 }
 
@@ -929,6 +1131,7 @@ offset_right = 104.0
 offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_0u8lr")
 stretch_mode = 1
 
@@ -939,6 +1142,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="pulsa_empezar" type="RichTextLabel" parent="menu"]
 layout_mode = 1
@@ -959,7 +1163,7 @@ theme = SubResource("Theme_ri73g")
 theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][wave amp=40.0 freq=4.0 connected=1][center]Pulsa espacio para empezar[/center][/wave][/pulse]"
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][wave amp=40.0 freq=4.0 connected=1][center]Press [Space] to start[/center][/wave][/pulse]"
 
 [node name="eslogan" type="RichTextLabel" parent="menu"]
 layout_mode = 1
@@ -980,7 +1184,7 @@ theme = SubResource("Theme_ri73g")
 theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1][center]¡Un refrescante juego de cartas![/center][/wave]"
+text = "[wave amp=40.0 freq=4.0 connected=1][center]A refreshing card game![/center][/wave]"
 
 [node name="titulo_menu" type="RichTextLabel" parent="menu"]
 layout_mode = 1
@@ -1017,7 +1221,7 @@ theme = SubResource("Theme_h0xeb")
 theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1] Desarrollado por @tetsuhi[/wave]"
+text = "[wave amp=40.0 freq=4.0 connected=1] Developed by @tetsuhi[/wave]"
 
 [node name="itch button" type="Button" parent="menu"]
 visible = false
@@ -1027,13 +1231,13 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 648.0
 offset_top = -112.0
-offset_right = 704.0
-offset_bottom = -56.0
+offset_right = 713.0
+offset_bottom = -48.0
 grow_vertical = 0
 focus_mode = 0
-icon = ExtResource("3_on26h")
+icon = ExtResource("4_vah0m")
 flat = true
-expand_icon = true
+icon_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu"]
 visible = false
@@ -1052,28 +1256,73 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="boton_jugar" type="Button" parent="menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "JUGAR"
+text = "Play"
 
 [node name="boton_opciones" type="Button" parent="menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "OPCIONES"
+text = "Options"
 
 [node name="boton_coleccion" type="Button" parent="menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "BARAJA"
+text = "Collection"
 
 [node name="boton_salir" type="Button" parent="menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "SALIR"
+text = "Exit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 112.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("6_bi1ym")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]If it's your first time playing, click here!"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="menu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_top = 148.0
+offset_right = 960.0
+offset_bottom = 192.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("6_bi1ym")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][center]---------------------------------------------------------------------------------------------------------------------------------------------"
+
+[node name="tutorial_area" type="Panel" parent="menu"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 168.0
+mouse_filter = 2
 
 [node name="opciones" type="Control" parent="."]
 visible = false
@@ -1128,7 +1377,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("4_e1nl7")
 theme_override_font_sizes/font_size = 27
-text = "Modo de pantalla  "
+text = "Screen mode "
 
 [node name="V-Sync" type="Label" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -1140,14 +1389,15 @@ text = "V-Sync"
 layout_mode = 2
 
 [node name="screen_mode" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(175, 0)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 selected = 1
 item_count = 2
-popup/item_0/text = "Ventana"
-popup/item_1/text = "Completa"
+popup/item_0/text = " Windowed"
+popup/item_1/text = " Fullscreen"
 popup/item_1/id = 1
 
 [node name="v_sync" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
@@ -1157,11 +1407,12 @@ theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
 selected = 0
 item_count = 2
-popup/item_0/text = "Desactivado"
-popup/item_1/text = "Activado"
+popup/item_0/text = " Disabled"
+popup/item_1/text = " Enabled"
 popup/item_1/id = 1
 
 [node name="volver_button" type="Button" parent="opciones/TabContainer/Video"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1177,9 +1428,9 @@ grow_vertical = 0
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 24
-text = "Volver"
+text = "Back"
 
-[node name="Guardado" type="TabBar" parent="opciones/TabContainer"]
+[node name="Save" type="TabBar" parent="opciones/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
@@ -1201,9 +1452,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -568.0
-offset_top = 32.0
+offset_top = 72.0
 offset_right = 305.0
-offset_bottom = 146.0
+offset_bottom = 186.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 theme = SubResource("Theme_md8ar")
@@ -1211,7 +1462,7 @@ theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1][center]PERSONALIZA TU MAZO[/center][/wave]"
+text = "[wave amp=40.0 freq=4.0 connected=1][center]Customize your deck[/center][/wave]"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="personaliza"]
 layout_mode = 1
@@ -1231,51 +1482,39 @@ theme_override_constants/v_separation = 25
 columns = 7
 script = SubResource("GDScript_41dab")
 
-[node name="baraja_seleccionada" type="Label" parent="personaliza"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -62.5
-offset_right = 234.0
-offset_bottom = -34.5
-grow_vertical = 2
-theme = ExtResource("4_e1nl7")
-theme_override_font_sizes/font_size = 27
-text = "Editando:"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="personaliza"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 32.0
-offset_top = 44.0
+offset_top = 52.0
 offset_right = 352.0
-offset_bottom = 287.0
+offset_bottom = 295.0
 grow_vertical = 2
 theme_override_constants/separation = 30
 alignment = 1
 
 [node name="boton_info_mazo" type="Button" parent="personaliza/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "Ver mazo"
+text = "Deck info"
 
 [node name="boton_guardar_cambios" type="Button" parent="personaliza/VBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(320, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "Guardar cambios"
+text = "Save changes"
 
 [node name="boton_volver_personaliza" type="Button" parent="personaliza/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
-text = "Cancelar"
+text = "Cancel"
 
 [node name="baraja_seleccion" type="OptionButton" parent="personaliza"]
 custom_minimum_size = Vector2(150, 50)
@@ -1283,7 +1522,7 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 98.0
+offset_left = 103.0
 offset_top = -12.0
 offset_right = 286.0
 offset_bottom = 44.0
@@ -1292,9 +1531,21 @@ focus_mode = 0
 theme = ExtResource("1_ty4a6")
 selected = 0
 item_count = 2
-popup/item_0/text = "Baraja 1"
-popup/item_1/text = "Baraja 2"
+popup/item_0/text = " Player 1"
+popup/item_1/text = " Player 2"
 popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="personaliza"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 368.0
+offset_right = 295.0
+offset_bottom = 440.0
+text = "LMB - Add card
+RMB - Remove card
+Max. 60 cards"
+label_settings = SubResource("LabelSettings_wcq87")
+horizontal_alignment = 1
 
 [node name="coleccion" type="Control" parent="."]
 visible = false
@@ -1313,9 +1564,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -344.0
-offset_top = 56.0
+offset_top = 88.0
 offset_right = 346.0
-offset_bottom = 164.0
+offset_bottom = 196.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(345, 67)
@@ -1324,7 +1575,7 @@ theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1][center]COLECCIóN[/center][/wave]"
+text = "[wave amp=40.0 freq=4.0 connected=1][center]Collection[/center][/wave]"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="coleccion"]
 layout_mode = 1
@@ -1350,9 +1601,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 88.0
-offset_top = -34.0
-offset_right = 292.0
-offset_bottom = 44.0
+offset_top = -60.0
+offset_right = 318.0
+offset_bottom = 70.0
 grow_vertical = 2
 theme_override_constants/separation = 30
 alignment = 1
@@ -1363,7 +1614,7 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 36
-text = "Editar mazo"
+text = "Edit deck"
 
 [node name="boton_volver_coleccion" type="Button" parent="coleccion/VBoxContainer"]
 custom_minimum_size = Vector2(230, 50)
@@ -1371,7 +1622,7 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 36
-text = "Volver"
+text = "Back"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
@@ -1392,6 +1643,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="confirmar_mazo"]
 layout_mode = 1
@@ -1406,6 +1658,7 @@ offset_right = 323.0
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("4_e1nl7")
 
 [node name="mazo_descripcion_confirmar" type="Label" parent="confirmar_mazo/Panel"]
@@ -1413,9 +1666,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -127.0
+offset_left = -112.0
 offset_top = 40.0
-offset_right = 297.0
+offset_right = 272.0
 offset_bottom = 209.0
 grow_horizontal = 2
 theme = ExtResource("4_e1nl7")
@@ -1432,21 +1685,24 @@ offset_top = -52.0
 offset_right = 171.0
 offset_bottom = 24.0
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="boton_seleccionar_mazo1" type="Button" parent="confirmar_mazo/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(135, 40)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
-text = "Mazo 1"
+text = "Player 1"
 
 [node name="boton_seleccionar_mazo2" type="Button" parent="confirmar_mazo/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(135, 40)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
-text = "Mazo 2"
+text = "Player 2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="confirmar_mazo/Panel"]
 layout_mode = 0
@@ -1462,7 +1718,7 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
-text = "Jugar"
+text = "Play"
 
 [node name="boton_atras_confirmar" type="Button" parent="confirmar_mazo/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -1470,7 +1726,7 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 27
-text = "Cancelar"
+text = "Cancel"
 
 [node name="confirmar_mazo_coleccion" type="Control" parent="."]
 visible = false
@@ -1482,6 +1738,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(960, 540)
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="confirmar_mazo_coleccion"]
 layout_mode = 1
@@ -1496,6 +1753,7 @@ offset_right = 266.5
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("4_e1nl7")
 
 [node name="mazo_descripcion_coleccion" type="Label" parent="confirmar_mazo_coleccion/Panel"]
@@ -1527,22 +1785,24 @@ offset_right = 133.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 100
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="boton_guardar_mazo" type="Button" parent="confirmar_mazo_coleccion/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 18
-text = "Guardar mazo"
+text = "Save deck"
 
 [node name="boton_atras_coleccion" type="Button" parent="confirmar_mazo_coleccion/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
 theme_override_font_sizes/font_size = 18
-text = "Seguir editando"
+text = "Resume editing"
 
 [node name="menu_info_mazo" type="Control" parent="."]
 visible = false
@@ -1555,6 +1815,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(960, 540)
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="menu_info_mazo"]
 layout_mode = 1
@@ -1608,6 +1869,33 @@ focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "Okay"
 
+[node name="tutorial" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="understand_button" type="Button" parent="tutorial"]
+custom_minimum_size = Vector2(350, 65)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -144.0
+offset_right = 175.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_ty4a6")
+text = "Hmm, understood"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2xkpg")
@@ -1618,6 +1906,7 @@ libraries = {
 [connection signal="pressed" from="menu/VBoxContainer/boton_opciones" to="." method="_on_boton_opciones_pressed"]
 [connection signal="pressed" from="menu/VBoxContainer/boton_coleccion" to="." method="_on_boton_coleccion_pressed"]
 [connection signal="pressed" from="menu/VBoxContainer/boton_salir" to="." method="_on_boton_salir_pressed"]
+[connection signal="gui_input" from="menu/tutorial_area" to="." method="_on_tutorial_area_gui_input"]
 [connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/screen_mode" to="." method="_on_screen_mode_item_selected"]
 [connection signal="item_selected" from="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2/v_sync" to="." method="_on_v_sync_item_selected"]
 [connection signal="pressed" from="opciones/TabContainer/Video/volver_button" to="." method="_on_volver_button_pressed"]
@@ -1634,3 +1923,4 @@ libraries = {
 [connection signal="pressed" from="confirmar_mazo_coleccion/Panel/HBoxContainer/boton_guardar_mazo" to="." method="_on_boton_guardar_mazo_pressed"]
 [connection signal="pressed" from="confirmar_mazo_coleccion/Panel/HBoxContainer/boton_atras_coleccion" to="." method="_on_boton_atras_coleccion_pressed"]
 [connection signal="pressed" from="menu_info_mazo/Panel/boton_volver_info_mazo" to="." method="_on_boton_volver_info_mazo_pressed"]
+[connection signal="pressed" from="tutorial/understand_button" to="." method="_on_understand_button_pressed"]

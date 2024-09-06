@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpqi7d3sieama"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/scene_transition.gd" id="1_48usk"]
-[ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="1_afcip"]
+[ext_resource type="Texture2D" uid="uid://cwdp04nvnv71q" path="res://Assets/Textures/transicion_fondo.png" id="2_fa06l"]
 
 [sub_resource type="Animation" id="Animation_tgbth"]
 length = 0.001
@@ -123,7 +123,7 @@ offset_bottom = 2705.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.585405
-texture = ExtResource("1_afcip")
+texture = ExtResource("2_fa06l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

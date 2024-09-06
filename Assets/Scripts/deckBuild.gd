@@ -38,9 +38,10 @@ var cementerio_jugador = []
 var cementerio_oponente = []
 
 func _ready():
-	for i in 1:
-		barajaOponente.append("0")
-		barajaOponente.append("1")
-		barajaOponente.append("2")
-		barajaOponente.append("3")
-		barajaOponente.append("4")
+	#for i in 1:
+		#barajaOponente.append("0")
+		#barajaOponente.append("1")
+		#barajaOponente.append("2")
+		#barajaOponente.append("3")
+		#barajaOponente.append("4")
+	pass

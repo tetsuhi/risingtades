@@ -1,6 +1,5 @@
 extends Control
 
-@onready var inicio = $inicio
 @onready var menu = $menu
 @onready var opciones = $opciones
 @onready var confirmar_mazo = $confirmar_mazo
@@ -9,7 +8,6 @@ extends Control
 @onready var mazo_descripcion_confirmar = $confirmar_mazo/Panel/mazo_descripcion_confirmar
 @onready var mazo_descripcion_coleccion = $confirmar_mazo_coleccion/Panel/mazo_descripcion_coleccion
 @onready var personaliza = $personaliza
-@onready var baraja_seleccionada = $personaliza/baraja_seleccionada
 @onready var menu_info_mazo = $menu_info_mazo
 
 
@@ -39,18 +37,18 @@ func _input(event: InputEvent) -> void:
 func _on_boton_jugar_pressed():
 	if DeckBuild.baraja_seleccionada == 0:
 		if DeckBuild.nombre_cartas1.size() != 0:
-			mazo_descripcion_confirmar.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
+			mazo_descripcion_confirmar.text = "Player 1's deck has " + str(DeckBuild.baraja_jugador1.size()) + " cards."
 			for i in DeckBuild.nombre_cartas1.size():
 				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
 		else:
-			mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+			mazo_descripcion_confirmar.text = "Player 1 has no cards in their deck."
 	elif DeckBuild.baraja_seleccionada == 1:
 		if DeckBuild.nombre_cartas2.size() != 0:
-			mazo_descripcion_confirmar.text = "Tu mazo seleccionado (2) contiene " + str(DeckBuild.baraja_jugador2.size()) + " cartas."
+			mazo_descripcion_confirmar.text = "Player 2's deck has " + str(DeckBuild.baraja_jugador2.size()) + " cards."
 			for i in DeckBuild.nombre_cartas2.size():
 				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
 		else:
-			mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+			mazo_descripcion_confirmar.text = "Player 2 has no cards in their deck."
 	$AnimationPlayer.play("ir_confirmar_mazo_jugar")
 
 func _on_boton_opciones_pressed():
@@ -64,8 +62,10 @@ func _on_boton_salir_pressed():
 
 func _on_itch_button_pressed() -> void:
 	OS.shell_open("https://tetsuhi.itch.io/")
-	
 
+func _on_tutorial_area_gui_input(event: InputEvent) -> void:
+	if Input.is_action_pressed("LMB"):
+		$AnimationPlayer.play("ir_tutorial")
 
 
 #*********************************************************
@@ -94,12 +94,10 @@ func _on_boton_volver_coleccion_pressed():
 
 func _on_boton_editar_mazo_pressed():
 	if DeckBuild.baraja_seleccionada == 0: 
-		baraja_seleccionada.text = "Editando baraja 1"
 		DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
 		DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
 		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
 	else:
-		baraja_seleccionada.text = "Editando baraja 2"
 		DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
 		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
 		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas2
@@ -142,13 +140,11 @@ func _on_boton_volver_personaliza_pressed():
 
 func _on_baraja_seleccion_item_selected(index):
 	if index == 0:
-		baraja_seleccionada.text = "Editando: baraja 1"
 		DeckBuild.baraja_seleccionada = 0
 		DeckBuild.baraja_temp = DeckBuild.baraja_jugador1
 		DeckBuild.nombre_temp = DeckBuild.nombre_cartas1
 		DeckBuild.cantidad_temp = DeckBuild.cantidad_cartas1
 	else:
-		baraja_seleccionada.text = "Editando: baraja 2"
 		DeckBuild.baraja_seleccionada = 1
 		DeckBuild.baraja_temp = DeckBuild.baraja_jugador2
 		DeckBuild.nombre_temp = DeckBuild.nombre_cartas2
@@ -170,25 +166,23 @@ func _on_boton_atras_pressed():
 	$AnimationPlayer.play_backwards("ir_confirmar_mazo_jugar")
 
 func _on_boton_seleccionar_mazo_1_pressed():
-	DeckBuild.baraja_seleccionada = 0
-	print(DeckBuild.baraja_jugador1)
+	#DeckBuild.baraja_seleccionada = 0
 	if DeckBuild.nombre_cartas1.size() != 0:
-		mazo_descripcion_confirmar.text = "Tu mazo seleccionado (1) contiene " + str(DeckBuild.baraja_jugador1.size()) + " cartas."
+		mazo_descripcion_confirmar.text = "Player 1's deck has " + str(DeckBuild.baraja_jugador1.size()) + " cards."
 		for i in DeckBuild.nombre_cartas1.size():
 			mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas1[i]) + "x " + DeckBuild.nombre_cartas1[i]
 	else:
-		mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+		mazo_descripcion_confirmar.text = "Player 1 has no cards in their deck."
 
 
 func _on_boton_seleccionar_mazo_2_pressed():
-	DeckBuild.baraja_seleccionada = 1
-	print(DeckBuild.baraja_jugador2)
+	#DeckBuild.baraja_seleccionada = 1
 	if DeckBuild.nombre_cartas2.size() != 0:
-			mazo_descripcion_confirmar.text = "Tu mazo seleccionado (2) contiene " + str(DeckBuild.baraja_jugador2.size()) + " cartas."
+			mazo_descripcion_confirmar.text = "Player 2's deck has " + str(DeckBuild.baraja_jugador2.size()) + " cards."
 			for i in DeckBuild.nombre_cartas2.size():
 				mazo_descripcion_confirmar.text += "\n" + str(DeckBuild.cantidad_cartas2[i]) + "x " + DeckBuild.nombre_cartas2[i]
 	else:
-		mazo_descripcion_confirmar.text = "No tienes cartas en el mazo"
+		mazo_descripcion_confirmar.text = "Player 2 has no cards in their deck."
 
 
 #*********************************************************
@@ -247,7 +241,17 @@ func limpiar_vista_baraja():
 	var container_info_mazo = $menu_info_mazo/Panel/ScrollContainer/container_info_mazo
 	for i in container_info_mazo.get_children():
 		container_info_mazo.remove_child(i)
-	
+
+
+#*********************************************************
+#menu info mazo
+#*********************************************************
+
+func _on_understand_button_pressed() -> void:
+	$AnimationPlayer.play_backwards("ir_tutorial")
+	await $AnimationPlayer.animation_finished
+
+
 func menu_transition(old, new):
 	old.hide()
 	new.show()

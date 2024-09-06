@@ -94,12 +94,15 @@ func determinarInicio():
 	collision_mano_jugador1.hide()
 	collision_mano_jugador_2.hide()
 	
-	if DeckBuild.baraja_seleccionada == 0:
-		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
-	elif DeckBuild.baraja_seleccionada == 1:
-		DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador2.duplicate()
+	#if DeckBuild.baraja_seleccionada == 0:
+		#DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
+	#elif DeckBuild.baraja_seleccionada == 1:
+		#DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador2.duplicate()
+	#
+	#DeckBuild.baraja_oponente_partida = DeckBuild.barajaOponente.duplicate()
 	
-	DeckBuild.baraja_oponente_partida = DeckBuild.barajaOponente.duplicate()
+	DeckBuild.baraja_jugador_partida = DeckBuild.baraja_jugador1.duplicate()
+	DeckBuild.baraja_oponente_partida = DeckBuild.baraja_jugador2.duplicate()
 	
 	DeckBuild.baraja_jugador_partida.shuffle()
 	DeckBuild.baraja_oponente_partida.shuffle()
