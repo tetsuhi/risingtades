@@ -4,7 +4,6 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rakf4"]
 texture = ExtResource("1_ns2px")
-axis_stretch_horizontal = 1
 
 [resource]
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_rakf4")

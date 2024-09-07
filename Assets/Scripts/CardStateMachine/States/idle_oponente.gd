@@ -21,6 +21,7 @@ func on_enter():
 			mano_jugador2.move_child(card, card.reorder_pos)
 			card.reorder_pos = -1
 			activate_cards_in_hand()
+		turn_manager.obtener_posiciones_cartas_en_mano(1)
 		turn_manager.reajustar_mano(1)
 	
 func state_process(delta):

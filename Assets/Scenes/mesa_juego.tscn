@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=52 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Texture2D" uid="uid://clnimho3lpkni" path="res://Assets/Textures/FONDO_TILE.png" id="1_mfro5"]
 [ext_resource type="Texture2D" uid="uid://ccjp6e7ukjou6" path="res://Assets/Textures/board_sprite.png" id="2_gc2hy"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="3_t5cda"]
 [ext_resource type="Texture2D" uid="uid://cr0e56ely2b44" path="res://Assets/Textures/card_base4.png" id="4_co6jo"]
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="4_x4o7f"]
+[ext_resource type="Theme" uid="uid://dda84leh5klu7" path="res://Assets/Themes/tide_bar_theme2.tres" id="5_tevkr"]
 [ext_resource type="Texture2D" uid="uid://hhajtucunhxl" path="res://Assets/Textures/brujula_fondo.png" id="6_126m5"]
 [ext_resource type="Texture2D" uid="uid://q63dg4fbbjpy" path="res://Assets/Textures/brujula_aguja.png" id="7_m8iot"]
 [ext_resource type="Script" path="res://Assets/Scripts/PauseButtonHandler.gd" id="7_yvgv3"]
@@ -1064,7 +1065,7 @@ _data = {
 [node name="Juego" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
 [node name="background" type="TextureRect" parent="Juego"]
-modulate = Color(1, 1, 1, 0.117647)
+modulate = Color(1, 1, 1, 0.254902)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1075,7 +1076,7 @@ offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_mfro5")
-expand_mode = 2
+expand_mode = 1
 stretch_mode = 1
 
 [node name="Area2D" type="Area2D" parent="Juego" groups=["mesa_jugador1"]]
@@ -1226,7 +1227,7 @@ offset_right = 1054.0
 offset_bottom = 472.0
 grow_vertical = 2
 rotation = -1.5708
-theme = ExtResource("3_2g71c")
+theme = ExtResource("5_tevkr")
 min_value = -20.0
 max_value = 20.0
 step = 1.0
@@ -1710,7 +1711,7 @@ focus_mode = 0
 theme = ExtResource("2_t0m6k")
 theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
-text = "Pasar"
+text = "End turn"
 
 [node name="end_game_menu" parent="UI" instance=ExtResource("8_qwh8y")]
 

@@ -14,5 +14,5 @@ card_id = "2"
 card_name = "Goku"
 card_type = 0
 card_target = 6
-card_cost = 6
+card_cost = 1
 texture = ExtResource("2_gcasp")

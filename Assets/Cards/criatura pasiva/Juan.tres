@@ -13,5 +13,5 @@ card_id = "0"
 card_name = "Juan"
 card_type = 1
 card_target = 0
-card_cost = 2
+card_cost = 1
 texture = ExtResource("2_y6iyx")

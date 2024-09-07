@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=35 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
@@ -7,6 +7,10 @@
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="4_e1nl7"]
 [ext_resource type="Texture2D" uid="uid://by7no1luwqnb2" path="res://Assets/Textures/itchio_icon.png" id="4_vah0m"]
 [ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="6_bi1ym"]
+[ext_resource type="Texture2D" uid="uid://bsaw5flba8t73" path="res://Assets/Textures/active_card_icon.png" id="8_jh048"]
+[ext_resource type="Texture2D" uid="uid://0yt886igpnnn" path="res://Assets/Textures/pasive_card_icon.png" id="9_uw8at"]
+[ext_resource type="Texture2D" uid="uid://bx2uusqxjcmnv" path="res://Assets/Textures/spell_card_icon.png" id="10_1lp7u"]
+[ext_resource type="Texture2D" uid="uid://dxglqjbdcji8c" path="res://Assets/Textures/instant_card_icon.png" id="11_x0xt7"]
 
 [sub_resource type="Animation" id="Animation_bauv7"]
 resource_name = "background_loop"
@@ -68,6 +72,23 @@ func _ready():
 [sub_resource type="LabelSettings" id="LabelSettings_wcq87"]
 font = ExtResource("2_namtc")
 font_size = 21
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1ttc"]
+font = ExtResource("6_bi1ym")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_60eq3"]
+font = ExtResource("6_bi1ym")
+font_size = 27
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iagb1"]
+font = ExtResource("6_bi1ym")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_ja20j"]
+font = ExtResource("6_bi1ym")
+font_size = 27
 
 [sub_resource type="Animation" id="Animation_41wvt"]
 length = 0.001
@@ -819,6 +840,58 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_vtss4"]
+resource_name = "ir_tutorial"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.46667, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tutorial:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1080), Vector2(0, 30), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("tutorial:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="Animation" id="Animation_1yj3y"]
 resource_name = "pulsar_empezar"
 length = 3.0
@@ -1039,58 +1112,6 @@ tracks/17/keys = {
 "values": [2, 0]
 }
 
-[sub_resource type="Animation" id="Animation_vtss4"]
-resource_name = "ir_tutorial"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("menu:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 1080)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("menu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.46667, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("tutorial:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.266667, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -1080), Vector2(0, 30), Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("tutorial:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2xkpg"]
 _data = {
 "RESET": SubResource("Animation_41wvt"),
@@ -1120,7 +1141,7 @@ libraries = {
 }
 
 [node name="background" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.117647)
+modulate = Color(1, 1, 1, 0.254902)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1152,18 +1173,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -414.5
-offset_top = 142.406
+offset_top = 180.406
 offset_right = 414.5
-offset_bottom = 207.406
+offset_bottom = 245.406
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(414, 32)
 theme = SubResource("Theme_ri73g")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][wave amp=40.0 freq=4.0 connected=1][center]Press [Space] to start[/center][/wave][/pulse]"
+text = "[pulse freq=1.0 color=#ffffff40 ease=-5.0][wave amp=40.0 freq=4.0 connected=1][center]Press any key to start[/center][/wave][/pulse]"
 
 [node name="eslogan" type="RichTextLabel" parent="menu"]
 layout_mode = 1
@@ -1173,15 +1194,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -570.5
-offset_top = -149.371
+offset_top = -164.0
 offset_right = 570.5
-offset_bottom = -78.3713
+offset_bottom = -93.0003
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(570, 35)
 theme = SubResource("Theme_ri73g")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]A refreshing card game![/center][/wave]"
@@ -1202,7 +1223,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(693, 96)
 theme = SubResource("Theme_2b8vt")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 30
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
@@ -1218,7 +1239,7 @@ offset_right = 492.0
 grow_vertical = 0
 scale = Vector2(1.3, 1.3)
 theme = SubResource("Theme_h0xeb")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1] Developed by @tetsuhi[/wave]"
@@ -1267,6 +1288,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
+disabled = true
 text = "Options"
 
 [node name="boton_coleccion" type="Button" parent="menu/VBoxContainer"]
@@ -1274,6 +1296,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
+disabled = true
 text = "Collection"
 
 [node name="boton_salir" type="Button" parent="menu/VBoxContainer"]
@@ -1281,6 +1304,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
+disabled = true
 text = "Exit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="menu"]
@@ -1291,14 +1315,14 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -320.0
 offset_top = 64.0
-offset_right = 320.0
+offset_right = 392.0
 offset_bottom = 112.0
 grow_horizontal = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("6_bi1ym")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]If it's your first time playing, click here!"
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]-> If it's your first time playing, click here! <-"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="menu"]
 modulate = Color(1, 1, 1, 0)
@@ -1369,9 +1393,11 @@ offset_right = 199.5
 offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 45
 
 [node name="VBoxContainer" type="VBoxContainer" parent="opciones/TabContainer/Video/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Screen Mode" type="Label" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -1389,7 +1415,7 @@ text = "V-Sync"
 layout_mode = 2
 
 [node name="screen_mode" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(175, 0)
+custom_minimum_size = Vector2(175, 35)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
@@ -1401,6 +1427,7 @@ popup/item_1/text = " Fullscreen"
 popup/item_1/id = 1
 
 [node name="v_sync" type="OptionButton" parent="opciones/TabContainer/Video/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_ty4a6")
@@ -1458,7 +1485,7 @@ offset_bottom = 186.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 theme = SubResource("Theme_md8ar")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
@@ -1470,7 +1497,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 400.0
-offset_top = 192.0
+offset_top = 232.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1571,7 +1598,7 @@ grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(345, 67)
 theme = SubResource("Theme_md8ar")
-theme_override_colors/font_shadow_color = Color(0, 0.188235, 0.207843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
@@ -1583,7 +1610,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 400.0
-offset_top = 192.0
+offset_top = 224.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1893,8 +1920,163 @@ offset_right = 175.0
 offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme = ExtResource("1_ty4a6")
 text = "Hmm, understood"
+
+[node name="Label" type="Label" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -381.5
+offset_right = 424.0
+offset_bottom = -352.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+text = "______________________________________________"
+label_settings = SubResource("LabelSettings_f1ttc")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="tutorial"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 352.0
+offset_top = -381.5
+offset_right = 1080.0
+offset_bottom = -352.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+text = "______________________________________________"
+label_settings = SubResource("LabelSettings_f1ttc")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 83.0
+offset_top = -418.0
+offset_right = 587.0
+offset_bottom = -148.0
+grow_vertical = 2
+text = "Rising Tades es un juego multijugador local de cartas PvP para dos jugadores.
+
+El objetivo del juego es subir tu marea a su mayor estado y mantenerse 3 turnos (se cuenta al principio de cada turno)
+
+En la apartado \"Collection\" se pueden editar los mazos de cada jugador, con cartas de los siguientes tipos:
+"
+label_settings = SubResource("LabelSettings_60eq3")
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -113.0
+offset_right = 168.0
+offset_bottom = -73.0
+grow_vertical = 2
+texture = ExtResource("8_jh048")
+
+[node name="TextureRect2" type="TextureRect" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -25.0
+offset_right = 168.0
+offset_bottom = 15.0
+grow_vertical = 2
+texture = ExtResource("9_uw8at")
+
+[node name="TextureRect3" type="TextureRect" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 63.0
+offset_right = 168.0
+offset_bottom = 103.0
+grow_vertical = 2
+texture = ExtResource("10_1lp7u")
+
+[node name="TextureRect4" type="TextureRect" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 151.0
+offset_right = 168.0
+offset_bottom = 191.0
+grow_vertical = 2
+texture = ExtResource("11_x0xt7")
+
+[node name="Label4" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 420.0
+offset_right = 592.0
+offset_bottom = 471.0
+text = "Cartas activas: atacan a otras que se encuentren en la mesa del contrincante, atacan una vez pasado el primer turno de ser jugadas."
+label_settings = SubResource("LabelSettings_iagb1")
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 518.0
+offset_right = 528.0
+offset_bottom = 558.0
+text = "Cartas pasivas: no atacan, pero suman una cantidad de marea cada final de turno."
+label_settings = SubResource("LabelSettings_iagb1")
+autowrap_mode = 3
+
+[node name="Label6" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 596.0
+offset_right = 592.0
+offset_bottom = 647.0
+text = "Cartas de conjuro: al jugarlas, se colocan en el centro de la mesa esperando a que apliques su efecto a una carta."
+label_settings = SubResource("LabelSettings_iagb1")
+autowrap_mode = 3
+
+[node name="Label7" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 685.0
+offset_right = 592.0
+offset_bottom = 736.0
+text = "Cartas instantáneas: al jugarlas, su efecto se aplica directamente."
+label_settings = SubResource("LabelSettings_iagb1")
+autowrap_mode = 3
+
+[node name="Label8" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 776.0
+offset_right = 584.0
+offset_bottom = 913.0
+text = "Las cartas activas y pasivas tienen vida, cuando esta llega a 0, se van al cementerio. Las cartas de conjuro e instantaneas van al cementerio una vez aplican sus efectos"
+label_settings = SubResource("LabelSettings_ja20j")
+autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

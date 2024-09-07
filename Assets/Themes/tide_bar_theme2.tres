@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dda84leh5klu7"]
+
+[ext_resource type="Texture2D" uid="uid://ojp7owikdsjq" path="res://Assets/Textures/mareas_sprite2.png" id="1_r54tc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rakf4"]
+texture = ExtResource("1_r54tc")
+
+[resource]
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_rakf4")

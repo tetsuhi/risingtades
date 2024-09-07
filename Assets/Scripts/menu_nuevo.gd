@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	#Pulsa cualquier botón para empezar
-	if Input.is_key_pressed(KEY_SPACE) and not SceneTransition.empezado:
+	if Input.is_anything_pressed() and not SceneTransition.empezado:
 		if event.pressed:
 			#get_tree().change_scene_to_file("res://Assets/Scenes/menuNuevo.tscn")
 			$AnimationPlayer.play("pulsar_empezar")
@@ -244,7 +244,7 @@ func limpiar_vista_baraja():
 
 
 #*********************************************************
-#menu info mazo
+#tutorial
 #*********************************************************
 
 func _on_understand_button_pressed() -> void:

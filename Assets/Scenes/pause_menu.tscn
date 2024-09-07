@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxgf48eb41sdp"]
+[gd_scene load_steps=8 format=3 uid="uid://bxgf48eb41sdp"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/PauseButtonHandler.gd" id="1_41e7q"]
-[ext_resource type="Theme" uid="uid://bxf4bt3q4vwjx" path="res://Assets/Themes/new_theme.tres" id="1_sxn1t"]
+[ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="2_p1k6d"]
 [ext_resource type="FontFile" uid="uid://bxmhwg3mtfcjc" path="res://Assets/Fonts/Habbo.ttf" id="2_u1p7p"]
+[ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="4_r21q6"]
 
 [sub_resource type="Animation" id="Animation_1l0eb"]
 length = 0.001
@@ -143,15 +144,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -72.0
-offset_right = 160.0
-offset_bottom = 72.0
+offset_left = -192.0
+offset_top = -92.0
+offset_right = 192.0
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(160, 72)
-theme = ExtResource("1_sxn1t")
+theme = ExtResource("2_p1k6d")
 
 [node name="pause_text" type="RichTextLabel" parent="pause_panel"]
 process_mode = 2
@@ -168,7 +169,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_colors/font_shadow_color = Color(0, 0.352941, 0.415686, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
 theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/normal_font = ExtResource("2_u1p7p")
 theme_override_font_sizes/normal_font_size = 50
@@ -178,34 +179,38 @@ fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="pause_panel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = 12.0
-offset_right = 78.0
-offset_bottom = 52.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -62.0
+offset_right = 136.0
+offset_bottom = -22.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 80
+grow_vertical = 0
+theme_override_constants/separation = 40
 
 [node name="reanudar_boton" type="Button" parent="pause_panel/HBoxContainer"]
 process_mode = 2
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_r21q6")
 theme_override_fonts/font = ExtResource("2_u1p7p")
 theme_override_font_sizes/font_size = 32
-text = "Reanudar"
+text = "Resume"
 
 [node name="menu_boton" type="Button" parent="pause_panel/HBoxContainer"]
 process_mode = 2
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 focus_mode = 0
+theme = ExtResource("4_r21q6")
 theme_override_fonts/font = ExtResource("2_u1p7p")
 theme_override_font_sizes/font_size = 32
-text = "Salir"
+text = "Menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

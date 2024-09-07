@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cawp2u43xx6mu"]
+[gd_scene load_steps=9 format=3 uid="uid://cawp2u43xx6mu"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/end_game_menu.gd" id="1_0xf7b"]
 [ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="2_o5p8u"]
+[ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="2_p7yw1"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="3_ajdkd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ppc5p"]
@@ -147,14 +148,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -82.0
-offset_right = 256.0
-offset_bottom = 84.0
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(256, 83)
+theme = ExtResource("2_p7yw1")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -163,10 +165,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -144.0
-offset_top = -49.0
-offset_right = 144.0
-offset_bottom = 13.0
+offset_left = -170.0
+offset_top = -53.0
+offset_right = 170.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "TEXTO DE EJEMPLO"
@@ -181,15 +183,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -44.0
-offset_top = -60.2166
+offset_top = -65.2166
 offset_right = 44.0
-offset_bottom = -20.2166
+offset_bottom = -25.2166
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
 theme = ExtResource("3_ajdkd")
 theme_override_font_sizes/font_size = 24
-text = "Menú"
+text = "Menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
