@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bs615om7u3vog"]
+[gd_scene load_steps=55 format=3 uid="uid://bs615om7u3vog"]
 
 [ext_resource type="Texture2D" uid="uid://clnimho3lpkni" path="res://Assets/Textures/FONDO_TILE.png" id="1_mfro5"]
 [ext_resource type="Texture2D" uid="uid://ccjp6e7ukjou6" path="res://Assets/Textures/board_sprite.png" id="2_gc2hy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cgqyorv04avt0" path="res://Assets/Themes/tide_bar_theme.tres" id="3_2g71c"]
 [ext_resource type="Theme" uid="uid://dvsojcmw5svs1" path="res://Assets/Themes/label_ingame.tres" id="3_2hdho"]
 [ext_resource type="FontFile" uid="uid://clhh55vhynrbu" path="res://Assets/Fonts/Bitfantasy.ttf" id="3_t5cda"]
+[ext_resource type="Texture2D" uid="uid://bh66qd2ge5f7x" path="res://Assets/Textures/card_back.png" id="3_w412x"]
 [ext_resource type="Texture2D" uid="uid://cr0e56ely2b44" path="res://Assets/Textures/card_base4.png" id="4_co6jo"]
 [ext_resource type="Texture2D" uid="uid://8owkkp6domqv" path="res://icon.svg" id="4_x4o7f"]
 [ext_resource type="Theme" uid="uid://dda84leh5klu7" path="res://Assets/Themes/tide_bar_theme2.tres" id="5_tevkr"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/TorchManager.gd" id="9_rvepi"]
 [ext_resource type="PackedScene" uid="uid://bxgf48eb41sdp" path="res://Assets/Scenes/pause_menu.tscn" id="12_24cjn"]
 [ext_resource type="Script" path="res://Assets/Scripts/TideManager.gd" id="14_x3k5s"]
+[ext_resource type="Shader" path="res://Assets/Shaders/chromaticAberration.gdshader" id="21_otbei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtpe"]
 size = Vector2(1152, 184)
@@ -32,6 +34,10 @@ font_size = 27
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3jj8"]
 bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6c04"]
+shader = ExtResource("21_otbei")
+shader_parameter/aberration = 3.0
 
 [sub_resource type="Curve" id="Curve_g282d"]
 min_value = -1.0
@@ -388,7 +394,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea alta"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]High tide"]
 }
 
 [sub_resource type="Animation" id="Animation_oe366"]
@@ -440,7 +446,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea baja"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Low tide"]
 }
 
 [sub_resource type="Animation" id="Animation_w85xp"]
@@ -480,7 +486,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea inicial"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Initial tide"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -544,7 +550,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]¡¡Marea muerta!!"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Neap tide!!"]
 }
 
 [sub_resource type="Animation" id="Animation_wwsfe"]
@@ -652,7 +658,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[rainbow freq=1.0 sat=0.5 val=1.0][wave amp=50.0 freq=5.0 connected=1][center]¡¡Marea viva!!"]
+"values": ["[rainbow freq=1.0 sat=0.5 val=1.0][wave amp=50.0 freq=5.0 connected=1][center]Spring tide!!"]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -740,7 +746,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea alta"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]High tide"]
 }
 
 [sub_resource type="Animation" id="Animation_lkjj6"]
@@ -780,7 +786,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea baja"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Low tide"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -832,7 +838,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Marea inicial"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Initial tide"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -884,7 +890,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[wave amp=50.0 freq=5.0 connected=1][center]¡¡Marea muerta!!"]
+"values": ["[wave amp=50.0 freq=5.0 connected=1][center]Neap tide!!"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1002,7 +1008,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["[rainbow freq=1.0 sat=0.5 val=1.0][wave amp=50.0 freq=5.0 connected=1][center]¡Marea viva!"]
+"values": ["[rainbow freq=1.0 sat=0.5 val=1.0][wave amp=50.0 freq=5.0 connected=1][center]Spring tide!"]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1139,7 +1145,7 @@ offset_right = -102.0
 offset_bottom = -33.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("4_co6jo")
+texture = ExtResource("3_w412x")
 
 [node name="baraja_jugador2" type="TextureRect" parent="Juego" groups=["baraja_jugador2"]]
 anchors_preset = 1
@@ -1150,7 +1156,7 @@ offset_top = 40.0
 offset_right = -102.0
 offset_bottom = 279.0
 grow_horizontal = 0
-texture = ExtResource("4_co6jo")
+texture = ExtResource("3_w412x")
 
 [node name="cementerio_base_jugador1" type="TextureRect" parent="Juego" groups=["cementerio_base_jugador1"]]
 visible = false
@@ -1323,6 +1329,7 @@ offset_left = 157.0
 offset_top = 986.0
 offset_right = 197.0
 offset_bottom = 1009.0
+scale = Vector2(0.95, 0.95)
 pivot_offset = Vector2(20, 11)
 text = "0"
 label_settings = SubResource("LabelSettings_tt3nv")
@@ -1714,6 +1721,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_e3jj8")
 text = "End turn"
 
 [node name="end_game_menu" parent="UI" instance=ExtResource("8_qwh8y")]
+
+[node name="ColorRect2" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_h6c04")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TideManager" type="Node" parent="." groups=["tide_manager"]]
 script = ExtResource("14_x3k5s")

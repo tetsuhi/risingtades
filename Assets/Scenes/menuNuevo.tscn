@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://whogxsmuiqnw"]
+[gd_scene load_steps=42 format=3 uid="uid://whogxsmuiqnw"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/menu_nuevo.gd" id="1_lny0i"]
 [ext_resource type="Theme" uid="uid://dw1hiod4ykxab" path="res://Assets/Themes/button_theme.tres" id="1_ty4a6"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://0yt886igpnnn" path="res://Assets/Textures/pasive_card_icon.png" id="9_uw8at"]
 [ext_resource type="Texture2D" uid="uid://bx2uusqxjcmnv" path="res://Assets/Textures/spell_card_icon.png" id="10_1lp7u"]
 [ext_resource type="Texture2D" uid="uid://dxglqjbdcji8c" path="res://Assets/Textures/instant_card_icon.png" id="11_x0xt7"]
+[ext_resource type="Texture2D" uid="uid://bcihcftsit7a5" path="res://Assets/Textures/godot_icon.png" id="12_7fjsa"]
+[ext_resource type="Texture2D" uid="uid://dk4vm58smpai0" path="res://Assets/Textures/image.png" id="12_7ppuo"]
+[ext_resource type="Shader" path="res://Assets/Shaders/chromaticAberration.gdshader" id="14_vjl8i"]
 
 [sub_resource type="Animation" id="Animation_bauv7"]
 resource_name = "background_loop"
@@ -86,9 +89,28 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("6_bi1ym")
 font_size = 18
 
+[sub_resource type="LabelSettings" id="LabelSettings_38uh0"]
+font = ExtResource("6_bi1ym")
+font_size = 27
+outline_color = Color(1, 0.32, 0.32, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ja20j"]
 font = ExtResource("6_bi1ym")
 font_size = 27
+outline_size = 10
+outline_color = Color(1, 0.32, 0.32, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_og2qf"]
+font = ExtResource("6_bi1ym")
+font_size = 18
+outline_size = 10
+outline_color = Color(1, 0.32, 0.32, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t0c8p"]
+font = ExtResource("6_bi1ym")
+font_size = 27
+outline_size = 10
+outline_color = Color(1, 0.32, 0.32, 1)
 
 [sub_resource type="Animation" id="Animation_41wvt"]
 length = 0.001
@@ -1126,6 +1148,10 @@ _data = {
 "pulsar_empezar": SubResource("Animation_1yj3y")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eou01"]
+shader = ExtResource("14_vjl8i")
+shader_parameter/aberration = 3.0
+
 [node name="MenuNuevo" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -1181,7 +1207,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(414, 32)
 theme = SubResource("Theme_ri73g")
-theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
+theme_override_colors/font_shadow_color = Color(0.0517, 0.142332, 0.47, 0.796078)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
 text = "[pulse freq=1.0 color=#ffffff40 ease=-5.0][wave amp=40.0 freq=4.0 connected=1][center]Press any key to start[/center][/wave][/pulse]"
@@ -1202,7 +1228,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(570, 35)
 theme = SubResource("Theme_ri73g")
-theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
+theme_override_colors/font_shadow_color = Color(0.0517, 0.142332, 0.47, 0.796078)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]A refreshing card game![/center][/wave]"
@@ -1223,7 +1249,7 @@ grow_vertical = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(693, 96)
 theme = SubResource("Theme_2b8vt")
-theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
+theme_override_colors/font_shadow_color = Color(0.0517, 0.142332, 0.47, 0.796078)
 theme_override_constants/shadow_offset_y = 30
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1][center]RISING TADES[/center][/wave]"
@@ -1239,7 +1265,7 @@ offset_right = 492.0
 grow_vertical = 0
 scale = Vector2(1.3, 1.3)
 theme = SubResource("Theme_h0xeb")
-theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
+theme_override_colors/font_shadow_color = Color(0.0517, 0.142332, 0.47, 0.796078)
 theme_override_constants/shadow_offset_y = 15
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1] Developed by @tetsuhi[/wave]"
@@ -1485,7 +1511,7 @@ offset_bottom = 186.0
 grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 theme = SubResource("Theme_md8ar")
-theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
+theme_override_colors/font_shadow_color = Color(0.0517, 0.142332, 0.47, 0.796078)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
@@ -1598,7 +1624,7 @@ grow_horizontal = 2
 scale = Vector2(1.3, 1.3)
 pivot_offset = Vector2(345, 67)
 theme = SubResource("Theme_md8ar")
-theme_override_colors/font_shadow_color = Color(0, 0.045, 0.54, 0.498039)
+theme_override_colors/font_shadow_color = Color(0.0517, 0.142332, 0.47, 0.796078)
 theme_override_constants/shadow_offset_y = 30
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
@@ -2031,10 +2057,10 @@ texture = ExtResource("11_x0xt7")
 [node name="Label4" type="Label" parent="tutorial"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 420.0
+offset_top = 405.0
 offset_right = 592.0
-offset_bottom = 471.0
-text = "Cartas activas: atacan a otras que se encuentren en la mesa del contrincante, atacan una vez pasado el primer turno de ser jugadas."
+offset_bottom = 492.0
+text = "Cartas activas: atacan a otras que se encuentren en la mesa del contrincante, atacan una vez pasado el primer turno de ser jugadas. Para atacar, click en la carta y arrastra, suelta encima de la carta que atacar"
 label_settings = SubResource("LabelSettings_iagb1")
 autowrap_mode = 3
 
@@ -2051,10 +2077,10 @@ autowrap_mode = 3
 [node name="Label6" type="Label" parent="tutorial"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 596.0
+offset_top = 589.0
 offset_right = 592.0
-offset_bottom = 647.0
-text = "Cartas de conjuro: al jugarlas, se colocan en el centro de la mesa esperando a que apliques su efecto a una carta."
+offset_bottom = 658.0
+text = "Cartas de conjuro: al jugarlas, se colocan en el centro de la mesa esperando a que apliques su efecto a una carta. Se usan igual que las cartas activas."
 label_settings = SubResource("LabelSettings_iagb1")
 autowrap_mode = 3
 
@@ -2075,13 +2101,211 @@ offset_top = 776.0
 offset_right = 584.0
 offset_bottom = 913.0
 text = "Las cartas activas y pasivas tienen vida, cuando esta llega a 0, se van al cementerio. Las cartas de conjuro e instantaneas van al cementerio una vez aplican sus efectos"
+label_settings = SubResource("LabelSettings_38uh0")
+autowrap_mode = 3
+
+[node name="TextureRect6" type="TextureRect" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1199.0
+offset_top = -342.0
+offset_right = -50.0
+offset_bottom = 342.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("12_7fjsa")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="tutorial/TextureRect6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -538.5
+offset_top = -303.0
+offset_right = 538.5
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_7ppuo")
+expand_mode = 1
+
+[node name="Label9" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1189.0
+offset_top = 702.0
+offset_right = 1387.0
+offset_bottom = 771.0
+text = "HAND PLAYER 1
+v"
 label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label19" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1106.0
+offset_top = 598.0
+offset_right = 1304.0
+offset_bottom = 667.0
+text = "CARD LIFE
+v"
+label_settings = SubResource("LabelSettings_og2qf")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label20" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1195.0
+offset_top = 598.0
+offset_right = 1393.0
+offset_bottom = 667.0
+text = "CARD TIDE
+v"
+label_settings = SubResource("LabelSettings_og2qf")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label21" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1303.0
+offset_top = 598.0
+offset_right = 1501.0
+offset_bottom = 667.0
+text = "CARD ATTACK
+v"
+label_settings = SubResource("LabelSettings_og2qf")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label14" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1413.0
+offset_top = 561.0
+offset_right = 1611.0
+offset_bottom = 630.0
+text = "BOARD PLAYER 1
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label17" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 884.0
+offset_top = 757.0
+offset_right = 1082.0
+offset_bottom = 826.0
+text = "GRAVEYARD PLAYER 1
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label18" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 884.0
+offset_top = 252.0
+offset_right = 1082.0
+offset_bottom = 324.0
+text = "GRAVEYARD PLAYER 2
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label15" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1413.0
+offset_top = 452.0
+offset_right = 1611.0
+offset_bottom = 521.0
+text = "BOARD PLAYER 2
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label16" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1618.0
+offset_top = 485.0
+offset_right = 1834.0
+offset_bottom = 554.0
+text = "END TURN BUTTON
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label10" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1185.0
+offset_top = 255.0
+offset_right = 1383.0
+offset_bottom = 324.0
+text = "HAND PLAYER 2
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label11" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 225.0
+offset_right = 935.0
+offset_bottom = 294.0
+text = "TIDE METER
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label13" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 1597.0
+offset_top = 402.0
+offset_right = 1858.0
+offset_bottom = 471.0
+text = "AVAILABLE TORCHES
+v"
+label_settings = SubResource("LabelSettings_ja20j")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label12" type="Label" parent="tutorial"]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 457.0
+offset_right = 1042.0
+offset_bottom = 526.0
+text = "TURN INDICATOR
+v"
+label_settings = SubResource("LabelSettings_t0c8p")
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2xkpg")
 }
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_eou01")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="menu/itch button" to="." method="_on_itch_button_pressed"]
 [connection signal="pressed" from="menu/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_pressed"]

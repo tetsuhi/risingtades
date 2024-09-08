@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="effect_update_tide" load_steps=2 format=3 uid="uid://ewcb76roheb2"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_update_tide.gd" id="1_kfl7a"]
+
+[resource]
+script = ExtResource("1_kfl7a")
+effect_text = ""
+execution = 0
+tide_amount = 2
+life = 2
+card_id = "0"
+card_name = "Reef"
+card_type = 1
+card_target = 0
+card_cost = 1

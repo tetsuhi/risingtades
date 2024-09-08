@@ -310,7 +310,7 @@ func leerCartasEnMesa(moment, player):
 func comprobar_estado_partida():
 	if DeckBuild.baraja_jugador_partida.size() + mano_jugador.get_child_count() == 0 and campo_jugador1.get_child_count() == 0:
 		turn_label.text = "Gana el oponente. Volviendo al menú"
-		win_label.text = "¡Ha ganado el jugador 2!"
+		win_label.text = "Player 2 wins!"
 		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
@@ -321,7 +321,7 @@ func comprobar_estado_partida():
 	
 	if DeckBuild.baraja_oponente_partida.size() + mano_jugador2.get_child_count() == 0 and campo_oponente.get_child_count() == 0:
 		turn_label.text = "Gana el jugador. Volviendo al menú"
-		win_label.text = "¡Ha ganado el jugador 1!"
+		win_label.text = "Player 1 wins!"
 		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
@@ -332,7 +332,7 @@ func comprobar_estado_partida():
 		
 	if turnosMareaVivaJugador == 3:
 		turn_label.text = "Gana el jugador. Volviendo al menú"
-		win_label.text = "¡Ha ganado el jugador 1!"
+		win_label.text = "Player 1 wins!"
 		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []
@@ -343,7 +343,7 @@ func comprobar_estado_partida():
 		
 	if turnosMareaVivaOponente == 3:
 		turn_label.text = "Gana el oponente. Volviendo al menú"
-		win_label.text = "¡Ha ganado el jugador 2!"
+		win_label.text = "Player 2 wins!"
 		end_game_menu.animation_player.play("end_game_menu")
 		DeckBuild.cementerio_jugador = []
 		DeckBuild.cementerio_oponente = []

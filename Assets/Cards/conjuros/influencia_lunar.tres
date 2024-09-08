@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="effect_increase_tide_ally" load_steps=2 format=3 uid="uid://dfuaqs76isac4"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_increase_tide_ally.gd" id="1_upl4x"]
+
+[resource]
+script = ExtResource("1_upl4x")
+effect_text = "Increases the tide of a card by 1"
+tide_increase = 1
+card_id = "3"
+card_name = "Lunar influence"
+card_type = 2
+card_target = 6
+card_cost = 1

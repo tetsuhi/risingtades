@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cqjftntyb5ar5"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_double_tide.gd" id="1_kqrk0"]
+
+[resource]
+script = ExtResource("1_kqrk0")
+effect_text = "x2 tide if played in High Tide"
+execution = 2
+tide_amount = 2
+life = 1
+card_id = "5"
+card_name = "Wooden Boat"
+card_type = 1
+card_target = 0
+card_cost = 1

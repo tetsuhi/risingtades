@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfjhlkpf7gs5n"]
+[gd_scene load_steps=17 format=3 uid="uid://cfjhlkpf7gs5n"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/cardControllerOponente.gd" id="1_1yrqw"]
 [ext_resource type="Texture2D" uid="uid://cr0e56ely2b44" path="res://Assets/Textures/card_base4.png" id="2_i5umt"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ccfol74xcm0eo" path="res://Assets/Textures/card_on_board.png" id="6_ju4nx"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/dragged_spell_oponente.gd" id="6_qw18x"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/aim_spell_oponente.gd" id="7_4au61"]
+[ext_resource type="Texture2D" uid="uid://bh66qd2ge5f7x" path="res://Assets/Textures/card_back.png" id="7_kfky4"]
 
 [sub_resource type="Animation" id="Animation_y2baj"]
 length = 0.001
@@ -246,7 +247,7 @@ offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_6flb5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 21
 text = "pipo"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -366,7 +367,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_qy0t1")
+texture = ExtResource("7_kfky4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

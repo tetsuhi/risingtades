@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dejaruvj4arte"]
+[gd_scene load_steps=17 format=3 uid="uid://dejaruvj4arte"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/cardController.gd" id="1_w3qoi"]
 [ext_resource type="Texture2D" uid="uid://cr0e56ely2b44" path="res://Assets/Textures/card_base4.png" id="2_fr36d"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/idle.gd" id="5_kei48"]
 [ext_resource type="Texture2D" uid="uid://ccfol74xcm0eo" path="res://Assets/Textures/card_on_board.png" id="5_lxv2u"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/dragged.gd" id="6_ux1rn"]
+[ext_resource type="Texture2D" uid="uid://bh66qd2ge5f7x" path="res://Assets/Textures/card_back.png" id="7_1bapk"]
 [ext_resource type="Script" path="res://Assets/Scripts/CardStateMachine/States/on_board.gd" id="7_h2kvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8611"]
@@ -244,7 +245,7 @@ offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_ytqhh")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 21
 text = "pipo"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -438,7 +439,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fr36d")
+texture = ExtResource("7_1bapk")
 
 [node name="detectorColision" type="Area2D" parent="."]
 

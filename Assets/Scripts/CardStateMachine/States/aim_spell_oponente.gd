@@ -32,6 +32,8 @@ func on_enter():
 	boton_pasar_turno.set_disabled(true)
 	boton_pausa.set_disabled(true)
 	disabling_cards()
+	card.on_hand.hide()
+	card.on_board.show()
 
 func state_process(delta):
 	if puntero.points.size() == 0:

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="effect_sum_tide" load_steps=2 format=3 uid="uid://yesuocn5xsyb"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Resources/effects/effect_sum_tide.gd" id="1_sbdwg"]
+
+[resource]
+script = ExtResource("1_sbdwg")
+effect_text = "Add 1 to your tide"
+tide_sum = 1
+marea = 0
+card_id = "4"
+card_name = "River mouth"
+card_type = 3
+card_target = 1
+card_cost = 1
